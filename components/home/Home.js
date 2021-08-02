@@ -6,7 +6,7 @@ export default class Home extends Component {
 
     render() {
         return (
-            <SafeAreaView style = {{paddingTop:'5%'}}>
+            <SafeAreaView>
                 <ScrollView style={{ height: '100%' }}>
                     <Layout style={{ height: '100%' }}>
                         <Text style={{ padding: 20 }}>
