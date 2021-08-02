@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { Layout, Text, Input, Button } from '@ui-kitten/components';
+import { connect } from 'react-redux'
+import { addToken } from '../../actions'
 
-export default class Login extends Component {
+class Login extends Component {
   state = { name: '',
             password: '' };
 
-  setValue = (value) => {
-    this.setState({ value });
-  }
 
   render() {
     return (
@@ -24,10 +23,25 @@ export default class Login extends Component {
           secureTextEntry={true}
           onChangeText={nextValue => this.setState({ password: nextValue })}
         />
-        <Button onPress = {() => {console.log('login')}}>
+        <Button onPress = {() => {(this.state.name=='admin' && this.state.password=='lol')? this.props.addToken('test'): null}}>
           LOG IN
         </Button>
       </Layout>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  status : state.status
+})
+
+
+const mapDispatchToProps = dispatch => ({
+  addToken: token => dispatch(addToken(token))
+})
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login)
