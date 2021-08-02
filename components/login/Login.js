@@ -3,6 +3,7 @@ import { Layout, Text, Input, Button } from '@ui-kitten/components';
 import { connect } from 'react-redux'
 import { addToken } from '../../actions'
 import Home from '../home/Home'
+import Navigation from '../navigation/Navigation'
 
 class Login extends Component {
   state = { name: '',
@@ -33,7 +34,7 @@ class Login extends Component {
   }
   else {
     return(
-    <Home />
+    <Navigation />
     )
 
 
