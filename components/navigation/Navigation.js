@@ -22,7 +22,7 @@ const DrawerContent = ({ navigation, state }) => (
   <Drawer
     selectedIndex={new IndexPath(state.index)}
     onSelect={index => navigation.navigate(state.routeNames[index.row])}>
-    <DrawerItem title='Home' />
+    <DrawerItem title='Home'/>
     <DrawerItem title='Orders' />
   </Drawer>
 );
