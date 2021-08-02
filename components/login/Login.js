@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Layout, Text, Input, Button } from '@ui-kitten/components';
 import { connect } from 'react-redux'
 import { addToken } from '../../actions'
+import Home from '../home/Home'
 
 class Login extends Component {
   state = { name: '',
@@ -9,6 +10,7 @@ class Login extends Component {
 
 
   render() {
+    if(this.props.status.token !=='test'){
     return (
       <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text category='h1'>FACE IN THE CULTURE OF FACELESSNESS</Text>
@@ -29,7 +31,14 @@ class Login extends Component {
       </Layout>
     );
   }
-}
+  else {
+    return(
+    <Home />
+    )
+
+
+  }
+}}
 
 const mapStateToProps = state => ({
   status : state.status
