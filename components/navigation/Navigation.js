@@ -6,6 +6,7 @@ import Home from '../home/Home'
 // import LogOut from '../logOut/LogOut'
 // import SettingsComponent from '../settings/Settings'
 import { Settings } from 'react-native';
+import Logout from '../login/Logout'
 
 const { Navigator, Screen } = createDrawerNavigator();
 
@@ -21,7 +22,7 @@ const DrawerContent = ({ navigation, state }) => (
     onSelect={index => navigation.navigate(state.routeNames[index.row])}>
     <DrawerItem title='Home' />
     <DrawerItem title='Settings' />
-    <DrawerItem title='LogOut' />
+    <DrawerItem title='Log out' />
   </Drawer>
 );
 
@@ -29,7 +30,7 @@ export const DrawerNavigator = () => (
   <Navigator drawerContent={props => <DrawerContent {...props}/>} style= {{height:'100%'}}>
     <Screen name='Home' component={Home}/>
     <Screen name='Settings' component={OrdersScreen}/>
-    <Screen name='LogOut' component={OrdersScreen}/>
+    <Screen name='Logout' component={Logout}/>
   </Navigator>
 );
 
