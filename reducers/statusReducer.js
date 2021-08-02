@@ -5,9 +5,6 @@ const status = (state = {theme: 'dark', token: null, page: 'login'}, action) => 
 
         case 'ADD_TOKEN':
             return {...state, token: action.payload.token};
-
-        case 'REMOVE_TOKEN':
-            return {...state, token: null}
         
         case 'CHANGE_THEME':
             return {...state, theme: action.payload.theme};
