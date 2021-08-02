@@ -14,9 +14,9 @@ class Login extends Component {
     if(this.props.status.token !=='test'){
     return (
       <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text category='h1'>FACE IN THE CULTURE OF FACELESSNESS</Text>
+        <Text category='h1'>Login</Text>
         <Input
-          placeholder='Name'
+          placeholder='Username'
           value={this.state.name}
           onChangeText={nextValue => this.setState({ name: nextValue })}
         />
