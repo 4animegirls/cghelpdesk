@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Layout, Text, Input, Button } from '@ui-kitten/components';
 
 export default class Login extends Component {
-  state = { value: '' };
+  state = { name: '',
+            password: '' };
 
   setValue = (value) => {
     this.setState({ value });
@@ -13,17 +14,18 @@ export default class Login extends Component {
       <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text category='h1'>FACE IN THE CULTURE OF FACELESSNESS</Text>
         <Input
-          placeholder='Place your Text'
-          value={this.state.value}
-          onChangeText={nextValue => this.setValue(nextValue)}
+          placeholder='Name'
+          value={this.state.name}
+          onChangeText={nextValue => this.setState({ name: nextValue })}
         />
         <Input
-          placeholder='Place your Text'
-          value={this.state.value}
-          onChangeText={nextValue => this.setValue(nextValue)}
+          placeholder='Password'
+          value={this.state.password}
+          secureTextEntry={true}
+          onChangeText={nextValue => this.setState({ password: nextValue })}
         />
-        <Button>
-          BUTTON
+        <Button onPress = {() => {console.log('login')}}>
+          LOG IN
         </Button>
       </Layout>
     );
