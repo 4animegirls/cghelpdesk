@@ -6,7 +6,6 @@ import Home from '../home/Home'
 import Settings from '../settings/Settings'
 import { useDispatch } from 'react-redux'
 import { removeToken } from '../../actions'
-import Login from '../login/Login'
 
 const { Navigator, Screen } = createDrawerNavigator();
 
