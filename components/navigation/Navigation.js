@@ -3,18 +3,16 @@ import { IndexPath, Layout, Drawer, DrawerItem, Icon, IconRegistry, Button, View
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Home from '../home/Home'
+// import LogOut from '../logOut/LogOut'
+// import SettingsComponent from '../settings/Settings'
+import { Settings } from 'react-native';
+import Logout from '../login/Logout'
 
 const { Navigator, Screen } = createDrawerNavigator();
 
-const UsersScreen = () => (
-  <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    <Text category='h1'>USERS</Text>
-  </Layout>
-);
-
 const OrdersScreen = () => (
   <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    <Text category='h1'>ORDERS</Text>
+    <Text category='h1'>LOREM IPSUM COMPONENT</Text>
   </Layout>
 );
 
@@ -22,15 +20,17 @@ const DrawerContent = ({ navigation, state }) => (
   <Drawer
     selectedIndex={new IndexPath(state.index)}
     onSelect={index => navigation.navigate(state.routeNames[index.row])}>
-    <DrawerItem title='Home'/>
-    <DrawerItem title='Orders' />
+    <DrawerItem title='Home' />
+    <DrawerItem title='Settings' />
+    <DrawerItem title='Log out' />
   </Drawer>
 );
 
 export const DrawerNavigator = () => (
   <Navigator drawerContent={props => <DrawerContent {...props}/>} style= {{height:'100%'}}>
     <Screen name='Home' component={Home}/>
-    <Screen name='Orders' component={OrdersScreen}/>
+    <Screen name='Settings' component={OrdersScreen}/>
+    <Screen name='Logout' component={Logout}/>
   </Navigator>
 );
 
