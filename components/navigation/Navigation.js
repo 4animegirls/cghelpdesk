@@ -4,17 +4,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Home from '../home/Home'
 // import LogOut from '../logOut/LogOut'
-// import SettingsComponent from '../settings/Settings'
-import { Settings } from 'react-native';
+import Settings from '../settings/Settings'
 import Logout from '../login/Logout'
 
 const { Navigator, Screen } = createDrawerNavigator();
-
-const OrdersScreen = () => (
-  <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    <Text category='h1'>LOREM IPSUM COMPONENT</Text>
-  </Layout>
-);
 
 const DrawerContent = ({ navigation, state }) => (
   <Drawer
@@ -29,7 +22,7 @@ const DrawerContent = ({ navigation, state }) => (
 export const DrawerNavigator = () => (
   <Navigator drawerContent={props => <DrawerContent {...props}/>} style= {{height:'100%'}}>
     <Screen name='Home' component={Home}/>
-    <Screen name='Settings' component={OrdersScreen}/>
+    <Screen name='Settings' component={Settings}/>
     <Screen name='Logout' component={Logout}/>
   </Navigator>
 );
