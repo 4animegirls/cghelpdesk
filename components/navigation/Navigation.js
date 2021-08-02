@@ -19,7 +19,7 @@ const DrawerContent = ({ navigation, state }) => (
   <Drawer
     selectedIndex={new IndexPath(state.index)}
     onSelect={index => navigation.navigate(state.routeNames[index.row])}>
-    <DrawerItem title='Home' />
+    <DrawerItem title='Home' style={{marginTop: '15%'}} />
     <DrawerItem title='Settings' />
     <DrawerItem title='LogOut' />
   </Drawer>
