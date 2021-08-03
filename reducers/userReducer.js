@@ -10,7 +10,7 @@ const user = (state = { Token: null, username: '' }, action) => {
             return { ...state,  username: action.payload.username  };
 
         case actionTypes.REMOVE_TOKEN:
-            return { ...state, Token: null  };
+            return { ...state, Token: null, error:null  };
 
         case actionTypes.LOGIN_SUCCESS:
             return { ...state, Token: action.payload.response.Data.Token, refreshToken: action.payload.response.Data.RefreshToken  };
@@ -18,7 +18,6 @@ const user = (state = { Token: null, username: '' }, action) => {
         case actionTypes.LOGIN_FAILURE: {
             if (action.payload.error instanceof HttpError) {
                 const { networkObj } = action.payload.error;
-                console.log(networkObj.UserMessage )
                 return { ...state, error: networkObj.UserMessage };
             }
             return state;
