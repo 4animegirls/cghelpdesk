@@ -11,7 +11,7 @@ class Login extends Component {
 
 
   render() {
-    if(this.props.status.token !=='test'){
+    if(this.props.status.token ===null){
     return (
       <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Text category='h1' style={{ fontSize: 50, fontFamily: 'serif', paddingBottom: 50 }}>coradesk</Text>

@@ -17,7 +17,7 @@ const status = (state = {theme: 'dark', user: {token: null, username: ''}, page:
 
         case 'LOGIN_SUCCESS':
             console.log(action.payload.response)
-            return {...state, user:{token: action.payload.response.Token}};
+            return {...state, user:{token: action.payload.response.Data.Token}};
 
         default:
             return state;
