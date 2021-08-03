@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Text, Input, Button, Divider } from '@ui-kitten/components';
 import { connect } from 'react-redux'
-import { addToken } from '../../actions'
+import { addToken, login } from '../../actions'
 import Home from '../home/Home'
 import Navigation from '../navigation/Navigation'
 
@@ -28,7 +28,8 @@ class Login extends Component {
           onChangeText={nextValue => this.setState({ password: nextValue })}
           style = {{paddingBottom:7, paddingTop:7, width:300 }}
         />
-        <Button style = {{ width: 300, paddingBottom:7 }} onPress = {() => {(this.state.name=='admin' && this.state.password=='lol')? this.props.addToken('test'): null}}>
+        <Button style = {{ width: 300, paddingBottom:7 }} onPress = {() => {
+          (this.state.name=='text' && this.state.password=='x')? this.props.login({username: this.state.name, password: this.state.password}): null}}>
           LOG IN
         </Button>
         <Divider style = {{height:5}}/>
@@ -53,7 +54,8 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
-  addToken: token => dispatch(addToken(token))
+  addToken: token => dispatch(addToken(token)),
+  login: userLogin => dispatch(login(userLogin))
 })
 
 

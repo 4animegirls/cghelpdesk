@@ -1,4 +1,4 @@
-export const Login = async (userLogin) => {
+export const login = async (userLogin) => {
     try {
         const response = await fetch('http://192.168.1.164/HelpDeskServer/api/Login',
         {

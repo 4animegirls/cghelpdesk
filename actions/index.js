@@ -1,4 +1,4 @@
-import { Login } from '../utils'
+import { login } from '../utils'
 
 export const addToken = (token) => ({
     type : 'ADD_TOKEN',
