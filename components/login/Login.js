@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Text, Input, Button, Divider } from '@ui-kitten/components';
 import { connect } from 'react-redux'
-import { addToken } from '../../actions'
+import { addToken, loginAction } from '../../actions'
 import Home from '../home/Home'
 import Navigation from '../navigation/Navigation'
 
@@ -11,7 +11,7 @@ class Login extends Component {
 
 
   render() {
-    if(this.props.status.token !=='test'){
+    if(this.props.status.user.Token === null){
     return (
       <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Text category='h1' style={{ fontSize: 50, fontFamily: 'serif', paddingBottom: 50 }}>coradesk</Text>
@@ -28,7 +28,8 @@ class Login extends Component {
           onChangeText={nextValue => this.setState({ password: nextValue })}
           style = {{paddingBottom:7, paddingTop:7, width:300 }}
         />
-        <Button style = {{ width: 300, paddingBottom:7 }} onPress = {() => {(this.state.name=='admin' && this.state.password=='lol')? this.props.addToken('test'): null}}>
+        <Button style = {{ width: 300, paddingBottom:7 }} onPress = {() => {
+          this.props.loginAction({Username: this.state.name, Password: this.state.password})}}>
           LOG IN
         </Button>
         <Divider style = {{height:5}}/>
@@ -53,7 +54,8 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
-  addToken: token => dispatch(addToken(token))
+  addToken: token => dispatch(addToken(token)),
+  loginAction: userLogin => dispatch(loginAction(userLogin))
 })
 
 
