@@ -9,7 +9,6 @@ import { Provider } from 'react-redux';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { ThemeContext } from './theme-context';
 
-
 const store = createStore(rootReducer, applyMiddleware(thunk))
 export default class App extends Component {
   constructor(){

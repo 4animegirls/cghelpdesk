@@ -1,3 +1,5 @@
+import actionTypes from '../actions/actionTypes';
+
 const status = (state = {theme: 'dark', user: {Token: null, username: ''}, page: 'login'}, action) => {
     switch(action.type){
         case 'ADD_USERNAME':
@@ -15,7 +17,7 @@ const status = (state = {theme: 'dark', user: {Token: null, username: ''}, page:
         case 'CHANGE_PAGE':
             return {...state, page: action.payload.page};
 
-        case 'LOGIN_SUCCESS':
+        case actionTypes.LOGIN_SUCCESS:
             return {...state, user:{Token: action.payload.response.Data.Token, refreshToken: action.payload.response.Data.RefreshToken}};
 
         default:
