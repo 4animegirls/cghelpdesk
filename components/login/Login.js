@@ -11,7 +11,7 @@ class Login extends Component {
 
 
   render() {
-    if(this.props.status.user.Token === null){
+    if(this.props.user.Token === null){
     return (
       <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Text category='h1' style={{ fontSize: 50, fontFamily: 'serif', paddingBottom: 50 }}>coradesk</Text>
@@ -37,9 +37,8 @@ class Login extends Component {
           DEBUG
         </Button>
         
-        {console.log(this.props.status.error)}
-        { this.props.status.error && 
-          <Text category='h6' status="warning">{this.props.status.error}</Text>
+        { this.props.user.error && 
+          <Text category='h6' status="warning">{this.props.user.error}</Text>
         }
       </Layout>
     );
@@ -54,7 +53,8 @@ class Login extends Component {
 }}
 
 const mapStateToProps = state => ({
-  status : state.status
+  status : state.status,
+  user: state.user
 })
 
 

@@ -4,20 +4,21 @@ import { HttpError } from '../utils/httperror';
 const user = (state = { Token: null, username: '' }, action) => {
     switch (action.type) {
         case 'ADD_TOKEN':
-            return { ...state, user: { Token: action.payload.token } };
+            return { ...state,  Token: action.payload.Token  };
 
         case actionTypes.ADD_USERNAME:
-            return { ...state, user: { username: action.payload.username } };
+            return { ...state,  username: action.payload.username  };
 
         case actionTypes.REMOVE_TOKEN:
-            return { ...state, user: { Token: null } };
+            return { ...state, Token: null  };
 
         case actionTypes.LOGIN_SUCCESS:
-            return { ...state, user: { Token: action.payload.response.Data.Token, refreshToken: action.payload.response.Data.RefreshToken } };
+            return { ...state, Token: action.payload.response.Data.Token, refreshToken: action.payload.response.Data.RefreshToken  };
 
         case actionTypes.LOGIN_FAILURE: {
             if (action.payload.error instanceof HttpError) {
                 const { networkObj } = action.payload.error;
+                console.log(networkObj.UserMessage )
                 return { ...state, error: networkObj.UserMessage };
             }
             return state;
@@ -29,4 +30,4 @@ const user = (state = { Token: null, username: '' }, action) => {
 
 }
 
-export default status;
+export default user;
