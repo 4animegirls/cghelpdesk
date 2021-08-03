@@ -28,12 +28,12 @@ export default class Home extends Component {
   render() {
     return (
       <SafeAreaView>
-          <Layout style={{ height: '100%', paddingTop: '5%' }}>
-            <List
-              data={this.data}
-              renderItem={this.renderItem}
-            />
-          </Layout>
+        <Layout style={{ height: '100%' }}>
+          <List
+            data={this.data}
+            renderItem={this.renderItem}
+          />
+        </Layout>
       </SafeAreaView>
     );
   }
