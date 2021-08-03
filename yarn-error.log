@@ -2,19 +2,23 @@ Arguments:
   C:\Program Files\nodejs\node.exe C:\Users\admin\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @ui-kitten/eva-icons
 
 PATH: 
-  C:\Python39\Scripts\;C:\Python39\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;c:\oracle\or112client\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Users\admin\AppData\Local\Microsoft\WindowsApps;C:\Users\admin\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\admin\AppData\Roaming\npm;C:\Users\admin\AppData\Local\GitHubDesktop\bin
+  C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Python39\Scripts\;C:\Python39\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\lonzi\AppData\Local\Microsoft\WindowsApps;C:\Users\lonzi\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\lonzi\AppData\Roaming\npm
 
 Yarn version: 
   1.22.10
 
 Node version: 
-  14.17.1
+  14.17.3
 
 Platform: 
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'C:\Users\admin\Documents\GitHub\coradesk\node_modules\@babel\helper-compilation-targets\node_modules\.bin'
+  Error: self signed certificate in certificate chain
+      at TLSSocket.onConnectSecure (_tls_wrap.js:1514:34)
+      at TLSSocket.emit (events.js:375:28)
+      at TLSSocket._finishInit (_tls_wrap.js:936:8)
+      at TLSWrap.ssl.onhandshakedone (_tls_wrap.js:708:12)
 
 npm manifest: 
   {
@@ -42,7 +46,8 @@ npm manifest:
       "react-native-web": "~0.13.12",
       "react-redux": "^7.2.4",
       "redux": "^4.1.0",
-      "redux-thunk": "^2.3.0"
+      "redux-thunk": "^2.3.0",
+      "yarn": "^1.22.11"
     },
     "devDependencies": {
       "@babel/core": "^7.9.0",
