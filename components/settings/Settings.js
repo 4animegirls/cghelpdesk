@@ -37,16 +37,12 @@ export default class Settings extends Component {
 
   render() {
     return (
-      <SafeAreaView style={{ paddingTop: '5%' }}>
-        <ScrollView style={{ height: '100%' }}>
-          <Layout style={{ height: '100%' }}>
-            <List
-              data={this.data}
-              renderItem={this.renderItem}
-            />
-          </Layout>
-        </ScrollView>
-      </SafeAreaView>
+      <Layout style={{ height: '100%' }}>
+        <List
+          data={this.data}
+          renderItem={this.renderItem}
+        />
+      </Layout>
     );
   }
 };
