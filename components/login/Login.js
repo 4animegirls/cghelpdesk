@@ -14,24 +14,25 @@ class Login extends Component {
     if(this.props.status.token !=='test'){
     return (
       <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text category='h1'>Login</Text>
+        <Text category='h1' style={{ fontSize: 50, fontFamily: 'serif', paddingBottom: 50 }}>coradesk</Text>
         <Input
           placeholder='Username'
           value={this.state.name}
           onChangeText={nextValue => this.setState({ name: nextValue })}
+          style={{ width: 300 }}
         />
         <Input
           placeholder='Password'
           value={this.state.password}
           secureTextEntry={true}
           onChangeText={nextValue => this.setState({ password: nextValue })}
-          style = {{padding:5}}
+          style = {{paddingBottom:7, paddingTop:7, width:300 }}
         />
-        <Button onPress = {() => {(this.state.name=='admin' && this.state.password=='lol')? this.props.addToken('test'): null}}>
+        <Button style = {{ width: 300, paddingBottom:7 }} onPress = {() => {(this.state.name=='admin' && this.state.password=='lol')? this.props.addToken('test'): null}}>
           LOG IN
         </Button>
         <Divider style = {{height:5}}/>
-        <Button onPress = {() => {this.props.addToken('test')}} status='warning'>
+        <Button onPress = {() => {this.props.addToken('test')}} style={{ width: 300 }} status='warning'>
           DEBUG
         </Button>
       </Layout>
