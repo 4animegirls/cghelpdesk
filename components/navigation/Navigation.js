@@ -11,7 +11,7 @@ import Settings from '../settings/Settings'
 const { Navigator, Screen } = createDrawerNavigator();
 
 const Header = () => (
-  <Layout style={{  paddingTop: 60, paddingBottom: 20, paddingLeft: 20 }}>
+  <Layout style={{ paddingTop: 60, paddingBottom: 20, paddingLeft: 20 }}>
     <Text category='h1' style={{ fontSize: 30, fontFamily: 'serif', margin: 0, padding: 0 }}>coradesk</Text>
   </Layout>
 );
@@ -31,7 +31,12 @@ const DrawerContent = ({ navigation, state }) => {
 };
 
 export const DrawerNavigator = () => (
-  <Navigator drawerContent={props => <DrawerContent {...props} />}>
+  <Navigator
+    screenOptions={({ route, navigation }) => ({
+      headerShown: false,
+      gestureEnabled: true
+    })} drawerContent={props => <DrawerContent {...props} />}
+  >
     <Screen name='Home' component={Home} />
     <Screen name='Settings' component={Settings} />
     <Screen name='Logout' component={Screen} />
@@ -39,7 +44,7 @@ export const DrawerNavigator = () => (
 );
 
 const AppNavigator = () => (
-  <NavigationContainer >
+  <NavigationContainer>
     <DrawerNavigator />
   </NavigationContainer>
 );

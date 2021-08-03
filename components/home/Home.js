@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Layout, Text, Divider, List, ListItem, Button, Icon } from '@ui-kitten/components';
+import { Layout, Text, Divider, List, ListItem, Button, Icon, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
-export default class Home extends Component {
+import { useNavigation } from '@react-navigation/native';
 
+class HomeScreen extends Component {
   data = new Array(100).fill({
     title: 'Title for Item',
     description: 'Description for Item',
@@ -25,10 +26,23 @@ export default class Home extends Component {
     />
   );
 
+  MenuIcon = (props) => (
+    <Icon {...props} name='menu-outline' />
+  );
+
+  renderDrawerAction = () => (
+    <TopNavigationAction icon={this.MenuIcon} onPress={() => this.props.navigation.openDrawer()} />
+  );
+
   render() {
     return (
       <SafeAreaView>
         <Layout style={{ height: '100%' }}>
+          <TopNavigation
+            title='Home'
+            accessoryLeft={this.renderDrawerAction}
+          />
+          <Divider />
           <List
             data={this.data}
             renderItem={this.renderItem}
@@ -37,4 +51,9 @@ export default class Home extends Component {
       </SafeAreaView>
     );
   }
+}
+
+export default function Home(props) {
+  const navigation = useNavigation();
+  return <HomeScreen {...props} navigation={navigation} />
 }
