@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Text, Input, Button, Divider } from '@ui-kitten/components';
 import { connect } from 'react-redux'
-import { addToken } from '../../actions'
-import { loginPost } from '../../utils'
+import { addToken, loginAction } from '../../actions'
 import Home from '../home/Home'
 import Navigation from '../navigation/Navigation'
 
@@ -30,7 +29,7 @@ class Login extends Component {
           style = {{paddingBottom:7, paddingTop:7, width:300 }}
         />
         <Button style = {{ width: 300, paddingBottom:7 }} onPress = {() => {
-          (this.state.name=='test' && this.state.password=='x')? this.props.loginPost({username: this.state.name, password: this.state.password}): null}}>
+          (this.state.name=='test' && this.state.password=='x')? this.props.loginAction({username: this.state.name, password: this.state.password}): null}}>
           LOG IN
         </Button>
         <Divider style = {{height:5}}/>
@@ -56,7 +55,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addToken: token => dispatch(addToken(token)),
-  loginPost: userLogin => dispatch(loginPost(userLogin))
+  loginAction: userLogin => dispatch(loginAction(userLogin))
 })
 
 

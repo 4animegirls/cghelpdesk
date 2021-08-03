@@ -10,7 +10,7 @@ export const removeToken = () => ({
 });
 
 
-export const login = (userLogin) => {
+export const loginAction = (userLogin) => {
     return async (dispatch) => {
         try {
             dispatch(loginRequest())
