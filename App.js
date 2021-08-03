@@ -7,18 +7,36 @@ import rootReducer from './reducers';
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { ThemeContext } from './theme-context';
 
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
 export default class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      theme: 'dark'
+    }
+  }
+
+//[this.state.theme]
+
+toggleTheme = () => {
+  let nextTheme = this.state.theme === 'light' ? 'dark' : 'light';
+  this.setState({ theme: nextTheme });
+};
+
   render() {
+
     return (
       <>
         <Provider store={store}>
           <IconRegistry icons={EvaIconsPack} />
-            <ApplicationProvider {...eva} theme={eva.dark}>
+          <ThemeContext.Provider value = {{theme: this.state.theme, toggleTheme: this.toggleTheme}} >
+            <ApplicationProvider {...eva} theme={eva[this.state.theme]}> 
               <Login />
             </ApplicationProvider>
+          </ThemeContext.Provider>
         </Provider>
       </>
     );
