@@ -29,7 +29,7 @@ const loginRequest = () => ({
 const loginSuccess = (response) => ({
     type: 'LOGIN_SUCCESS',
     payload: { response }
-})
+});
 
 const loginFailure = () => {
     type : 'LOGIN_FAILURE'
