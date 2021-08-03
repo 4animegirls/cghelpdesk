@@ -16,8 +16,7 @@ const status = (state = {theme: 'dark', user: {Token: null, username: ''}, page:
             return {...state, page: action.payload.page};
 
         case 'LOGIN_SUCCESS':
-            console.log(action.payload.response.Data)
-            return {...state, user:{Token: action.payload.response.Data.Token, refreshToken: action.payload.response.Data.refreshToken}};
+            return {...state, user:{Token: action.payload.response.Data.Token, refreshToken: action.payload.response.Data.RefreshToken}};
 
         default:
             return state;
