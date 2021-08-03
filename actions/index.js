@@ -41,9 +41,9 @@ const itemsRequest = () => ({
     type: actionTypes.ITEMS_REQUEST
 });
 
-const itemsSuccess = (response) => ({
+const itemsSuccess = (items) => ({
     type: actionTypes.ITEMS_SUCCESS,
-    payload: { response }
+    payload: { items }
 });
 
 const itemsFailure = (error) => ({
@@ -56,7 +56,7 @@ export const itemsAction = (token) => {
         try {
             dispatch(itemsRequest())
             let res = await itemsGet(token);
-            dispatch(itemsSuccess(res));
+            dispatch(itemsSuccess(res.Data.Items));
         } catch (e) {
             dispatch(itemsFailure(e));
         }
