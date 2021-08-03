@@ -1,13 +1,13 @@
-const status = (state = {theme: 'dark', user: {token: null, username: ''}, page: 'login'}, action) => {
+const status = (state = {theme: 'dark', user: {Token: null, username: ''}, page: 'login'}, action) => {
     switch(action.type){
         case 'ADD_USERNAME':
             return {...state, user:{username: action.payload.username} };
 
         case 'ADD_TOKEN':
-            return {...state, user:{token: action.payload.token}};
+            return {...state, user:{Token: action.payload.token}};
 
         case 'REMOVE_TOKEN':
-            return {...state, user:{token: null}};
+            return {...state, user:{Token: null}};
         
         case 'CHANGE_THEME':
             return {...state, theme: action.payload.theme};
@@ -16,8 +16,8 @@ const status = (state = {theme: 'dark', user: {token: null, username: ''}, page:
             return {...state, page: action.payload.page};
 
         case 'LOGIN_SUCCESS':
-            console.log(action.payload.response)
-            return {...state, user:{token: action.payload.response.Data.Token}};
+            console.log(action.payload.response.Data)
+            return {...state, user:{Token: action.payload.response.Data.Token, refreshToken: action.payload.response.Data.refreshToken}};
 
         default:
             return state;
