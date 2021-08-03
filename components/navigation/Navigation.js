@@ -12,30 +12,29 @@ const { Navigator, Screen } = createDrawerNavigator();
 const DrawerContent = ({ navigation, state }) => {
   const dispatch = useDispatch();
 
-  return (
+  const DrawerContent = ({ navigation, state }) => (
     <Drawer
       selectedIndex={new IndexPath(state.index)}
       onSelect={index => navigation.navigate(state.routeNames[index.row])}>
-      <DrawerItem title='Home' />
+      <DrawerItem title='Home' style={{ marginTop: '15%' }} />
       <DrawerItem title='Settings' />
-      <DrawerItem title='Log out' onPress={() => dispatch(removeToken())} />
+      <DrawerItem title='LogOut' />
     </Drawer>
-  )
-};
+  );
 
-export const DrawerNavigator = () => (
-  <Navigator drawerContent={props => <DrawerContent {...props} />} style={{ height: '100%' }}>
-    <Screen name='Home' component={Home} />
-    <Screen name='Settings' component={Settings} />
-    <Screen name = 'Logout' component = {Screen} />
-  </Navigator>
-);
+  export const DrawerNavigator = () => (
+    <Navigator drawerContent={props => <DrawerContent {...props} />} style={{ height: '100%' }}>
+      <Screen name='Home' component={Home} />
+      <Screen name='Settings' component={Settings} />
+      <Screen name='Logout' component={Screen} />
+    </Navigator>
+  );
 
-const AppNavigator = () => (
-  <NavigationContainer >
-    <DrawerNavigator />
-  </NavigationContainer>
-);
+  const AppNavigator = () => (
+    <NavigationContainer >
+      <DrawerNavigator />
+    </NavigationContainer>
+  );
 
 
-export default AppNavigator
+  export default AppNavigator
