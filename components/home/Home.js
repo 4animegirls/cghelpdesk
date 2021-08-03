@@ -12,8 +12,8 @@ export default class Home extends Component {
     <Button size='tiny'>FOLLOW</Button>
   );
 
-  renderItemIcon = () => (
-    <Icon style={{width:5, height:5}} name='person' />
+  renderItemIcon = (props) => (
+    <Icon {...props} name='person' />
   );
 
   renderItem = ({ item, index }) => (
@@ -28,14 +28,12 @@ export default class Home extends Component {
   render() {
     return (
       <SafeAreaView>
-        <ScrollView style={{ height: '100%' }}>
           <Layout style={{ height: '100%', paddingTop: '5%' }}>
             <List
               data={this.data}
               renderItem={this.renderItem}
             />
           </Layout>
-        </ScrollView>
       </SafeAreaView>
     );
   }

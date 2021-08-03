@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { useDispatch } from 'react-redux'
 import { IndexPath, Layout, Drawer, DrawerItem, Icon, IconRegistry, Button, ViewPager, Text } from '@ui-kitten/components';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Home from '../home/Home'
-// import LogOut from '../logOut/LogOut'
+import { removeToken } from '../../actions'
 import Settings from '../settings/Settings'
 
 const { Navigator, Screen } = createDrawerNavigator();
@@ -14,15 +15,17 @@ const OrdersScreen = () => (
   </Layout>
 );
 
-  const DrawerContent = ({ navigation, state }) => (
+  const DrawerContent = ({ navigation, state }) => {
+    const dispatch = useDispatch();
+    return (
     <Drawer
       selectedIndex={new IndexPath(state.index)}
       onSelect={index => navigation.navigate(state.routeNames[index.row])}>
       <DrawerItem title='Home' style={{ marginTop: '15%' }} />
       <DrawerItem title='Settings' />
-      <DrawerItem title='Logout' />
+      <DrawerItem title='Logout' onPress={() => dispatch(removeToken())}/>
     </Drawer>
-  );
+  )};
 
   export const DrawerNavigator = () => (
     <Navigator drawerContent={props => <DrawerContent {...props} />} style={{ height: '100%' }}>
