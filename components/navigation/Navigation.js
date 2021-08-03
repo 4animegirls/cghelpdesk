@@ -19,23 +19,23 @@ const DrawerContent = ({ navigation, state }) => (
   <Drawer
     selectedIndex={new IndexPath(state.index)}
     onSelect={index => navigation.navigate(state.routeNames[index.row])}>
-    <DrawerItem title='Home' style={{marginTop: '15%'}} />
+    <DrawerItem title='Home' style={{ marginTop: '15%' }} />
     <DrawerItem title='Settings' />
-    <DrawerItem title='LogOut' />
+    <DrawerItem title='LogOut' style={{ backgroundColor: 'darkred' }} />
   </Drawer>
 );
 
 export const DrawerNavigator = () => (
-  <Navigator drawerContent={props => <DrawerContent {...props}/>} style= {{height:'100%'}}>
-    <Screen name='Home' component={Home}/>
-    <Screen name='Settings' component={OrdersScreen}/>
-    <Screen name='LogOut' component={OrdersScreen}/>
+  <Navigator drawerContent={props => <DrawerContent {...props} />} style={{ height: '100%' }}>
+    <Screen name='Home' component={Home} />
+    <Screen name='Settings' component={OrdersScreen} />
+    <Screen name='LogOut' component={OrdersScreen} />
   </Navigator>
 );
 
 const AppNavigator = () => (
   <NavigationContainer >
-    <DrawerNavigator/>
+    <DrawerNavigator />
   </NavigationContainer>
 );
 
