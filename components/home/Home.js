@@ -3,10 +3,7 @@ import { Layout, Text, Divider, List, ListItem, Button, Icon } from '@ui-kitten/
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 export default class Home extends Component {
 
-  data = new Array(100).fill({
-    title: 'Title for Item',
-    description: 'Description for Item',
-  });
+  data = this.props.items
 
   renderItemAccessory = (props) => (
     <Button size='tiny'>FOLLOW</Button>
@@ -15,6 +12,10 @@ export default class Home extends Component {
   renderItemIcon = (props) => (
     <Icon {...props} name='person' />
   );
+
+  componentDidMount(){
+    this.props.itemsAction(this.props.user.Token)
+  }
 
   renderItem = ({ item, index }) => (
     <ListItem
@@ -38,3 +39,20 @@ export default class Home extends Component {
     );
   }
 }
+
+
+const mapStateToProps = state => ({
+  items : state.items,
+  user: state.user
+})
+
+
+const mapDispatchToProps = dispatch => ({
+  itemsAction: token => dispatch(itemsAction(token))
+})
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home)
