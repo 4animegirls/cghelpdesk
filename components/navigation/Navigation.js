@@ -3,39 +3,40 @@ import { IndexPath, Layout, Drawer, DrawerItem, Icon, IconRegistry, Button, View
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Home from '../home/Home'
-import Settings from '../settings/Settings'
-import { useDispatch } from 'react-redux'
-import { removeToken } from '../../actions'
+// import LogOut from '../logOut/LogOut'
+// import SettingsComponent from '../settings/Settings'
+import { Settings } from 'react-native';
 
 const { Navigator, Screen } = createDrawerNavigator();
 
-const DrawerContent = ({ navigation, state }) => {
-  const dispatch = useDispatch();
+const OrdersScreen = () => (
+  <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <Text category='h1'>LOREM IPSUM COMPONENT</Text>
+  </Layout>
+);
 
-  return (
-    <Drawer
-      selectedIndex={new IndexPath(state.index)}
-      onSelect={index => navigation.navigate(state.routeNames[index.row])}>
-      <DrawerItem title='Home' />
-      <DrawerItem title='Settings' />
-      <DrawerItem title='Log out' onPress={() => dispatch(removeToken())} />
-    </Drawer>
-  )
-};
+const DrawerContent = ({ navigation, state }) => (
+  <Drawer
+    selectedIndex={new IndexPath(state.index)}
+    onSelect={index => navigation.navigate(state.routeNames[index.row])}>
+    <DrawerItem title='Home' style={{marginTop: '15%'}} />
+    <DrawerItem title='Settings' />
+    <DrawerItem title='LogOut' />
+  </Drawer>
+);
 
 export const DrawerNavigator = () => (
-  <Navigator drawerContent={props => <DrawerContent {...props} />} style={{ height: '100%' }}>
-    <Screen name='Home' component={Home} />
-    <Screen name='Settings' component={Settings} />
-    <Screen name = 'Logout' component = {Screen} />
+  <Navigator drawerContent={props => <DrawerContent {...props}/>} style= {{height:'100%'}}>
+    <Screen name='Home' component={Home}/>
+    <Screen name='Settings' component={OrdersScreen}/>
+    <Screen name='LogOut' component={OrdersScreen}/>
   </Navigator>
 );
 
 const AppNavigator = () => (
   <NavigationContainer >
-    <DrawerNavigator />
+    <DrawerNavigator/>
   </NavigationContainer>
 );
 
-
-export default AppNavigator
+export default AppNavigator;
