@@ -31,7 +31,7 @@ export const loginAction = (userLogin) => {
             let res = await loginPost(userLogin);
             dispatch(loginSuccess(res));
         } catch (e) {
-            loginFailure(e);
+            dispatch(loginFailure(e));
         }
     }
 }

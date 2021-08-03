@@ -36,6 +36,11 @@ class Login extends Component {
         <Button onPress = {() => {this.props.addToken('test')}} style={{ width: 300 }} status='warning'>
           DEBUG
         </Button>
+        
+        {console.log(this.props.status.error)}
+        { this.props.status.error && 
+          <Text category='h6' status="warning">{this.props.status.error}</Text>
+        }
       </Layout>
     );
   }
