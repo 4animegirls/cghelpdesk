@@ -12,8 +12,8 @@ export default class Home extends Component {
     <Button size='tiny'>FOLLOW</Button>
   );
 
-  renderItemIcon = (props) => (
-    <Icon {...props} name='person' />
+  renderItemIcon = () => (
+    <Icon style={{width:5, height:5}} name='person' />
   );
 
   renderItem = ({ item, index }) => (

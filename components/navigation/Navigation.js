@@ -4,8 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Home from '../home/Home'
 // import LogOut from '../logOut/LogOut'
-// import SettingsComponent from '../settings/Settings'
-import { Settings } from 'react-native';
+import Settings from '../settings/Settings'
 
 const { Navigator, Screen } = createDrawerNavigator();
 
@@ -21,7 +20,7 @@ const OrdersScreen = () => (
       onSelect={index => navigation.navigate(state.routeNames[index.row])}>
       <DrawerItem title='Home' style={{ marginTop: '15%' }} />
       <DrawerItem title='Settings' />
-      <DrawerItem title='LogOut' />
+      <DrawerItem title='Logout' />
     </Drawer>
   );
 
