@@ -1,4 +1,4 @@
-import { login } from '../utils'
+import { loginPost } from '../utils'
 
 export const addToken = (token) => ({
     type : 'ADD_TOKEN',
@@ -14,7 +14,7 @@ export const login = (userLogin) => {
     return async (dispatch) => {
         try {
             dispatch(loginRequest())
-            let response = await login(userLogin);
+            let response = await loginPost(userLogin);
             dispatch(loginSuccess(response))
         } catch {
             loginFailure()
