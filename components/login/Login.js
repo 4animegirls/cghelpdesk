@@ -29,7 +29,7 @@ class Login extends Component {
           style = {{paddingBottom:7, paddingTop:7, width:300 }}
         />
         <Button style = {{ width: 300, paddingBottom:7 }} onPress = {() => {
-          (this.state.name=='text' && this.state.password=='x')? this.props.loginPost({username: this.state.name, password: this.state.password}): null}}>
+          (this.state.name=='test' && this.state.password=='x')? this.props.loginPost({username: this.state.name, password: this.state.password}): null}}>
           LOG IN
         </Button>
         <Divider style = {{height:5}}/>
