@@ -3,7 +3,7 @@ import { Layout, Text, Divider, List, ListItem, Button, Icon } from '@ui-kitten/
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 export default class Home extends Component {
 
-  data = new Array(8).fill({
+  data = new Array(100).fill({
     title: 'Title for Item',
     description: 'Description for Item',
   });
