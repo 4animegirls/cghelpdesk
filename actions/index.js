@@ -15,7 +15,7 @@ export const loginAction = (userLogin) => {
         try {
             dispatch(loginRequest())
             let response = await loginPost(userLogin);
-            dispatch(loginSuccess(response))
+            response.Code==="200.000"? dispatch(loginSuccess(response)):  new Error('login returned ' + response.Code)
         } catch {
             loginFailure()
         }
