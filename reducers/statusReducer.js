@@ -1,5 +1,4 @@
 import actionTypes from '../actions/actionTypes';
-import { HttpError } from '../utils/httperror';
 
 
 const status = (state = {page: 'login'}, action) => {
