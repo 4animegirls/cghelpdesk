@@ -6,3 +6,8 @@ export const addToken = (token) => ({
 export const removeToken = () => ({
     type: 'REMOVE_TOKEN'
 });
+
+export const changeTheme = (theme) => ({
+    type: 'CHANGE_THEME',
+    payload: { theme }
+});

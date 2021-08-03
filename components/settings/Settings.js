@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { List, ListItem, Toggle, Layout } from '@ui-kitten/components';
 import { SafeAreaView, ScrollView } from 'react-native';
+import { connect } from 'react-redux'
+import { changeTheme } from '../../actions'
 
-export default class Settings extends Component {
+class Settings extends Component {
   data = new Array(1).fill({
     title: 'Dark mode',
     description: 'Enable/disable dark mode',
@@ -21,6 +23,7 @@ export default class Settings extends Component {
 
   onCheckedChange = (isChecked) => {
     this.setChecked(isChecked);
+    this.props.changeTheme(this.props.theme == 'light' ? 'dark' : 'light');
   };
 
   renderItemAccessory = (props) => (
@@ -50,3 +53,18 @@ export default class Settings extends Component {
     );
   }
 };
+
+const mapStateToProps = state => ({
+  theme: state.theme
+});
+
+
+const mapDispatchToProps = dispatch => ({
+  changeTheme: theme => dispatch(changeTheme(theme))
+});
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Settings);
