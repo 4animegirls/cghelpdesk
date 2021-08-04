@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, Text, Divider, List, ListItem, Button, Icon, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
-import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import { SafeAreaView, StatusBar, ScrollView, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 class HomeScreen extends Component {
@@ -36,13 +36,13 @@ class HomeScreen extends Component {
 
   render() {
     return (
-      <SafeAreaView>
+      <SafeAreaView style={{ flex: 1, paddingTop: StatusBar.currentHeight }}>
+        <TopNavigation
+          title='Home'
+          accessoryLeft={this.renderDrawerAction}
+        />
+        <Divider />
         <Layout style={{ height: '100%' }}>
-          <TopNavigation
-            title='Home'
-            accessoryLeft={this.renderDrawerAction}
-          />
-          <Divider />
           <List
             data={this.data}
             renderItem={this.renderItem}

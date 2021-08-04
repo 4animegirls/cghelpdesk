@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { List, ListItem, Toggle, Layout } from '@ui-kitten/components';
-import { SafeAreaView, ScrollView } from 'react-native';
+import { Divider, List, ListItem, Toggle, Layout, Icon, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import { SafeAreaView, StatusBar } from 'react-native';
 import { ThemeContext } from '../../theme-context';
+import { useNavigation } from '@react-navigation/native';
 
-export default class Settings extends Component {
+class SettingsScren extends Component {
   data = new Array(1).fill({
     title: 'Dark mode',
     description: 'Enable/disable dark mode',
   });
-  
+
   static contextType = ThemeContext
 
   constructor(props) {
@@ -39,14 +40,34 @@ export default class Settings extends Component {
     />
   );
 
+  MenuIcon = (props) => (
+    <Icon {...props} name='menu-outline' />
+  );
+
+  renderDrawerAction = () => (
+    <TopNavigationAction icon={this.MenuIcon} onPress={() => this.props.navigation.openDrawer()} />
+  );
+
   render() {
     return (
-      <Layout style={{ height: '100%' }}>
-        <List
-          data={this.data}
-          renderItem={this.renderItem}
+      <SafeAreaView style={{ flex: 1, paddingTop: StatusBar.currentHeight }}>
+        <TopNavigation
+          title='Settings'
+          accessoryLeft={this.renderDrawerAction}
         />
-      </Layout>
+        <Divider />
+        <Layout style={{ height: '100%' }}>
+          <List
+            data={this.data}
+            renderItem={this.renderItem}
+          />
+        </Layout>
+      </SafeAreaView>
     );
   }
 };
+
+export default function Settings(props) {
+  const navigation = useNavigation();
+  return <SettingsScren {...props} navigation={navigation} />
+}
