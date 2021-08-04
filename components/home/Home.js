@@ -44,15 +44,37 @@ class Home extends Component {
     return firstItems
   }
 
-  render() {
-    return (
-      // <SafeAreaView >
+  isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
+    const paddingToBottom = 20;
+    return layoutMeasurement.height + contentOffset.y >=
+      contentSize.height - paddingToBottom;
+  };
+
+  MyCoolScrollViewComponent = () => (
+    <ScrollView
+      onScroll={({ nativeEvent }) => {
+        if (this.isCloseToBottom(nativeEvent)) {
+          console.log('hihi');
+        }
+      }}
+      scrollEventThrottle={400}
+    >
       <Layout style={{ height: '100%' }}>
         <List
           data={this.renderFirstNItems(this.state.data)}
           renderItem={this.renderItem}
         />
       </Layout>
+    </ScrollView>
+  );
+
+
+  render() {
+    return (
+      // <SafeAreaView >
+      <>
+        {this.MyCoolScrollViewComponent()}
+      </>
       // </SafeAreaView>
 
     );
