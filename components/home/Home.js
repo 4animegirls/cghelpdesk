@@ -8,7 +8,8 @@ class Home extends Component {
   constructor() {
     super();
     this.state = {
-      data: []
+      data: [],
+      TimesScrolled: 0
     }
   }
 
@@ -39,8 +40,8 @@ class Home extends Component {
   };
 
   renderFirstNItems = (array) => {
-    const firstItems = array.slice(0, 20);
-    console.log(firstItems);
+    const numberOfItems = (this.state.TimesScrolled + 1) * 20;
+    const firstItems = array.slice(0, numberOfItems);
     return firstItems
   }
 
@@ -54,7 +55,8 @@ class Home extends Component {
     <ScrollView
       onScroll={({ nativeEvent }) => {
         if (this.isCloseToBottom(nativeEvent)) {
-          console.log('hihi');
+          let number = this.state.TimesScrolled;
+          this.setState({ TimesScrolled: (number + 1) });
         }
       }}
       scrollEventThrottle={400}
