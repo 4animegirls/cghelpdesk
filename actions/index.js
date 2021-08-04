@@ -88,7 +88,3 @@ export const addItemsAction = (token, page) => {
         }
     }
 }
-
-export const addPage = () => ({
-    type: actionTypes.ADD_PAGE
-});

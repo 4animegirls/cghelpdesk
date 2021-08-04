@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Text, Divider, List, ListItem, Button, Icon } from '@ui-kitten/components';
+import { Layout, Text, Divider, List, ListItem, Button, Icon, Spinner } from '@ui-kitten/components';
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import { itemsAction, addItemsAction, addPage } from '../../actions'
 import { connect } from 'react-redux'
@@ -7,9 +7,7 @@ import data from '../../data.json'
 class Home extends Component {
   constructor() {
     super();
-    this.state = {
-      data: []
-    }
+
   }
 
   renderItemAccessory = (props) => (
@@ -22,12 +20,10 @@ class Home extends Component {
 
   componentDidMount() {
     this.props.itemsAction(this.props.user.Token);
-    this.setState({ data: hardcoded(data.Data.Items) });
 
   }
 
   renderItem = ({ item, index }) => {
-    3
     return (
       <ListItem
         title={`${item.Name} (${index + 1})`}
@@ -38,13 +34,8 @@ class Home extends Component {
     )
   };
 
-  renderFirstNItems = (array) => {
-    const firstItems = array.slice(0, 20);
-    return firstItems
-  }
-
   isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
-    const paddingToBottom = 20;
+    const paddingToBottom = 200+this.props.items.items.length;
     return layoutMeasurement.height + contentOffset.y >=
       contentSize.height - paddingToBottom;
   };
@@ -58,11 +49,13 @@ class Home extends Component {
       }}
       scrollEventThrottle={400}
     >
-      <Layout style={{ height: '100%' }}>
+      <Layout style={{ height: '100%', alignItems:'center' }}>
         <List
-          data={this.props.items.items}
+          data={this.props.items.items }
           renderItem={this.renderItem}
         />
+        <Spinner status = 'info' style = {{padding: 5}}/>
+
       </Layout>
     </ScrollView>
   );
@@ -79,13 +72,6 @@ class Home extends Component {
     );
   }
 }
-const hardcoded = (items) => {
-  const array = [...items];
-  for (let i = 0; i < 30; i++) {
-    array.push(...items)
-  }
-  return array;
-};
 
 const mapStateToProps = state => ({
   items: state.items,
@@ -95,7 +81,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   itemsAction: (token, page=1) => dispatch(itemsAction(token, page)),
-  addItemsAction: (token, page) => dispatch(addItemsAction(token, page), addPage()),
+  addItemsAction: (token, page) => dispatch(addItemsAction(token, page)),
 })
 
 
