@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { Layout, Text, Divider, List, ListItem, Button, Icon } from '@ui-kitten/components';
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
-export default class Home extends Component {
+import { itemsAction } from '../../actions'
+import { connect } from 'react-redux'
+class Home extends Component {
 
-  data = new Array(8).fill({
-    title: 'Title for Item',
-    description: 'Description for Item',
-  });
 
   renderItemAccessory = (props) => (
     <Button size='tiny'>FOLLOW</Button>
@@ -16,27 +14,50 @@ export default class Home extends Component {
     <Icon {...props} name='person' />
   );
 
-  renderItem = ({ item, index }) => (
-    <ListItem
-      title={`${item.title} ${index + 1}`}
-      description={`${item.description} ${index + 1}`}
-      accessoryLeft={this.renderItemIcon}
-      accessoryRight={this.renderItemAccessory}
-    />
-  );
+  componentDidMount() {
+    this.props.itemsAction(this.props.user.Token)
+  }
+
+  renderItem = ({ item, index }) => {
+    3
+    return (
+      <ListItem
+        title={`${item.Name}`}
+        description={`${item.State.Id} | ${item.CurrentSolver}`}
+        accessoryLeft={this.renderItemIcon}
+        accessoryRight={this.renderItemAccessory}
+      />
+    )
+  };
 
   render() {
     return (
-      <SafeAreaView>
-        <ScrollView style={{ height: '100%' }}>
-          <Layout style={{ height: '100%', paddingTop: '5%' }}>
+      <SafeAreaView >
+          <Layout style={{ height: '100%' }}>
             <List
-              data={this.data}
+              data={this.props.items}
               renderItem={this.renderItem}
             />
           </Layout>
-        </ScrollView>
       </SafeAreaView>
+
     );
   }
 }
+
+
+const mapStateToProps = state => ({
+  items: state.items,
+  user: state.user
+})
+
+
+const mapDispatchToProps = dispatch => ({
+  itemsAction: token => dispatch(itemsAction(token))
+})
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home)
