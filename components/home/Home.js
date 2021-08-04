@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Text, Divider, List, ListItem, Button, Icon } from '@ui-kitten/components';
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
-import { itemsAction } from '../../actions'
+import { itemsAction, addItemsAction, addPage } from '../../actions'
 import { connect } from 'react-redux'
 import data from '../../data.json'
 class Home extends Component {
@@ -40,7 +40,6 @@ class Home extends Component {
 
   renderFirstNItems = (array) => {
     const firstItems = array.slice(0, 20);
-    console.log(firstItems);
     return firstItems
   }
 
@@ -54,14 +53,14 @@ class Home extends Component {
     <ScrollView
       onScroll={({ nativeEvent }) => {
         if (this.isCloseToBottom(nativeEvent)) {
-          console.log('hihi');
+          this.props.addItemsAction(this.props.user.Token, this.props.items.page+1)
         }
       }}
       scrollEventThrottle={400}
     >
       <Layout style={{ height: '100%' }}>
         <List
-          data={this.renderFirstNItems(this.state.data)}
+          data={this.props.items.items}
           renderItem={this.renderItem}
         />
       </Layout>
@@ -95,7 +94,8 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
-  itemsAction: token => dispatch(itemsAction(token))
+  itemsAction: (token, page=1) => dispatch(itemsAction(token, page)),
+  addItemsAction: (token, page) => dispatch(addItemsAction(token, page), addPage()),
 })
 
 

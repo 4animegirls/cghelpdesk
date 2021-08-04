@@ -51,14 +51,44 @@ const itemsFailure = (error) => ({
     payload: { error }
 });
 
-export const itemsAction = (token) => {
+export const itemsAction = (token, page) => {
     return async (dispatch) => {
         try {
             dispatch(itemsRequest())
-            let res = await itemsGet(token);
+            let res = await itemsGet(token, page);
             dispatch(itemsSuccess(res.Data.Items));
         } catch (e) {
             dispatch(itemsFailure(e));
         }
     }
 }
+
+const addItemsRequest = () => ({
+    type: actionTypes.ITEMS_REQUEST
+});
+
+const addItemsSuccess = (items) => ({
+    type: actionTypes.ADD_ITEMS_SUCCESS,
+    payload: { items }
+});
+
+const addItemsFailure = (error) => ({
+    type: actionTypes.ITEMS_FAILURE,
+    payload: { error }
+});
+
+export const addItemsAction = (token, page) => {
+    return async (dispatch) => {
+        try {
+            dispatch(addItemsRequest())
+            let res = await itemsGet(token, page);
+            dispatch(addItemsSuccess(res.Data.Items));
+        } catch (e) {
+            dispatch(addItemsFailure(e));
+        }
+    }
+}
+
+export const addPage = () => ({
+    type: actionTypes.ADD_PAGE
+});
