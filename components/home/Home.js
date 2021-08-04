@@ -3,8 +3,14 @@ import { Layout, Text, Divider, List, ListItem, Button, Icon } from '@ui-kitten/
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import { itemsAction } from '../../actions'
 import { connect } from 'react-redux'
+import data from '../../data.json'
 class Home extends Component {
-
+  constructor() {
+    super();
+    this.state = {
+      data: []
+    }
+  }
 
   renderItemAccessory = (props) => (
     <Button size='tiny'>FOLLOW</Button>
@@ -15,14 +21,16 @@ class Home extends Component {
   );
 
   componentDidMount() {
-    this.props.itemsAction(this.props.user.Token)
+    this.props.itemsAction(this.props.user.Token);
+    this.setState({ data: hardcoded(data.Data.Items) });
+
   }
 
   renderItem = ({ item, index }) => {
     3
     return (
       <ListItem
-        title={`${item.Name}`}
+        title={`${item.Name} (${index + 1})`}
         description={`${item.State.Id} | ${item.CurrentSolver}`}
         accessoryLeft={this.renderItemIcon}
         accessoryRight={this.renderItemAccessory}
@@ -30,21 +38,33 @@ class Home extends Component {
     )
   };
 
+  renderFirstNItems = (array) => {
+    const firstItems = array.slice(0, 20);
+    console.log(firstItems);
+    return firstItems
+  }
+
   render() {
     return (
-      <SafeAreaView >
-          <Layout style={{ height: '100%' }}>
-            <List
-              data={this.props.items}
-              renderItem={this.renderItem}
-            />
-          </Layout>
-      </SafeAreaView>
+      // <SafeAreaView >
+      <Layout style={{ height: '100%' }}>
+        <List
+          data={this.renderFirstNItems(this.state.data)}
+          renderItem={this.renderItem}
+        />
+      </Layout>
+      // </SafeAreaView>
 
     );
   }
 }
-
+const hardcoded = (items) => {
+  const array = [...items];
+  for (let i = 0; i < 30; i++) {
+    array.push(...items)
+  }
+  return array;
+};
 
 const mapStateToProps = state => ({
   items: state.items,

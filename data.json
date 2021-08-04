@@ -1,0 +1,176 @@
+{
+	"Code": "200.000",
+	"UserMessage": "Požiadavka bola úspešne spracovaná.",
+	"DeveloperMessage": null,
+	"ModelState": null,
+	"Data": {
+		"TotalRecords": 39397,
+		"Items": [
+			{
+				"SolvingPriority": null,
+				"Pilot": false,
+				"Attachment": false,
+				"SolvingDaysCount": 555,
+				"ProgrammingCapacity": null,
+				"AnalyzingCapacity": null,
+				"Id": 24,
+				"MergeId": null,
+				"InformationSystem": {
+					"Id": 1,
+					"Segment": null,
+					"Code": "01",
+					"Name": "CG ISS",
+					"Picker": null
+				},
+				"Product": {
+					"Id": 57,
+					"Name": "Mestská polícia",
+					"ShortCut": "MP",
+					"Code": "110104P20",
+					"ParentProduct": null,
+					"Picker": null,
+					"ProductCode": "(57) MP - Mestská polícia"
+				},
+				"Name": "(24) Prepojenie modulu Mestská polícia (MP) s modulom Poplatky",
+				"Type": {
+					"Id": 1,
+					"SuperiorType": null,
+					"Name": "Požiadavka",
+					"Cancel": false,
+					"Shortcut": "P"
+				},
+				"CreateDate": "2006-03-29T00:00:00",
+				"Priority": null,
+				"Customer": {
+					"Id": 128,
+					"Name": "Trnava",
+					"Code": "632",
+					"Shortcut": null,
+					"Picker": null
+				},
+				"State": {
+					"Id": 901,
+					"Name": "901 - Zákazník akceptuje riešenie",
+					"CSS": null,
+					"Cancel": false,
+					"Tooltip": "901 - Zákazník akceptuje riešenie"
+				},
+				"DueDate": null,
+				"SolvedInVersion": null,
+				"CurrentSolver": "Šujanová Katarína",
+				"IncludedInVersion": null,
+				"Archive": true
+			},
+			{
+				"SolvingPriority": null,
+				"Pilot": false,
+				"Attachment": false,
+				"SolvingDaysCount": 0,
+				"ProgrammingCapacity": null,
+				"AnalyzingCapacity": null,
+				"Id": 26,
+				"MergeId": null,
+				"InformationSystem": {
+					"Id": 1,
+					"Segment": null,
+					"Code": "01",
+					"Name": "CG ISS",
+					"Picker": null
+				},
+				"Product": {
+					"Id": 16,
+					"Name": "Obyvatelia",
+					"ShortCut": "OB",
+					"Code": "110104P35",
+					"ParentProduct": null,
+					"Picker": null,
+					"ProductCode": "(16) OB - Obyvatelia"
+				},
+				"Name": "(26) Doplnenie konverzie obyvateľov - vzťahy",
+				"Type": {
+					"Id": 1,
+					"SuperiorType": null,
+					"Name": "Požiadavka",
+					"Cancel": false,
+					"Shortcut": "P"
+				},
+				"CreateDate": "2006-03-29T00:00:00",
+				"Priority": null,
+				"Customer": {
+					"Id": 128,
+					"Name": "Trnava",
+					"Code": "632",
+					"Shortcut": null,
+					"Picker": null
+				},
+				"State": {
+					"Id": 901,
+					"Name": "901 - Zákazník akceptuje riešenie",
+					"CSS": null,
+					"Cancel": false,
+					"Tooltip": "901 - Zákazník akceptuje riešenie"
+				},
+				"DueDate": null,
+				"SolvedInVersion": null,
+				"CurrentSolver": "Šujanová Katarína",
+				"IncludedInVersion": null,
+				"Archive": true
+			},
+			{
+				"SolvingPriority": null,
+				"Pilot": false,
+				"Attachment": false,
+				"SolvingDaysCount": 0,
+				"ProgrammingCapacity": null,
+				"AnalyzingCapacity": null,
+				"Id": 27,
+				"MergeId": null,
+				"InformationSystem": {
+					"Id": 1,
+					"Segment": null,
+					"Code": "01",
+					"Name": "CG ISS",
+					"Picker": null
+				},
+				"Product": {
+					"Id": 60,
+					"Name": "Písomnosti",
+					"ShortCut": "PI ",
+					"Code": "110103P03",
+					"ParentProduct": null,
+					"Picker": null,
+					"ProductCode": "(60) PI  - Písomnosti"
+				},
+				"Name": "(27) Zjednotiť prístup k vzťažným dokumentom",
+				"Type": {
+					"Id": 1,
+					"SuperiorType": null,
+					"Name": "Požiadavka",
+					"Cancel": false,
+					"Shortcut": "P"
+				},
+				"CreateDate": "2006-03-29T00:00:00",
+				"Priority": null,
+				"Customer": {
+					"Id": 128,
+					"Name": "Trnava",
+					"Code": "632",
+					"Shortcut": null,
+					"Picker": null
+				},
+				"State": {
+					"Id": 901,
+					"Name": "901 - Zákazník akceptuje riešenie",
+					"CSS": null,
+					"Cancel": false,
+					"Tooltip": "901 - Zákazník akceptuje riešenie"
+				},
+				"DueDate": null,
+				"SolvedInVersion": null,
+				"CurrentSolver": "Šujanová Katarína",
+				"IncludedInVersion": null,
+				"Archive": true
+			}
+		]
+	}
+}
