@@ -64,7 +64,6 @@ class Home extends Component {
   );
       // </SafeAreaView>
 
-    );
   }
 }
 
