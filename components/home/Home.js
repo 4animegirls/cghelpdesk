@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Layout, Text, Divider, List, ListItem, Button, Icon, Spinner } from '@ui-kitten/components';
-import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import { Layout, Text, Divider, List, ListItem, Button, Icon, Spinner, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import { SafeAreaView, ScrollView, StyleSheet, StatusBar } from 'react-native';
 import { itemsAction, addItemsAction, addPage } from '../../actions'
 import { connect } from 'react-redux'
 import { NavigationContainer } from '@react-navigation/native';
@@ -33,7 +33,7 @@ class Home extends Component {
   renderItem = ({ item, index }) => {
 
     return (
-      
+
       <ListItem
         title={`${item.Name} (${index + 1})`}
         description={`${item.State.Id} | ${item.CurrentSolver}`}
@@ -45,36 +45,45 @@ class Home extends Component {
   };
 
   isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
-    const paddingToBottom = 200+this.props.items.items.length;
+    const paddingToBottom = 200 + this.props.items.items.length;
     return layoutMeasurement.height + contentOffset.y >=
       contentSize.height - paddingToBottom;
   };
 
 
+  MenuIcon = (props) => (
+    <Icon {...props} name='menu-outline' />
+  );
+
+  renderDrawerAction = () => (
+    <TopNavigationAction icon={this.MenuIcon} onPress={() => this.props.navigation.openDrawer()} />
+  );
+
   render() {
     return (
-      // <SafeAreaView >
       <ScrollView
-      onScroll={({ nativeEvent }) => {
-        if (this.isCloseToBottom(nativeEvent)) {
-          this.props.addItemsAction(this.props.user.Token, this.props.items.page+1)
-        }
-      }}
-      scrollEventThrottle={400}
-    >
-      <Layout style={{ height: '100%', alignItems:'center' }}>
-        <List
-          data={this.props.items.items }
-          renderItem={this.renderItem}
+        style={{ flex: 1, paddingTop: StatusBar.currentHeight }}
+        onScroll={({ nativeEvent }) => {
+          if (this.isCloseToBottom(nativeEvent)) {
+            this.props.addItemsAction(this.props.user.Token, this.props.items.page + 1)
+          }
+        }}
+        scrollEventThrottle={400}
+      >
+        <TopNavigation
+          title='Home'
+          accessoryLeft={this.renderDrawerAction}
         />
-        {this.props.loading && <Spinner status = 'info' style = {{padding: 5}} />}
-
-      </Layout>
-
-    </ScrollView>
-  );
-    
-
+        <Divider />
+        <Layout style={{ height: '100%', alignItems: 'center' }}>
+          <List
+            data={this.props.items.items}
+            renderItem={this.renderItem}
+          />
+          {this.props.loading && <Spinner status='info' style={{ padding: 5 }} />}
+        </Layout>
+      </ScrollView>
+    );
   }
 }
 
@@ -86,7 +95,7 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
-  itemsAction: (token, page=1) => dispatch(itemsAction(token, page)),
+  itemsAction: (token, page = 1) => dispatch(itemsAction(token, page)),
   addItemsAction: (token, page) => dispatch(addItemsAction(token, page)),
 })
 

@@ -35,7 +35,12 @@ const DrawerContent = ({ navigation, state }) => {
 };
 
 export const DrawerNavigator = () => (
-  <Navigator drawerContent={props => <DrawerContent {...props} />}>
+  <Navigator
+    screenOptions={({ route, navigation }) => ({
+      headerShown: false,
+      gestureEnabled: true
+    })} drawerContent={props => <DrawerContent {...props} />}
+  >
     <Screen name='Home' component={Home} />
     <Screen name='Settings' component={Settings} />
     <Screen name='Logout' component={Screen} />
