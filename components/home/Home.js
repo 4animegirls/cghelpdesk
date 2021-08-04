@@ -40,8 +40,11 @@ class Home extends Component {
       contentSize.height - paddingToBottom;
   };
 
-  MyCoolScrollViewComponent = () => (
-    <ScrollView
+
+  render() {
+    return (
+      // <SafeAreaView >
+      <ScrollView
       onScroll={({ nativeEvent }) => {
         if (this.isCloseToBottom(nativeEvent)) {
           this.props.addItemsAction(this.props.user.Token, this.props.items.page+1)
@@ -54,19 +57,11 @@ class Home extends Component {
           data={this.props.items.items }
           renderItem={this.renderItem}
         />
-        <Spinner status = 'info' style = {{padding: 5}}/>
+        {this.props.loading && <Spinner status = 'info' style = {{padding: 5}} />}
 
       </Layout>
     </ScrollView>
   );
-
-
-  render() {
-    return (
-      // <SafeAreaView >
-      <>
-        {this.MyCoolScrollViewComponent()}
-      </>
       // </SafeAreaView>
 
     );
@@ -75,7 +70,8 @@ class Home extends Component {
 
 const mapStateToProps = state => ({
   items: state.items,
-  user: state.user
+  user: state.user,
+  loading: state.loading
 })
 
 
