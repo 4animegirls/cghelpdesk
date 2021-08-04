@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
+import { createDrawerNavigator} from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack'
 import { IndexPath, Layout, Drawer, DrawerItem, Text, Icon } from '@ui-kitten/components';
 import { useDispatch } from 'react-redux'
-import { ImageBackground, StyleSheet } from 'react-native';
 import Home from '../home/Home'
 import { removeToken } from '../../actions'
 import Settings from '../settings/Settings'
+import Details from '../details/details';
+
+
 
 const { Navigator, Screen } = createDrawerNavigator();
+const Stack = createStackNavigator()
 
 const Header = () => (
   <Layout style={{ paddingTop: 60, paddingBottom: 20, paddingLeft: 20 }}>
@@ -40,7 +44,10 @@ export const DrawerNavigator = () => (
 
 const AppNavigator = () => (
   <NavigationContainer >
-    <DrawerNavigator />
+    <Stack.Navigator>
+      <Stack.Screen name = 'root' component = {DrawerNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name = 'Details' component = {Details} />
+    </Stack.Navigator>
   </NavigationContainer>
 );
 

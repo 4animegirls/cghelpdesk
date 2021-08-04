@@ -3,11 +3,18 @@ import { Layout, Text, Divider, List, ListItem, Button, Icon, Spinner } from '@u
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import { itemsAction, addItemsAction, addPage } from '../../actions'
 import { connect } from 'react-redux'
-import data from '../../data.json'
-class Home extends Component {
-  constructor() {
-    super();
+import { NavigationContainer } from '@react-navigation/native';
+import Details from '../details/details'
 
+class Home extends Component {
+  constructor({ navigation }) {
+    super();
+    this.navigation = navigation
+
+  }
+
+  clickOnListItemAction = () => {
+    this.navigation.navigate('Details');
   }
 
   renderItemAccessory = (props) => (
@@ -24,12 +31,15 @@ class Home extends Component {
   }
 
   renderItem = ({ item, index }) => {
+
     return (
+      
       <ListItem
         title={`${item.Name} (${index + 1})`}
         description={`${item.State.Id} | ${item.CurrentSolver}`}
         accessoryLeft={this.renderItemIcon}
         accessoryRight={this.renderItemAccessory}
+        onPress={() => this.clickOnListItemAction()}
       />
     )
   };
@@ -60,9 +70,10 @@ class Home extends Component {
         {this.props.loading && <Spinner status = 'info' style = {{padding: 5}} />}
 
       </Layout>
+
     </ScrollView>
   );
-      // </SafeAreaView>
+    
 
   }
 }
