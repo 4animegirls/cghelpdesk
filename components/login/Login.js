@@ -8,14 +8,14 @@ import Navigation from '../navigation/Navigation'
 class Login extends Component {
   constructor({ navigation }){
     super()
-    this.navigation = navigation
-  }
-  state = { name: '',
+    this.state = { name: '',
             password: '' };
+  }
+
+  
 
 
   render() {
-    if(this.props.user.Token === null){
     return (
       <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Text category='h1' style={{ fontSize: 50, fontFamily: 'serif', marginBottom: 50 }}>coradesk</Text>
@@ -46,12 +46,10 @@ class Login extends Component {
       </Layout>
     );
   }
-  else {
-    this.navigation.navigate('root')
+    
 
 
   }
-}}
 
 const mapStateToProps = state => ({
   status : state.status,

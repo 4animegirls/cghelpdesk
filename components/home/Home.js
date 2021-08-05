@@ -83,7 +83,7 @@ class Home extends Component {
           {this.props.loading && <Spinner status='info' style={{ padding: 5 }} />}
         </Layout>
       </ScrollView>
-    );
+    ); 
   }
 }
 
