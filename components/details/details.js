@@ -1,14 +1,36 @@
 import React, { Component } from 'react';
-import { Layout, Text } from '@ui-kitten/components';
+import { Divider, Icon, Layout, Text, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import { SafeAreaView, StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 
-export default class Details extends Component {
+class DetailsScreen extends Component {
+
+  MenuIcon = (props) => (
+    <Icon {...props} name='arrow-back-outline' />
+  );
+
+  renderDrawerAction = () => (
+    <TopNavigationAction icon={this.MenuIcon} onPress={() => this.props.navigation.goBack()} />
+  );
 
   render() {
     return (
-      <Layout style={{ height: '100%' }}>
-        <Text>skap</Text>
-      </Layout>
+      <SafeAreaView style={{ flex: 1, paddingTop: StatusBar.currentHeight }}>
+        <TopNavigation
+          title='Details'
+          accessoryLeft={this.renderDrawerAction}
+        />
+        <Divider />
+        <Layout style={{ height: '100%' }}>
+          <Text>skap</Text>
+        </Layout>
+      </SafeAreaView>
     );
   }
 };
+
+export default function Details(props) {
+  const navigation = useNavigation();
+  return <DetailsScreen {...props} navigation={navigation} />
+}
