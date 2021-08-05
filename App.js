@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, Layout, Text, IconRegistry } from '@ui-kitten/components';
-import Login from './components/login/Login';
+import Navigation from './components/navigation/Navigation';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers';
 import thunk from 'redux-thunk'
@@ -33,7 +33,7 @@ toggleTheme = () => {
           <IconRegistry icons={EvaIconsPack} />
           <ThemeContext.Provider value = {{theme: this.state.theme, toggleTheme: this.toggleTheme}} >
             <ApplicationProvider {...eva} theme={eva[this.state.theme]}> 
-              <Login />
+              <Navigation />
             </ApplicationProvider>
           </ThemeContext.Provider>
         </Provider>
