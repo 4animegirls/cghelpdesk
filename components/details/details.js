@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Text, Select, SelectItem, Divider, ViewPager, Icon, BottomNavigation, BottomNavigationTab, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import { SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
-import DetailText from '../customComponents/DetailText'
+import DetailText from '../customComponents/DetailText';
 import { useNavigation } from '@react-navigation/native';
 
 

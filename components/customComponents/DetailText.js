@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text, Divider } from '@ui-kitten/components';
 
-class DetailText extends Component {
+export default class DetailText extends Component {
   constructor(props) {
     super(props);
   }
@@ -41,5 +41,3 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   }
 });
-
-export default DetailText;

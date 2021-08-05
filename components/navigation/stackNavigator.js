@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import Details from '../details/details';
+import Details from '../details/Details';
 
 
 

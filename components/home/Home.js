@@ -4,7 +4,7 @@ import { SafeAreaView, ScrollView, StyleSheet, StatusBar, FlatList } from 'react
 import { itemsAction, addItemsAction, addPage } from '../../actions'
 import { connect } from 'react-redux'
 import { NavigationContainer } from '@react-navigation/native';
-import Details from '../details/details'
+import Details from '../details/Details'
 
 class Home extends Component {
   constructor({ navigation }) {
@@ -21,7 +21,7 @@ class Home extends Component {
   );
 
   renderItemIcon = (props) => (
-    <Icon {...props} name='person' />
+    <Icon {...props} name='menu-outline' />
   );
 
   componentDidMount() {

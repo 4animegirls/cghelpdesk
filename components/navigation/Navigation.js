@@ -3,12 +3,12 @@ import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack'
 import { IndexPath, Layout, Drawer, DrawerItem, Text, Icon } from '@ui-kitten/components';
-import { useDispatch } from 'react-redux'
+import { useDispatch, connect } from 'react-redux'
 import Home from '../home/Home'
 import { removeToken } from '../../actions'
 import Settings from '../settings/Settings'
-import Details from '../details/details';
-
+import Details from '../details/Details';
+import Login from '../login/Login'
 
 
 const { Navigator, Screen } = createDrawerNavigator();
@@ -29,31 +29,60 @@ const DrawerContent = ({ navigation, state }) => {
       onSelect={index => navigation.navigate(state.routeNames[index.row])}>
       <DrawerItem title='Home' />
       <DrawerItem title='Settings' />
-      <DrawerItem title='Logout' onPress={() => dispatch(removeToken())} style={{ backgroundColor: 'darkred' }} accessoryRight={<Icon name='close-square' />} />
+      <DrawerItem title='Logout' onPress={
+        () => { dispatch(removeToken()) }} style={{ backgroundColor: 'darkred' }} accessoryRight={<Icon name='close-square' />} />
     </Drawer>
   )
 };
 
-export const DrawerNavigator = () => (
-  <Navigator
-    screenOptions={({ route, navigation }) => ({
-      headerShown: false,
-      gestureEnabled: true
-    })} drawerContent={props => <DrawerContent {...props} />}
-  >
-    <Screen name='Home' component={Home} />
-    <Screen name='Settings' component={Settings} />
-    <Screen name='Logout' component={Screen} />
-  </Navigator>
-);
+export class DrawerNavigator extends Component {
+  constructor({ navigation }) {
+    super()
+  }
 
-const AppNavigator = () => (
-  <NavigationContainer >
-    <Stack.Navigator>
-      <Stack.Screen name='root' component={DrawerNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name='Evidencia požiadaviek' component={Details} options={{ headerShown: false }} />
-    </Stack.Navigator>
-  </NavigationContainer>
-);
+  render() {
+    return (
+      <Navigator
+        screenOptions={({ navigation }) => ({
+          headerShown: false,
+          gestureEnabled: true
+        })} drawerContent={props => <DrawerContent {...props} />}
+      >
+        <Screen name='Home' component={Home} />
+        <Screen name='Settings' component={Settings} />
+        <Screen name='Logout' component={Screen} />
+      </Navigator>
+    );
+  }
+}
 
-export default AppNavigator
+class AppNavigator extends Component {
+  render() {
+
+    return (
+      <NavigationContainer >
+        <Stack.Navigator>
+          {(this.props.user.Token === null)
+            && <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />}
+          {(this.props.user.Token !== null)
+            && <Stack.Screen name='root' component={DrawerNavigator} options={{ headerShown: false }} />}
+          {(this.props.user.Token !== null)
+            && <Stack.Screen name='Details' component={Details} />}
+        </Stack.Navigator>
+      </NavigationContainer>
+    )
+  }
+};
+
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+
+
+
+export default connect(
+  mapStateToProps,
+  null
+)(AppNavigator)
+
