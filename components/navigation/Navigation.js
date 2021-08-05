@@ -8,7 +8,7 @@ import Home from '../home/Home'
 import { removeToken } from '../../actions'
 import Settings from '../settings/Settings'
 import Details from '../details/details';
-
+import Login from '../login/Login'
 
 
 const { Navigator, Screen } = createDrawerNavigator();
@@ -43,13 +43,14 @@ export const DrawerNavigator = () => (
   >
     <Screen name='Home' component={Home} />
     <Screen name='Settings' component={Settings} />
-    <Screen name='Logout' component={Screen} />
+    <Screen name = 'Login' component = {Login} />
   </Navigator>
 );
 
 const AppNavigator = () => (
   <NavigationContainer >
     <Stack.Navigator>
+      <Stack.Screen name = 'Login' component = {Login} />
       <Stack.Screen name = 'root' component = {DrawerNavigator} options={{ headerShown: false }} />
       <Stack.Screen name = 'Details' component = {Details} />
     </Stack.Navigator>

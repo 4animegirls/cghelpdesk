@@ -6,6 +6,10 @@ import Home from '../home/Home'
 import Navigation from '../navigation/Navigation'
 
 class Login extends Component {
+  constructor({ navigation }){
+    super()
+    this.navigation = navigation
+  }
   state = { name: '',
             password: '' };
 
@@ -43,9 +47,7 @@ class Login extends Component {
     );
   }
   else {
-    return(
-    <Navigation />
-    )
+    this.navigation.navigate('root')
 
 
   }
