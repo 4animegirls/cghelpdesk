@@ -51,7 +51,7 @@ const AppNavigator = () => (
   <NavigationContainer >
     <Stack.Navigator>
       <Stack.Screen name='root' component={DrawerNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name='Evidencia požiadaviek' component={Details} />
+      <Stack.Screen name='Evidencia požiadaviek' component={Details} options={{ headerShown: false }} />
     </Stack.Navigator>
   </NavigationContainer>
 );
