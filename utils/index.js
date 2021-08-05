@@ -1,5 +1,6 @@
 import config from '../config';
 import { HttpError } from '../utils/httperror';
+import Data from '../data.json'
 
 export const loginPost = async (userLogin) => {
     try {
@@ -27,16 +28,23 @@ export const loginPost = async (userLogin) => {
 
 export const itemsGet = async (token, page = 1) => {
     try {
-        const response = await fetch(config.url + `/api/Requests?page=${page}`, {
-            method: "GET",
-            mode: "cors",
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token,
-            }
-        });
+        
+        // fetch from server:
+        
+        // const response = await fetch(config.url + `/api/Requests?page=${page}`, {
+        //     method: "GET",
+        //     mode: "cors",
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Authorization': 'Bearer ' + token,
+        //     }
+        // });
 
-        const res = await response.json();
+        // const res = await response.json();
+
+        //fetch from hardcoded json 
+        const res = Data;   
+
         if (res.Code === '200.000') {
             return res;
         } else {

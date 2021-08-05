@@ -9,8 +9,7 @@ import Details from '../details/details'
 class Home extends Component {
   constructor({ navigation }) {
     super();
-    this.navigation = navigation
-
+    this.navigation = navigation;
   }
 
   clickOnListItemAction = () => {
