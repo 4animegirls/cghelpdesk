@@ -25,9 +25,9 @@ export const loginPost = async (userLogin) => {
 }
 
 
-export const itemsGet = async (token) => {
+export const itemsGet = async (token, page = 1) => {
     try {
-        const response = await fetch(config.url + '/api/Requests', {
+        const response = await fetch(config.url + `/api/Requests?page=${page}`, {
             method: "GET",
             mode: "cors",
             headers: {

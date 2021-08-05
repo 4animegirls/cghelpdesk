@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { IndexPath, Layout, Drawer, DrawerItem, Text } from '@ui-kitten/components';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
+import { createDrawerNavigator} from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack'
+import { IndexPath, Layout, Drawer, DrawerItem, Text, Icon } from '@ui-kitten/components';
 import { useDispatch } from 'react-redux'
-import { ImageBackground, StyleSheet } from 'react-native';
 import Home from '../home/Home'
 import { removeToken } from '../../actions'
 import Settings from '../settings/Settings'
+import Details from '../details/details';
+
+
 
 const { Navigator, Screen } = createDrawerNavigator();
+const Stack = createStackNavigator()
 
 const Header = () => (
-  <Layout style={{  paddingTop: 60, paddingBottom: 20, paddingLeft: 20 }}>
+  <Layout style={{ paddingTop: 60, paddingBottom: 20, paddingLeft: 20 }}>
     <Text category='h1' style={{ fontSize: 30, fontFamily: 'serif', margin: 0, padding: 0 }}>coradesk</Text>
   </Layout>
 );
@@ -25,13 +29,18 @@ const DrawerContent = ({ navigation, state }) => {
       onSelect={index => navigation.navigate(state.routeNames[index.row])}>
       <DrawerItem title='Home' />
       <DrawerItem title='Settings' />
-      <DrawerItem title='Logout' onPress={() => dispatch(removeToken())} />
+      <DrawerItem title='Logout' onPress={() => dispatch(removeToken())} style={{ backgroundColor: 'darkred' }} accessoryRight={<Icon name='close-square' />} />
     </Drawer>
   )
 };
 
 export const DrawerNavigator = () => (
-  <Navigator drawerContent={props => <DrawerContent {...props} />}>
+  <Navigator
+    screenOptions={({ route, navigation }) => ({
+      headerShown: false,
+      gestureEnabled: true
+    })} drawerContent={props => <DrawerContent {...props} />}
+  >
     <Screen name='Home' component={Home} />
     <Screen name='Settings' component={Settings} />
     <Screen name='Logout' component={Screen} />
@@ -40,7 +49,10 @@ export const DrawerNavigator = () => (
 
 const AppNavigator = () => (
   <NavigationContainer >
-    <DrawerNavigator />
+    <Stack.Navigator>
+      <Stack.Screen name = 'root' component = {DrawerNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name = 'Details' component = {Details} />
+    </Stack.Navigator>
   </NavigationContainer>
 );
 
