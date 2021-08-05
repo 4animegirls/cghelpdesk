@@ -4,7 +4,8 @@ import { SafeAreaView, ScrollView, StyleSheet, StatusBar } from 'react-native';
 import { itemsAction, addItemsAction, addPage } from '../../actions'
 import { connect } from 'react-redux'
 import { NavigationContainer } from '@react-navigation/native';
-import Details from '../details/details'
+import Details from '../details/Details';
+import i18n from 'i18n-js';
 
 class Home extends Component {
   constructor({ navigation }) {
@@ -13,11 +14,11 @@ class Home extends Component {
   }
 
   clickOnListItemAction = () => {
-    this.navigation.navigate('Details');
+    this.navigation.navigate(i18n.t('navigation.details'));
   }
 
   renderItemAccessory = (props) => (
-    <Button size='tiny'>FOLLOW</Button>
+    <Button size='tiny'>{i18n.t('home.follow')}</Button>
   );
 
   renderItemIcon = (props) => (
@@ -70,7 +71,7 @@ class Home extends Component {
         scrollEventThrottle={400}
       >
         <TopNavigation
-          title='Home'
+          title={i18n.t('navigation.home')}
           accessoryLeft={this.renderDrawerAction}
         />
         <Divider />

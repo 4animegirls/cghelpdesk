@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Divider, Icon, Layout, Text, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import { SafeAreaView, StatusBar } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
+import i18n from 'i18n-js';
 
 class DetailsScreen extends Component {
 
@@ -18,7 +18,7 @@ class DetailsScreen extends Component {
     return (
       <SafeAreaView style={{ flex: 1, paddingTop: StatusBar.currentHeight }}>
         <TopNavigation
-          title='Details'
+          title={i18n.t('navigation.details')}
           accessoryLeft={this.renderDrawerAction}
         />
         <Divider />
