@@ -28,9 +28,9 @@ export const loginPost = async (userLogin) => {
 
 export const itemsGet = async (token, page = 1) => {
     try {
-        
+
         // fetch from server:
-        
+
         // const response = await fetch(config.url + `/api/Requests?page=${page}`, {
         //     method: "GET",
         //     mode: "cors",
@@ -43,7 +43,16 @@ export const itemsGet = async (token, page = 1) => {
         // const res = await response.json();
 
         //fetch from hardcoded json 
-        const res = Data;   
+        const res = Data;
+        // const data = [...Data];
+        // for (let i = 0; i < 5; i++) {
+        //     res.concat(data);
+        //     console.log(res);
+        //     return res
+        // }
+        const data = res.Data.Items;
+        data.push(...data);
+        data.push(...data);
 
         if (res.Code === '200.000') {
             return res;
@@ -54,5 +63,5 @@ export const itemsGet = async (token, page = 1) => {
     } catch (e) {
         throw e;
     }
-} 
+}
 
