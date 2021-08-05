@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Layout, Text, Divider, List, ListItem, Button, Icon, Spinner, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
-import { SafeAreaView, ScrollView, StyleSheet, StatusBar } from 'react-native';
+import { Layout, Text, Divider, Button, Icon, List, ListItem, Spinner, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import { SafeAreaView, ScrollView, StyleSheet, StatusBar, FlatList } from 'react-native';
 import { itemsAction, addItemsAction, addPage } from '../../actions'
 import { connect } from 'react-redux'
 import { NavigationContainer } from '@react-navigation/native';
@@ -12,8 +12,8 @@ class Home extends Component {
     this.navigation = navigation;
   }
 
-  clickOnListItemAction = () => {
-    this.navigation.navigate('Details');
+  clickOnListItemAction = (Item) => {
+    this.navigation.navigate('Evidencia požiadaviek', Item);
   }
 
   renderItemAccessory = (props) => (
@@ -34,11 +34,13 @@ class Home extends Component {
     return (
 
       <ListItem
+        key={`${item.Id}`}
         title={`${item.Name} (${index + 1})`}
         description={`${item.State.Id} | ${item.CurrentSolver}`}
         accessoryLeft={this.renderItemIcon}
         accessoryRight={this.renderItemAccessory}
-        onPress={() => this.clickOnListItemAction()}
+        onPress={() => this.clickOnListItemAction(item)
+        }
       />
     )
   };
@@ -60,7 +62,7 @@ class Home extends Component {
 
   render() {
     return (
-      <ScrollView
+      <SafeAreaView
         style={{ flex: 1, paddingTop: StatusBar.currentHeight }}
         onScroll={({ nativeEvent }) => {
           if (this.isCloseToBottom(nativeEvent)) {
@@ -74,14 +76,14 @@ class Home extends Component {
           accessoryLeft={this.renderDrawerAction}
         />
         <Divider />
-        <Layout style={{ height: '100%', alignItems: 'center' }}>
+        <Layout >
           <List
             data={this.props.items.items}
             renderItem={this.renderItem}
           />
           {this.props.loading && <Spinner status='info' style={{ padding: 5 }} />}
         </Layout>
-      </ScrollView>
+      </SafeAreaView>
     );
   }
 }

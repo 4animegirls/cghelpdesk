@@ -1,5 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native';
-import React, { useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Details from '../details/details';
 
@@ -11,13 +11,14 @@ const { Navigator, Screen } = createStackNavigator();
 
 const HomeNavigator = () => {
     return (
-    <Navigator>
-        <Screen name = 'Details' component={Details}/>
-    </Navigator>
- )} ;
+        <Navigator>
+            <Screen name='Evidencia požiadaviek' component={Details} />
+        </Navigator>
+    )
+};
 
 export default stackNavigator = () => {
-    return(
+    return (
         <NavigationContainer >
             <HomeNavigator />
         </NavigationContainer>

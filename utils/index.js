@@ -54,6 +54,7 @@ export const itemsGet = async (token, page = 1) => {
         data.push(...data);
         data.push(...data);
 
+
         if (res.Code === '200.000') {
             return res;
         } else {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavigationContainer, StackActions } from '@react-navigation/native';
-import { createDrawerNavigator} from '@react-navigation/drawer';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack'
 import { IndexPath, Layout, Drawer, DrawerItem, Text, Icon } from '@ui-kitten/components';
 import { useDispatch } from 'react-redux'
@@ -50,8 +50,8 @@ export const DrawerNavigator = () => (
 const AppNavigator = () => (
   <NavigationContainer >
     <Stack.Navigator>
-      <Stack.Screen name = 'root' component = {DrawerNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name = 'Details' component = {Details} />
+      <Stack.Screen name='root' component={DrawerNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name='Evidencia požiadaviek' component={Details} />
     </Stack.Navigator>
   </NavigationContainer>
 );
