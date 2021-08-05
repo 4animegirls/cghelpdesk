@@ -21,7 +21,7 @@ class Home extends Component {
   );
 
   renderItemIcon = (props) => (
-    <Icon {...props} name='person' />
+    <Icon {...props} name='menu-outline' />
   );
 
   componentDidMount() {
