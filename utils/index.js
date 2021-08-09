@@ -26,9 +26,10 @@ export const loginPost = async (userLogin) => {
 }
 
 
-export const itemsGet = async (token, page = 1) => {
+export const itemsGet = async (token, page = 1, filter) => {
   try {
-    const response = await fetch(config.url + `/api/Requests?page=${page}`, {
+     filter = (filter===null) ? null : `{"logic":"and","filters":[{"field":"State.Id","operator":"eq","value":${filter}}]}` 
+    const response = await fetch(config.url + `/api/Requests?page=${page}&filter=${filter}`, {
       method: "GET",
       mode: "cors",
       headers: {
@@ -45,7 +46,32 @@ export const itemsGet = async (token, page = 1) => {
       throw new HttpError(res);
     }
 
+
   } catch (e) {
+    throw e;
+  }
+}
+
+
+
+export const itemsStatesGet = async (token) => {
+  try {
+    const response = await fetch(config.statesUri + `/api/reference/States?limit=100`, {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token,
+      }
+    });
+
+    const res = await response.json();
+
+    if (res.Code === '200.000') {
+      return res;
+    }
+  } catch (e) {
+    console.log(e);
     throw e;
   }
 }

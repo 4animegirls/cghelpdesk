@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Text, Divider, Button, Icon, List, ListItem, Spinner, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import { SafeAreaView, ScrollView, StyleSheet, StatusBar, FlatList } from 'react-native';
-import { itemsAction, addItemsAction, addPage } from '../../actions'
+import { itemsAction, addItemsAction, itemsStatesAction } from '../../actions'
 import { connect } from 'react-redux'
 import Filter from './Filter'
 
@@ -26,6 +26,7 @@ class Home extends Component {
 
   componentDidMount() { 
     this.props.itemsAction(this.props.user.Token);
+    this.props.itemsStatesAction(this.props.user.Token);
 
   }
 
@@ -104,6 +105,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   itemsAction: (token, page = 1) => dispatch(itemsAction(token, page)),
   addItemsAction: (token, page) => dispatch(addItemsAction(token, page)),
+  itemsStatesAction: (token) => dispatch(itemsStatesAction(token)),
 })
 
 
