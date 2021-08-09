@@ -11,7 +11,18 @@ export default {
     logout: 'Logout',
     details: 'Details',
   },
-  home: {},
+  home: {
+    follow: 'Follow'
+  },
   details: {},
-  settings: {},
+  settings: {
+    lang: {
+      title: 'Language',
+      description: 'Change application language',
+    },
+    theme: {
+      title: 'Dark mode',
+      description: 'Turn on/off the dark mode',
+    },
+  },
 }

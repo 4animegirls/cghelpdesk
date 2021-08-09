@@ -5,7 +5,7 @@ import Login from './components/login/Login';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers';
 import thunk from 'redux-thunk'
-import { Provider } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { ThemeContext } from './contexts/theme-context';
 import * as Localization from 'expo-localization';
@@ -17,7 +17,7 @@ const store = createStore(rootReducer, applyMiddleware(thunk))
 i18n.translations = translations;
 i18n.fallbacks = true;
 
-class App extends Component {
+export default class App extends Component {
   constructor() {
     super()
     this.state = {
@@ -25,8 +25,10 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    i18n.locale = this.state.locale;
+  getLocale = () => {}
+
+  componentDidUpdate() {
+    i18n.locale = store.getState().locale;
   }
 
   //[this.state.theme]
@@ -51,11 +53,3 @@ class App extends Component {
     );
   }
 }
-
-const mapStateToProps = state => ({
-  locale: state.locale
-});
-
-export default connect(
-  mapStateToProps
-)(App);

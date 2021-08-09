@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
 import { changeLocale } from '../../actions';
+import { connect } from 'react-redux';
 
 class SettingsScren extends Component {
   data = [
@@ -26,7 +27,7 @@ class SettingsScren extends Component {
     'Slovensky',
   ];
 
-  static contextType = { ThemeContext, LangContext }
+  static contextType = { ThemeContext }
 
   constructor(props) {
     super(props);
@@ -41,10 +42,10 @@ class SettingsScren extends Component {
   }
 
   setSelectedIndex = (selectedIndex) => {
-    let locale;
-    switch (selectedIndex) {
+    let locale = 'sk-SK';
+    switch (selectedIndex.row) {
       case 0:
-        locale = 'en';
+        locale = 'en-US';
         break;
       case 1:
         locale = 'sk-SK';
@@ -55,6 +56,7 @@ class SettingsScren extends Component {
     }
     this.props.changeLocale(locale)
     this.setState({ selectedIndex });
+    console.log({ state: this.state, props: this.props });
   }
 
   onCheckedChange = (isChecked) => {
@@ -139,7 +141,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeLocale: token => dispatch(changeLocale(token))
+  changeLocale: locale => dispatch(changeLocale(locale))
 });
 
 
