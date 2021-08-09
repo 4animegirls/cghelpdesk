@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Layout, Text, Input, Button, Divider } from '@ui-kitten/components';
 import { connect } from 'react-redux'
 import { addToken, loginAction } from '../../actions'
-import Home from '../home/Home'
-import Navigation from '../navigation/Navigation'
+
 
 class Login extends Component {
   constructor({ navigation }){

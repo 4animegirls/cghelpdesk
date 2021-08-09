@@ -3,8 +3,8 @@ import { Layout, Text, Divider, Button, Icon, List, ListItem, Spinner, TopNaviga
 import { SafeAreaView, ScrollView, StyleSheet, StatusBar, FlatList } from 'react-native';
 import { itemsAction, addItemsAction, addPage } from '../../actions'
 import { connect } from 'react-redux'
-import { NavigationContainer } from '@react-navigation/native';
-import Details from '../details/Details'
+import Filter from './Filter'
+
 
 class Home extends Component {
   constructor({ navigation }) {
@@ -24,7 +24,7 @@ class Home extends Component {
     <Icon {...props} name='menu-outline' />
   );
 
-  componentDidMount() {
+  componentDidMount() { 
     this.props.itemsAction(this.props.user.Token);
 
   }
@@ -60,6 +60,10 @@ class Home extends Component {
     <TopNavigationAction icon={this.MenuIcon} onPress={() => this.props.navigation.openDrawer()} />
   );
 
+  renderFilter = () => (
+    <Filter />
+  );
+
   render() {
     return (
       <SafeAreaView
@@ -74,6 +78,8 @@ class Home extends Component {
         <TopNavigation
           title='Home'
           accessoryLeft={this.renderDrawerAction}
+          accessoryRight={this.renderFilter}
+
         />
         <Divider />
         <Layout >
