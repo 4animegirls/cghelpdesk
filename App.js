@@ -10,20 +10,23 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { ThemeContext } from './contexts/theme-context';
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
-import translations from './lang';
+import translations from './locale';
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
 
 i18n.translations = translations;
-i18n.locale = Localization.locale;
 i18n.fallbacks = true;
 
-export default class App extends Component {
+class App extends Component {
   constructor() {
     super()
     this.state = {
       theme: 'dark'
     }
+  }
+
+  componentDidMount() {
+    i18n.locale = this.state.locale;
   }
 
   //[this.state.theme]
@@ -48,3 +51,11 @@ export default class App extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  locale: state.locale
+});
+
+export default connect(
+  mapStateToProps
+)(App);

@@ -5,6 +5,7 @@ import { ThemeContext } from '../../contexts/theme-context';
 import { useNavigation } from '@react-navigation/native';
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
+import { changeLocale } from '../../actions';
 
 class SettingsScren extends Component {
   data = [
@@ -40,19 +41,20 @@ class SettingsScren extends Component {
   }
 
   setSelectedIndex = (selectedIndex) => {
+    let locale;
     switch (selectedIndex) {
       case 0:
-        i18n.locale = 'en';
+        locale = 'en';
         break;
       case 1:
-        i18n.locale = 'sk-SK';
+        locale = 'sk-SK';
         break;
       default:
-        i18n.locale = Localization.locale;
+        locale = Localization.locale;
         break;
     }
+    this.props.changeLocale(locale)
     this.setState({ selectedIndex });
-    
   }
 
   onCheckedChange = (isChecked) => {
@@ -127,7 +129,21 @@ class SettingsScren extends Component {
   }
 };
 
-export default function Settings(props) {
+function Settings(props) {
   const navigation = useNavigation();
   return <SettingsScren {...props} navigation={navigation} />
 }
+
+const mapStateToProps = state => ({
+  locale: state.locale
+});
+
+const mapDispatchToProps = dispatch => ({
+  changeLocale: token => dispatch(changeLocale(token))
+});
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Settings);

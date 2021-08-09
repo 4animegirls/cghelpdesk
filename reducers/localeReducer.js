@@ -5,8 +5,7 @@ import i18n from 'i18n-js';
 const localization = (state = { locale: Localization.locale }, action) => {
   switch (action.type) {
     case actionTypes.LOCALE_CHANGE:
-      
-      return state;
+      return { ...state, locale: action.payload.locale };
 
     default:
       return state;
