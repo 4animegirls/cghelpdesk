@@ -13,7 +13,7 @@ class Home extends Component {
   }
 
   clickOnListItemAction = (Item) => {
-    this.navigation.navigate('Evidencia požiadaviek', Item);
+    this.navigation.navigate('Details', Item);
   }
 
   renderItemAccessory = (props) => (
