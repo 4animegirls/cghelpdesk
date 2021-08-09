@@ -42,19 +42,20 @@ class SettingsScren extends Component {
   }
 
   setSelectedIndex = (selectedIndex) => {
-    let locale = 'sk-SK';
-    switch (selectedIndex.row) {
-      case 0:
-        locale = 'en-US';
-        break;
-      case 1:
-        locale = 'sk-SK';
-        break;
-      default:
-        locale = Localization.locale;
-        break;
-    }
-    this.props.changeLocale(locale)
+    // let locale = 'sk-SK';
+    // switch (selectedIndex.row) {
+    //   case 0:
+    //     locale = 'en-US';
+    //     break;
+    //   case 1:
+    //     locale = 'sk-SK';
+    //     break;
+    //   default:
+    //     locale = Localization.locale;
+    //     break;
+    // }
+    // this.props.changeLocale(locale)
+    // @Pluvas159
     this.setState({ selectedIndex });
     console.log({ state: this.state, props: this.props });
   }

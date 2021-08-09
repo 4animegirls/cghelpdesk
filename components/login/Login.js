@@ -7,52 +7,48 @@ import Navigation from '../navigation/Navigation'
 import i18n from 'i18n-js';
 
 class Login extends Component {
-  state = {
-    name: '',
-    password: ''
-  };
+  constructor({ navigation }) {
+    super()
+    this.state = {
+      name: '',
+      password: ''
+    };
+  }
+
+
 
 
   render() {
-    if (this.props.user.Token === null) {
-      return (
-        <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text category='h1' style={{ fontSize: 50, fontFamily: 'serif', marginBottom: 50 }}>coradesk</Text>
-          <Input
-            placeholder={i18n.t('login.username')}
-            value={this.state.name}
-            onChangeText={nextValue => this.setState({ name: nextValue })}
-            style={{ width: 300 }}
-          />
-          <Input
-            placeholder={i18n.t('login.password')}
-            value={this.state.password}
-            secureTextEntry={true}
-            onChangeText={nextValue => this.setState({ password: nextValue })}
-            style={{ marginBottom: 7, marginTop: 7, width: 300 }}
-          />
-          <Button style={{ width: 300 }} onPress={() => {
-            this.props.loginAction({ Username: this.state.name, Password: this.state.password })
-          }}>
-            {i18n.t('login.login')}
-          </Button>
-          <Button onPress={() => { this.props.addToken('test') }} style={{ width: 300, marginTop: 7 }} status='warning'>
-            {i18n.t('login.debug')}
-          </Button>
+    return (
+      <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text category='h1' style={{ fontSize: 50, fontFamily: 'serif', marginBottom: 50 }}>coradesk</Text>
+        <Input
+          placeholder={i18n.t('login.username')}
+          value={this.state.name}
+          onChangeText={nextValue => this.setState({ name: nextValue })}
+          style={{ width: 300 }}
+        />
+        <Input
+          placeholder={i18n.t('login.password')}
+          value={this.state.password}
+          secureTextEntry={true}
+          onChangeText={nextValue => this.setState({ password: nextValue })}
+          style={{ marginBottom: 7, marginTop: 7, width: 300 }}
+        />
+        <Button style={{ width: 300 }} onPress={() => {
+          this.props.loginAction({ Username: this.state.name, Password: this.state.password })
+        }}>
+          {i18n.t('login.login')}
+        </Button>
+        <Button onPress={() => { this.props.addToken('test') }} style={{ width: 300, marginTop: 7 }} status='warning'>
+          {i18n.t('login.debug')}
+        </Button>
 
-          {this.props.user.error &&
-            <Text category='h6' status="warning">{this.props.user.error}</Text>
-          }
-        </Layout>
-      );
-    }
-    else {
-      return (
-        <Navigation />
-      )
-
-
-    }
+        {this.props.user.error &&
+          <Text category='h6' status="warning">{this.props.user.error}</Text>
+        }
+      </Layout>
+    );
   }
 }
 
