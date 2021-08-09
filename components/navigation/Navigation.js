@@ -65,6 +65,7 @@ class AppNavigator extends Component {
   componentDidMount() {
     console.log({ props: this.props, locale: this.props.locale });
     // i18n.locale = this.props.locale;
+    // @Pluvas159
   }
 
   render() {
