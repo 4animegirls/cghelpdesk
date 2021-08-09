@@ -67,7 +67,7 @@ class AppNavigator extends Component {
           {(this.props.user.Token !== null)
             && <Stack.Screen name='root' component={DrawerNavigator} options={{ headerShown: false }} />}
           {(this.props.user.Token !== null)
-            && <Stack.Screen name='Details' component={Details} />}
+            && <Stack.Screen name='Details' component={Details} options={{ headerShown: false }}/>}
         </Stack.Navigator>
       </NavigationContainer>
     )
