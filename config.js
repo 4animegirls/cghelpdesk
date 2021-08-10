@@ -1,6 +1,6 @@
 export default {
     url: 'http://192.168.1.178/HelpDeskServer',
-    statesUri: 'https://hdtest.coraltj.sk/Server' 
+    statesUri: 'http://pc339/HelpDeskServer' 
 };
 
 
