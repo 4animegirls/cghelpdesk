@@ -33,7 +33,7 @@ class Login extends Component {
           onChangeText={nextValue => this.setState({ password: nextValue })}
           style = {{ marginBottom:7, marginTop:7, width:300 }}
         />
-        <LoginLoader style = {{ width:300 }} onPress = {() => {this.props.loginAction({Username: this.state.name, Password: this.state.password})}}/>
+        <LoginLoader style = {{ width:300 }} Username = {this.state.name} Password= {this.state.password} />
         
         <Button onPress = {() => {this.props.addToken('test')}} style={{ width: 300, marginTop: 7 }} status='warning'>
           DEBUG
@@ -58,7 +58,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addToken: token => dispatch(addToken(token)),
-  loginAction: userLogin => dispatch(loginAction(userLogin))
 })
 
 
