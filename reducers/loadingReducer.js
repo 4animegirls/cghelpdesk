@@ -1,6 +1,6 @@
 import actionTypes from '../actions/actionTypes';
 
-const loading = (status = false, action) => {
+const loading = (state = false, action) => {
     switch (action.type) {
         case actionTypes.ADD_ITEMS_LOADING:
             return true;
@@ -10,6 +10,9 @@ const loading = (status = false, action) => {
 
         case actionTypes.ADD_ITEMS_FAILURE:
             return false;
+        
+        default:
+            return state
     }
 }
 
