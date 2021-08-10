@@ -115,3 +115,9 @@ export const itemsStatesAction = (token) => {
     }
 }
 
+export const reduceItemsStatesAction = () => (
+    {
+        type: actionTypes.REDUCE_ITEMS_STATES
+    }
+)
+
