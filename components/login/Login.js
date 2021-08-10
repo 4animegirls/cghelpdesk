@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { addToken, loginAction } from '../../actions'
 import Home from '../home/Home'
 import Navigation from '../navigation/Navigation'
+import LoginLoader from './LoginLoader';
 
 class Login extends Component {
   constructor({ navigation }){
@@ -32,10 +33,7 @@ class Login extends Component {
           onChangeText={nextValue => this.setState({ password: nextValue })}
           style = {{ marginBottom:7, marginTop:7, width:300 }}
         />
-        <Button style = {{ width: 300 }} onPress = {() => {
-          this.props.loginAction({Username: this.state.name, Password: this.state.password})}}>
-          LOG IN
-        </Button>
+        <LoginLoader />
         <Button onPress = {() => {this.props.addToken('test')}} style={{ width: 300, marginTop: 7 }} status='warning'>
           DEBUG
         </Button>
