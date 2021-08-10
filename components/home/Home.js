@@ -26,6 +26,7 @@ class Home extends Component {
 
   componentDidMount() { 
     this.props.itemsAction(this.props.user.Token);
+    this.props.itemsStatesAction(this.props.user.Token);
 
   }
 
@@ -104,6 +105,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   itemsAction: (token, page = 1) => dispatch(itemsAction(token, page)),
   addItemsAction: (token, page) => dispatch(addItemsAction(token, page)),
+  itemsStatesAction: (token) => dispatch(itemsStatesAction(token)),
 })
 
 
