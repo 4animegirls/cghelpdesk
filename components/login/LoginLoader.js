@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { Text } from '@ui-kitten/components';
 import { View, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { loginAction } from '../../actions';
 
 
 
-export default class LoginLoader extends Component {
+class LoginLoader extends Component {
   state = {
     isLoading: false
-  };
+  }
+
 
   doSignup = async () => {
     this.setState({ isLoading: true });
-    await asyncSignupFunction();
+    this.props.loginAction();
     this.setState({ isLoading: false })
   };
 
@@ -26,3 +28,11 @@ export default class LoginLoader extends Component {
     );
   }
 }
+const mapDispatchToProps = dispatch => ({
+  loginAction: userLogin => dispatch(loginAction(userLogin))
+})
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(LoginLoader)
