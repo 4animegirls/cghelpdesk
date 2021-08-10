@@ -31,9 +31,23 @@ class SettingsScren extends Component {
 
   constructor(props) {
     super(props);
+
+    let locale;
+    switch (i18n.locale) {
+      case 'en-US':
+        locale = 0;
+        break;
+      case 'sk-SK':
+        locale = 1;
+        break;
+      default:
+        locale = 0;
+        break;
+    }
+
     this.state = {
       checked: true,
-      selectedIndex: new IndexPath(0)
+      selectedIndex: new IndexPath(locale),
     }
   }
 
@@ -42,26 +56,27 @@ class SettingsScren extends Component {
   }
 
   setSelectedIndex = (selectedIndex) => {
-    // let locale = 'sk-SK';
-    // switch (selectedIndex.row) {
-    //   case 0:
-    //     locale = 'en-US';
-    //     break;
-    //   case 1:
-    //     locale = 'sk-SK';
-    //     break;
-    //   default:
-    //     locale = Localization.locale;
-    //     break;
-    // }
-    // this.props.changeLocale(locale)
-    // @Pluvas159
-    this.setState({ selectedIndex });
-    console.log({ state: this.state, props: this.props });
+    let locale = 'sk-SK';
+    switch (selectedIndex.row) {
+      case 0:
+        locale = 'en-US';
+        break;
+      case 1:
+        locale = 'sk-SK';
+        break;
+      default:
+        locale = Localization.locale;
+        break;
+    }
+
+    this.props.changeLocale(locale);
+  }
+
+  componentWillUnmount() {
+    this.props.navigation.navigate(i18n.t('navigation.settings'));
   }
 
   onCheckedChange = (isChecked) => {
-    console.log(this.context);
     this.context.toggleTheme();
     this.setChecked(isChecked);
   };
@@ -84,7 +99,6 @@ class SettingsScren extends Component {
   );
 
   renderAccessory = (id, props) => {
-    console.log(props);
     switch (id) {
       case 'lang':
         return this.renderLocalisationAccessory(props);

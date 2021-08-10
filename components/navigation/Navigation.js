@@ -45,6 +45,10 @@ export class DrawerNavigator extends Component {
     super()
   }
 
+  componentDidUpdate() {
+    console.log(this.props);
+  }
+
   render() {
     return (
       <Navigator
@@ -63,9 +67,10 @@ export class DrawerNavigator extends Component {
 
 class AppNavigator extends Component {
   componentDidMount() {
-    console.log({ props: this.props, locale: this.props.locale });
-    // i18n.locale = this.props.locale;
-    // @Pluvas159
+    i18n.locale = this.props.locale;
+  }
+  componentDidUpdate() {
+    i18n.locale = this.props.locale;
   }
 
   render() {
