@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Spinner, Layout } from '@ui-kitten/components'
 import { connect } from 'react-redux'
+import { Dimensions } from 'react-native'
 
 
 class Loading extends Component {
@@ -10,12 +11,12 @@ class Loading extends Component {
 
 
     render() {
+        const windowWidth = Dimensions.get('window').width;
+        const windowHeight = Dimensions.get('window').height;
         if(this.props.loading){
             return (
-                <Layout style = {{ position: 'absolute', width:'100%', height: '100%', top:0, left: 0, backgroundColor: 'gray', opacity:0.5}}>
-                    <Layout style={{ position: 'absolute', top: '45%', right: '45%', width: 50, height: 50 }} appearance='ghost'>
-                        {this.props.loading && <Spinner />}
-                    </Layout>
+                <Layout style = {{ position: 'absolute', width: windowWidth, height: windowHeight, top:0, left: 0, backgroundOpacity:0.5, backgroundColor: 'rgba(52, 52, 52, 0.3)', alignItems: 'center', justifyContent:'center',}}>
+                    <Spinner style={{ backgroundColor: 'orange'}} size='giant' status='warning' />
                 </Layout>
             )
     } else return null

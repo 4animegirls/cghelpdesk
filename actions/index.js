@@ -1,9 +1,9 @@
 import { loginPost, itemsGet, itemsStatesGet } from '../utils'
 import actionTypes from './actionTypes';
 
-export const addToken = (token) => ({
+export const addToken = (Token) => ({
     type: 'ADD_TOKEN',
-    payload: { token }
+    payload: { Token }
 });
 
 export const removeToken = () => ({

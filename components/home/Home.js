@@ -17,7 +17,7 @@ class Home extends Component {
     this.navigation.navigate('Details', Item);
   }
 
-  renderItemAccessory = (item,props) => (
+  renderItemAccessory = (item, props) => (
     <Button onPress={() => this.clickOnListItemAction(item)} size='tiny'>DETAILS</Button>
   );
 
@@ -26,9 +26,9 @@ class Home extends Component {
   );
 
   componentDidMount() { 
-    this.props.itemsAction(this.props.user.Token);
-    this.props.itemsStatesAction(this.props.user.Token);
-
+   this.props.user.Token!=='test' && (
+   this.props.itemsAction(this.props.user.Token),
+   this.props.itemsStatesAction(this.props.user.Token))    
   }
 
   renderItem = ({ item, index }) => {

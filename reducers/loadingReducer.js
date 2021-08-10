@@ -20,6 +20,21 @@ const loading = (state = false, action) => {
         case actionTypes.ITEMS_FAILURE:
             return false;
 
+        case actionTypes.SET_LOADING:
+            return true;
+        
+        case actionTypes.SET_FINISHED_LOADING:
+            return false;
+
+        case actionTypes.ADD_STATES_REQUEST:
+            return true;
+
+        case actionTypes.ADD_STATES_SUCCESS:
+            return false;
+  
+        case actionTypes.ADD_STATES_FAILURE:
+            return false;
+
         default:
             return state
     }
