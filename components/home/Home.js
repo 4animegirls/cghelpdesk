@@ -4,6 +4,7 @@ import { SafeAreaView, ScrollView, StyleSheet, StatusBar, FlatList } from 'react
 import { itemsAction, addItemsAction, itemsStatesAction } from '../../actions'
 import { connect } from 'react-redux'
 import Filter from './Filter'
+import Loading from '../loadingPanel/Loading';
 
 
 class Home extends Component {
@@ -87,8 +88,10 @@ class Home extends Component {
             data={this.props.items.items}
             renderItem={this.renderItem}
           />
-          {this.props.loading && <Spinner status='info' style={{ padding: 5 }} />}
+         
+  
         </Layout>
+        <Loading />
       </ScrollView>
     );
   }

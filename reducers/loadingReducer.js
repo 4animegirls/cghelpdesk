@@ -10,7 +10,16 @@ const loading = (state = false, action) => {
 
         case actionTypes.ADD_ITEMS_FAILURE:
             return false;
-        
+
+        case actionTypes.ITEMS_REQUEST:
+            return true;
+
+        case actionTypes.ITEMS_SUCCESS:
+            return false;
+
+        case actionTypes.ITEMS_FAILURE:
+            return false;
+
         default:
             return state
     }
