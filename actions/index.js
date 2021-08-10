@@ -6,6 +6,10 @@ export const changeLocale = (locale) => ({
   payload: locale
 });
 
+export const setLocaleAsUpdated = () => ({
+  type: actionTypes.LOCALE_UPDATED
+});
+
 export const addToken = (token) => ({
   type: 'ADD_TOKEN',
   payload: { token }

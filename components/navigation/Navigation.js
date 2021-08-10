@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { IndexPath, Layout, Drawer, DrawerItem, Text, Icon } from '@ui-kitten/components';
 import { useDispatch, connect } from 'react-redux'
 import Home from '../home/Home'
-import { removeToken } from '../../actions'
+import { removeToken, setLocaleAsUpdated } from '../../actions'
 import Settings from '../settings/Settings'
 import Details from '../details/Details';
 import Login from '../login/Login';
@@ -58,7 +58,7 @@ export class DrawerNavigator extends Component {
         })} drawerContent={props => <DrawerContent {...props} />}
       >
         <Screen name={i18n.t('navigation.home')} component={Home} />
-        <Screen name={i18n.t('navigation.settings')} component={Settings} />
+        <Screen name={i18n.t('navigation.settings')} component={Settings} initialParams={{ test: this.test }} />
         <Screen name={i18n.t('navigation.logout')} component={Screen} />
       </Navigator>
     );
@@ -67,15 +67,19 @@ export class DrawerNavigator extends Component {
 
 class AppNavigator extends Component {
   componentDidMount() {
-    i18n.locale = this.props.locale;
+    i18n.locale = this.props.locale.locale;
   }
   componentDidUpdate() {
-    i18n.locale = this.props.locale;
+    i18n.locale = this.props.locale.locale;
+    if (!this.props.locale.localeUpdated) {
+      this.props.setLocaleAsUpdated();
+      this.props.navigation.navigate(i18n.t('navigation.settings'));
+    }
   }
 
   render() {
     return (
-      <NavigationContainer >
+      <NavigationContainer>
         <Stack.Navigator>
           {(this.props.user.Token === null)
             && <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />}
@@ -92,10 +96,14 @@ class AppNavigator extends Component {
 const mapStateToProps = state => ({
   user: state.user,
   locale: state.locale
-})
+});
+
+const mapDispatchToProps = dispatch => ({
+  setLocaleAsUpdated: () => dispatch(setLocaleAsUpdated())
+});
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(AppNavigator)
 

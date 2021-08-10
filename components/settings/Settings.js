@@ -72,10 +72,6 @@ class SettingsScren extends Component {
     this.props.changeLocale(locale);
   }
 
-  componentWillUnmount() {
-    this.props.navigation.navigate(i18n.t('navigation.settings'));
-  }
-
   onCheckedChange = (isChecked) => {
     this.context.toggleTheme();
     this.setChecked(isChecked);
