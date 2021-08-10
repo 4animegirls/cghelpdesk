@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Text, Divider } from '@ui-kitten/components';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import { Text, Divider,Layout } from '@ui-kitten/components';
 
-export default class DetailText extends Component {
+export default class ScrollableTextArea extends Component {
   constructor(props) {
     super(props);
   }
@@ -10,24 +10,26 @@ export default class DetailText extends Component {
 
   render() {
     return (
-      <View>
+      <>
         <Text style={styles.boldText}>{this.props.title}:</Text>
-        <Text style={styles.text}>
-          {this.props.text === null ? "---" : this.props.text}
-        </Text>
+        <ScrollView style={{height: 192}}>
+          <Text style={styles.text}>
+            {this.props.text === null ? "---" : this.props.text}
+          </Text>
+        </ScrollView>
         <Divider style={styles.divider} />
-      </View>
+      </>
     );
   }
 }
 
 const styles = StyleSheet.create({
   divider: {
-    marginTop: 16
+    marginTop: 8
   },
   boldText: {
     marginHorizontal: 8,
-    marginTop: 24,
+    marginTop: 10,
     fontWeight: '700',
     fontSize: 18
   },

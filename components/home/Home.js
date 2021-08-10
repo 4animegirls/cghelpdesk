@@ -16,8 +16,8 @@ class Home extends Component {
     this.navigation.navigate('Details', Item);
   }
 
-  renderItemAccessory = (props) => (
-    <Button size='tiny'>FOLLOW</Button>
+  renderItemAccessory = (item,props) => (
+    <Button onPress={() => this.clickOnListItemAction(item)} size='tiny'>DETAILS</Button>
   );
 
   renderItemIcon = (props) => (
@@ -39,9 +39,8 @@ class Home extends Component {
         title={`${item.Name} (${index + 1})`}
         description={`${item.State.Id} | ${item.CurrentSolver}`}
         accessoryLeft={this.renderItemIcon}
-        accessoryRight={this.renderItemAccessory}
-        onPress={() => this.clickOnListItemAction(item)
-        }
+        accessoryRight={() => this.renderItemAccessory(item)}
+        onPress={() => this.clickOnListItemAction(item)}
       />
     )
   };
