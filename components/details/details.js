@@ -162,8 +162,8 @@ class DetailsScreen extends Component {
                 <ScrollableTextArea title="Realizácia" text={""} />
                 <DetailText title="Zaradené do verzia" text={""} />
                 <DetailText title="Vyriešené vo verzii" text={""} />
-                <DetailText title="Kapacita analýza" text={""} /> hod.
-                <DetailText title="Kapacita programovanie" text={""} /> hod.
+                <DetailText title="Kapacita analýza" text={""} /><Text>hod.</Text>
+                <DetailText title="Kapacita programovanie" text={""} /><Text>hod.</Text>
                 <View style={styles.row}>
                   <CheckBox checked={true}></CheckBox>
                   <Text style={[styles.boldText, { marginBottom: 20 }]}>Súbory pripravené </Text>
@@ -183,8 +183,8 @@ class DetailsScreen extends Component {
                   <Text category='h5'>Ukončenie</Text>
                   <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
                 </View>
-                <ScrollableTextArea title="Ukončenie" text={""}/>
-                <DetailText title="Vyriešené vo verzii" text={""}/>
+                <ScrollableTextArea title="Ukončenie" text={""} />
+                <DetailText title="Vyriešené vo verzii" text={""} />
                 <View style={styles.tabHeader}>
                   <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
                   <Text category='h5'>Ukončenie</Text>
@@ -216,11 +216,37 @@ class DetailsScreen extends Component {
                   <Text category='h5'>E-mail</Text>
                   <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
                 </View>
+                <View style={styles.row}>
+                  <DetailText title="Používateľ" text={""}></DetailText><Button size="medium">Pridať</Button>
+                </View>
+                <DetailText title="E-mail" text={""} />
+                {/* INSERT SMOL TABLE HERE */}
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>E-mail</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
               </Layout>
 
               <Layout
                 style={styles.tab}
                 level='2'>
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>HotLine</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
+                <View style={styles.row}>
+                  <CheckBox checked={true}></CheckBox>
+                  <Text style={[styles.boldText, { marginBottom: 20 }]}>Chybu zobraziť všetkým používateľom</Text>
+                </View>
+                <ScrollableTextArea title="Text hotline" text={""} />
+                <View style={[styles.row, { justifyContent: 'space-between', textAlign:'center' }]}>
+                  <DetailText title="Dátum započítanie upgrade" /><Text style={{marginHorizontal: 'auto'}}>Lorem Time</Text>
+                </View>
+                <View style={[styles.row, { justifyContent: 'space-between', textAlign:'center'}]}>
+                  <DetailText title="Zobraziť upgrade všetkým" /><CheckBox style={{marginHorizontal: 'auto'}} disabled></CheckBox>
+                </View>
                 <View style={styles.tabHeader}>
                   <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
                   <Text category='h5'>HotLine</Text>
@@ -236,11 +262,26 @@ class DetailsScreen extends Component {
                   <Text category='h5'>Zlúčenie</Text>
                   <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
                 </View>
+                <Text>Zlúčiť môžete len pripomienku, ktorá sa rieši (nie je v stave 900, 901 a 251) a nie je nikde v systéme označená ako hlavná. Ak chcete zrušiť zlúčenie, chodťe na hlavnú pripomienku a tam vykonajte zmeny.</Text>
+                {/* INSERT VERI SMOL TABLE HERE */}
+                <Button size='medium'>Pridať</Button>
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>Zlúčenie</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
               </Layout>
 
               <Layout
                 style={styles.tab}
                 level='2'>
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>Testovanie</Text>
+                </View>
+                <DetailText title="Otestované vo verzii" text={""}/>
+                <ScrollableTextArea title="Testovanie (inštrukcie)" text={""}/>
+                <ScrollableTextArea title="Záver z testovania" text={""}/>
                 <View style={styles.tabHeader}>
                   <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
                   <Text category='h5'>Testovanie</Text>
