@@ -115,9 +115,10 @@ export const itemsStatesAction = (token) => {
     }
 }
 
-export const reduceItemsStatesAction = () => (
+export const changeStatesFilter = (filter) => (
     {
-        type: actionTypes.REDUCE_ITEMS_STATES
+        type: actionTypes.CHANGE_STATES_FILTER,
+        payload: { filter }
     }
 )
 
