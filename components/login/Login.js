@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Text, Input, Button, Divider } from '@ui-kitten/components';
+import { Layout, Text, Input, Button, Divider, View } from '@ui-kitten/components';
 import { connect } from 'react-redux'
 import { addToken, loginAction } from '../../actions'
 import Home from '../home/Home'
@@ -33,7 +33,8 @@ class Login extends Component {
           onChangeText={nextValue => this.setState({ password: nextValue })}
           style = {{ marginBottom:7, marginTop:7, width:300 }}
         />
-        <LoginLoader />
+        <LoginLoader style = {{ width:300 }} onPress = {() => {this.props.loginAction({Username: this.state.name, Password: this.state.password})}}/>
+        
         <Button onPress = {() => {this.props.addToken('test')}} style={{ width: 300, marginTop: 7 }} status='warning'>
           DEBUG
         </Button>

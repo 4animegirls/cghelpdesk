@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { Text } from '@ui-kitten/components';
+import { View, TouchableOpacity, ActivityIndicator } from 'react-native'
 
 
-export default class LoginButton extends Component {
+
+export default class LoginLoader extends Component {
   state = {
     isLoading: false
   };
@@ -15,9 +18,9 @@ export default class LoginButton extends Component {
   render() {
     return (
       <View>
-        <TouchableOpacity onPress={this.doSignup}>
+        <TouchableOpacity  onPress={this.doSignup}>
           <Text>LOG IN</Text>
-        </TouchableOpacity>
+        </TouchableOpacity >
         <ActivityIndicator animating={this.state.isLoading} />
       </View>
     );
