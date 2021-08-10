@@ -67,11 +67,11 @@ class Home extends Component {
 
   render() {
     return (
-      <SafeAreaView
+      <ScrollView
         style={{ flex: 1, paddingTop: StatusBar.currentHeight }}
         onScroll={({ nativeEvent }) => {
           if (this.isCloseToBottom(nativeEvent)) {
-            this.props.addItemsAction(this.props.user.Token, this.props.items.page + 1)
+            this.props.addItemsAction(this.props.user.Token, this.props.items.page + 1, this.props.statesFilter)
           }
         }}
         scrollEventThrottle={400}
@@ -90,7 +90,7 @@ class Home extends Component {
           />
           {this.props.loading && <Spinner status='info' style={{ padding: 5 }} />}
         </Layout>
-      </SafeAreaView>
+      </ScrollView>
     );
   }
 }
@@ -98,13 +98,14 @@ class Home extends Component {
 const mapStateToProps = state => ({
   items: state.items,
   user: state.user,
-  loading: state.loading
+  loading: state.loading,
+  statesFilter : state.statesFilter
 })
 
 
 const mapDispatchToProps = dispatch => ({
   itemsAction: (token, page = 1) => dispatch(itemsAction(token, page)),
-  addItemsAction: (token, page) => dispatch(addItemsAction(token, page)),
+  addItemsAction: (token, page, filter = null) => dispatch(addItemsAction(token, page, filter)),
   itemsStatesAction: (token) => dispatch(itemsStatesAction(token)),
 })
 
