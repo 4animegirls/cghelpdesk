@@ -5,6 +5,7 @@ import DetailText from '../customComponents/DetailText';
 import { useNavigation } from '@react-navigation/native';
 import ScrollableTextArea from '../customComponents/ScrollableTextArea'
 import { Input } from '@ui-kitten/components';
+import Table from '../customComponents/Table'
 
 
 class DetailsScreen extends Component {
@@ -117,7 +118,7 @@ class DetailsScreen extends Component {
                   <Button size='small'>Pridať</Button>
                 </View>
                 <View>
-                  {/* INSERT TABLE HERE */}
+                  <Table item={item}/>
                 </View>
                 <View style={styles.tabHeader}>
                   <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
