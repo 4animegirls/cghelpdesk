@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Layout, Text, Select, SelectItem, Divider, ViewPager, Icon, BottomNavigation, BottomNavigationTab, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
-import { SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
+import { Layout, Text, Select, SelectItem, Divider, ViewPager, Icon, BottomNavigation, BottomNavigationTab, TopNavigation, TopNavigationAction, CheckBox, Button } from '@ui-kitten/components';
+import { SafeAreaView, ScrollView, StatusBar, StyleSheet, View, ViewComponent } from 'react-native';
 import DetailText from '../customComponents/DetailText';
 import { useNavigation } from '@react-navigation/native';
+import ScrollableTextArea from '../customComponents/ScrollableTextArea'
+import { Input } from '@ui-kitten/components';
 
 
 class DetailsScreen extends Component {
@@ -34,20 +36,11 @@ class DetailsScreen extends Component {
           accessoryLeft={this.renderDrawerAction}
         />
         <Divider />
-        <Layout style={{ height: '100%' }}>
+        <Layout>
           <Layout style={{ paddingBottom: 108 }}>
             <Text style={styles.boldText}>Názov: </Text>
             <View>
               <Text style={styles.text}>{item.Name}</Text>
-              {/* <Select
-                style={styles.button}
-                selectedIndex={this.state.selectedIndex}
-                onSelect={index => this.setSelectedIndex(index)}>
-                <SelectItem title='Option 1' />
-                <SelectItem title='Option 2' />
-                <SelectItem title='Option 3' />
-                <SelectItem title='Option 4' />
-              </Select> */}
               <Divider style={styles.divider} />
             </View>
             <Layout style={styles.row}>
@@ -75,6 +68,7 @@ class DetailsScreen extends Component {
             <DetailText title="Zamestnanec" text={item.CurrentSolver} />
             <DetailText title="Prístup na VZS" text="Nie je zadaný správca!" />
           </Layout>
+
           <Layout>
             <ViewPager
               selectedIndex={this.state.selectedIndex}
@@ -82,34 +76,245 @@ class DetailsScreen extends Component {
               <Layout
                 style={styles.tab}
                 level='2'>
-                <Text category='h5'>USERS </Text>
-                <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                <View style={styles.tabHeader}>
+                  <Text category='h5'>Podrobné informácie</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
+                <ScrollableTextArea title="Opis" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged." />
+                <View style={styles.row}>
+                  <Text style={[styles.boldText, { marginVertical: 20 }]}>Pilot: </Text>
+                  <CheckBox checked={item.Pilot}></CheckBox>
+                </View>
+                <View style={styles.row}>
+                  <Text style={[styles.boldText, { marginBottom: 20 }]}>Opakovateľná: </Text>
+                  <CheckBox checked={item.Pilot}></CheckBox>
+                </View>
+                <Divider />
+                <DetailText title="Forma Zadania" text={"HelpDesk"} />
+                <DetailText title="Na koľkých PC" text={"Number of PC"} />
+                <ScrollableTextArea title="Návrh riešenia" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged." />
+                <DetailText title="Zadal" text={""} />
+                <DetailText title="Verzia" text={""} />
+                <DetailText title="Dátum zápisu" text={""} />
+                <DetailText title="Kapacita celkom" text={"n hod."} />
+                <View style={styles.tabHeader}>
+                  <Text category='h5'>Podrobné informácie</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
               </Layout>
+
               <Layout
                 style={styles.tab}
                 level='2'>
-                <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
-                <Text category='h5'>ORDERS</Text>
-                <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>Pripojené súbory</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
+                <View style={[styles.row, { justifyContent: 'space-around' }]}>
+                  <Input placeholder="Pridať súbor..." />
+                  <Button size='small' appearance="outline" >Browse...</Button>
+                  <Button size='small'>Pridať</Button>
+                </View>
+                <View>
+                  {/* INSERT TABLE HERE */}
+                </View>
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>Pripojené súbory</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
               </Layout>
+
               <Layout
                 style={styles.tab}
                 level='2'>
-                <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
-                <Text category='h5'>TRANSACTIONS</Text>
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>Posúdenie</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
+                <ScrollableTextArea title="Podklady na schávlenie" text={""} />
+                <DetailText title="Požadované vo" text={""} />
+                <DetailText title="posúdiť do" text={""} />
+                <DetailText title="verzii" text={""} />
+                <DetailText title="Priorita riešenia" text={""} />
+                <DetailText title="Kategória požiadavky" text={""} />
+                <DetailText title="Forma riešenia" text={""} />
+                <DetailText title="Kapacita" text={""} /><Text>hod. (resp. osôb na deň v prípade položky SZ - školenie)</Text>
+                <Text>Kapacita analýza:8 hod.</Text>
+                <Text>Kapacita programovania:32 hod.</Text>
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>Posúdenie</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
+              </Layout>
+
+              <Layout
+                style={styles.tab}
+                level='2'>
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>Realizácia</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
+                <ScrollableTextArea title="Realizácia" text={""} />
+                <DetailText title="Zaradené do verzia" text={""} />
+                <DetailText title="Vyriešené vo verzii" text={""} />
+                <DetailText title="Kapacita analýza" text={""} /><Text>hod.</Text>
+                <DetailText title="Kapacita programovanie" text={""} /><Text>hod.</Text>
+                <View style={styles.row}>
+                  <CheckBox checked={true}></CheckBox>
+                  <Text style={[styles.boldText, { marginBottom: 20 }]}>Súbory pripravené </Text>
+                </View>
+                <View>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>Realizácia</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
+              </Layout>
+
+              <Layout
+                style={styles.tab}
+                level='2'>
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>Ukončenie</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
+                <ScrollableTextArea title="Ukončenie" text={""} />
+                <DetailText title="Vyriešené vo verzii" text={""} />
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>Ukončenie</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
+              </Layout>
+
+              <Layout
+                style={styles.tab}
+                level='2'>
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>Workflow</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
+                {/* INSERT TABLE HERE */}
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>Workflow</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
+              </Layout>
+
+              <Layout
+                style={styles.tab}
+                level='2'>
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>E-mail</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
+                <View style={styles.row}>
+                  <DetailText title="Používateľ" text={""}></DetailText><Button size="medium">Pridať</Button>
+                </View>
+                <DetailText title="E-mail" text={""} />
+                {/* INSERT SMOL TABLE HERE */}
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>E-mail</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
+              </Layout>
+
+              <Layout
+                style={styles.tab}
+                level='2'>
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>HotLine</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
+                <View style={styles.row}>
+                  <CheckBox checked={true}></CheckBox>
+                  <Text style={[styles.boldText, { marginBottom: 20 }]}>Chybu zobraziť všetkým používateľom</Text>
+                </View>
+                <ScrollableTextArea title="Text hotline" text={""} />
+                <View style={[styles.row, { justifyContent: 'space-between', textAlign:'center' }]}>
+                  <DetailText title="Dátum započítanie upgrade" /><Text style={{marginHorizontal: 'auto'}}>Lorem Time</Text>
+                </View>
+                <View style={[styles.row, { justifyContent: 'space-between', textAlign:'center'}]}>
+                  <DetailText title="Zobraziť upgrade všetkým" /><CheckBox style={{marginHorizontal: 'auto'}} disabled></CheckBox>
+                </View>
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>HotLine</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
+              </Layout>
+
+              <Layout
+                style={styles.tab}
+                level='2'>
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>Zlúčenie</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
+                <Text>Zlúčiť môžete len pripomienku, ktorá sa rieši (nie je v stave 900, 901 a 251) a nie je nikde v systéme označená ako hlavná. Ak chcete zrušiť zlúčenie, chodťe na hlavnú pripomienku a tam vykonajte zmeny.</Text>
+                {/* INSERT VERI SMOL TABLE HERE */}
+                <Button size='medium'>Pridať</Button>
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>Zlúčenie</Text>
+                  <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
+                </View>
+              </Layout>
+
+              <Layout
+                style={styles.tab}
+                level='2'>
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>Testovanie</Text>
+                </View>
+                <DetailText title="Otestované vo verzii" text={""}/>
+                <ScrollableTextArea title="Testovanie (inštrukcie)" text={""}/>
+                <ScrollableTextArea title="Záver z testovania" text={""}/>
+                <View style={styles.tabHeader}>
+                  <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
+                  <Text category='h5'>Testovanie</Text>
+                </View>
               </Layout>
             </ViewPager>
           </Layout>
-          <Layout>
+          <Layout style={{ marginVertical: 16 }}>
+            <Layout style={[styles.row, { justifyContent: 'space-between', paddingHorizontal: 16 }]}>
+              <Button>Nový</Button>
+              <Button>Nový ako kópia</Button>
+              <Button>Uložiť</Button>
+            </Layout>
+            <Text style={{ marginVertical: 16, marginHorizontal: 8, textAlign: 'center' }}>255 - Požiadavka - na posúdenie POw</Text>
+            <Layout style={[styles.row, { justifyContent: 'space-between', paddingHorizontal: 16 }]}>
+              <Button>Odošli</Button>
+              <Button>Zrušiť</Button>
+              <Button>Vytlačiť</Button>
+            </Layout>
+          </Layout>
+          {/* <Layout>
             <BottomNavigation
-              style={{ marginBottom: 36 }}
+              // style={{ marginBottom: -56 }}
               selectedIndex={this.state.selectedIndex}
               onSelect={index => this.setSelectedIndex(index)}>
               <BottomNavigationTab title='USERS' />
               <BottomNavigationTab title='ORDERS' />
               <BottomNavigationTab title='TRANSACTIONS' />
+              <BottomNavigationTab title='TRANSACTIONS' />
+              <BottomNavigationTab title='TRANSACTIONS' />
+              <BottomNavigationTab title='TRANSACTIONS' />
             </BottomNavigation>
-          </Layout>
+          </Layout> */}
         </Layout>
       </ScrollView>
     );
@@ -142,13 +347,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center'
   },
-  tab: {
+  tabHeader: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    height: 192,
     alignItems: 'center',
+    justifyContent: 'center'
+  },
+  tab: {
+    display: 'flex',
+    justifyContent: 'space-around',
     justifyContent: 'center',
+    paddingTop: 16
   }
 });
 
