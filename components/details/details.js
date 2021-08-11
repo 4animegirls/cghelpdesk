@@ -70,7 +70,7 @@ class DetailsScreen extends Component {
             <DetailText title="Prístup na VZS" text="Nie je zadaný správca!" />
           </Layout>
 
-          <Layout>
+          <Layout style={{ display: 'flex' }}>
             <ViewPager
               selectedIndex={this.state.selectedIndex}
               onSelect={index => this.setSelectedIndex(index)}>
@@ -118,7 +118,17 @@ class DetailsScreen extends Component {
                   <Button size='small'>Pridať</Button>
                 </View>
                 <View>
-                  <Table item={item}/>
+                  <Table
+                    item={item}
+                    header={<View style={styles.tableRow} key="0">
+                              <View style={{flex: 2}}><Text style={styles.tableText}>Názov súboru</Text></View>
+                              <View style={{flex: 2}}><Text style={styles.tableText}>Typ súboru</Text></View>
+                              <View style={{flex: 1}}><Text style={styles.tableText}>Otvoriť</Text></View>
+                              <View style={{flex: 1}}><Text style={styles.tableText}>Zmazať</Text></View>
+                              <View style={{flex: 1}}><Text style={styles.tableText}>Stav</Text></View>
+                              <View style={{flex: 2}}><Text style={styles.tableText}>Užívateľ</Text></View>
+                            </View>}
+                  />
                 </View>
                 <View style={styles.tabHeader}>
                   <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
@@ -135,7 +145,7 @@ class DetailsScreen extends Component {
                   <Text category='h5'>Posúdenie</Text>
                   <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
                 </View>
-                <ScrollableTextArea title="Podklady na schávlenie" text={""} />
+                <ScrollableTextArea title="Podklady na schválenie" text={""} />
                 <DetailText title="Požadované vo" text={""} />
                 <DetailText title="posúdiť do" text={""} />
                 <DetailText title="verzii" text={""} />
@@ -169,7 +179,7 @@ class DetailsScreen extends Component {
                   <CheckBox checked={true}></CheckBox>
                   <Text style={[styles.boldText, { marginBottom: 20 }]}>Súbory pripravené </Text>
                 </View>
-                <View>
+                <View style={styles.tabHeader}>
                   <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
                   <Text category='h5'>Realizácia</Text>
                   <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
@@ -201,7 +211,17 @@ class DetailsScreen extends Component {
                   <Text category='h5'>Workflow</Text>
                   <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
                 </View>
-                {/* INSERT TABLE HERE */}
+                <View>
+                  <Table
+                    item={item}
+                    header={<View style={styles.tableRow} key="0">
+                              <View style={{flex: 2}}><Text style={styles.tableText}>Stav</Text></View>
+                              <View style={{flex: 1}}><Text style={styles.tableText}>Dátum zaslania</Text></View>
+                              <View style={{flex: 1}}><Text style={styles.tableText}>Aktuálny riešiteľ</Text></View>
+                              <View style={{flex: 1}}><Text style={styles.tableText}>Opis</Text></View>
+                            </View>}
+                  />
+                </View>
                 <View style={styles.tabHeader}>
                   <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
                   <Text category='h5'>Workflow</Text>
@@ -221,7 +241,15 @@ class DetailsScreen extends Component {
                   <DetailText title="Používateľ" text={""}></DetailText><Button size="medium">Pridať</Button>
                 </View>
                 <DetailText title="E-mail" text={""} />
-                {/* INSERT SMOL TABLE HERE */}
+                <View>
+                  <Table
+                    item={item}
+                    header={<View style={styles.tableRow} key="0">
+                              <View style={{flex: 3}}><Text style={styles.tableText}>Komu zaslať</Text></View>
+                              <View style={{flex: 1}}><Text style={styles.tableText}></Text></View>
+                            </View>}
+                  />
+                </View>
                 <View style={styles.tabHeader}>
                   <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
                   <Text category='h5'>E-mail</Text>
@@ -242,11 +270,11 @@ class DetailsScreen extends Component {
                   <Text style={[styles.boldText, { marginBottom: 20 }]}>Chybu zobraziť všetkým používateľom</Text>
                 </View>
                 <ScrollableTextArea title="Text hotline" text={""} />
-                <View style={[styles.row, { justifyContent: 'space-between', textAlign:'center' }]}>
-                  <DetailText title="Dátum započítanie upgrade" /><Text style={{marginHorizontal: 'auto'}}>Lorem Time</Text>
+                <View style={[styles.row, { justifyContent: 'space-between', textAlign: 'center' }]}>
+                  <DetailText title="Dátum započítanie upgrade" /><Text style={{ marginHorizontal: 'auto' }}>Lorem Time</Text>
                 </View>
-                <View style={[styles.row, { justifyContent: 'space-between', textAlign:'center'}]}>
-                  <DetailText title="Zobraziť upgrade všetkým" /><CheckBox style={{marginHorizontal: 'auto'}} disabled></CheckBox>
+                <View style={[styles.row, { justifyContent: 'space-between', textAlign: 'center' }]}>
+                  <DetailText title="Zobraziť upgrade všetkým" /><CheckBox style={{ marginHorizontal: 'auto' }} disabled></CheckBox>
                 </View>
                 <View style={styles.tabHeader}>
                   <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
@@ -264,7 +292,19 @@ class DetailsScreen extends Component {
                   <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
                 </View>
                 <Text>Zlúčiť môžete len pripomienku, ktorá sa rieši (nie je v stave 900, 901 a 251) a nie je nikde v systéme označená ako hlavná. Ak chcete zrušiť zlúčenie, chodťe na hlavnú pripomienku a tam vykonajte zmeny.</Text>
-                {/* INSERT VERI SMOL TABLE HERE */}
+                <View>
+                  <Table
+                    item={item}
+                    header={<View style={styles.tableRow} key="0">
+                              <View style={{flex: 3}}><Text style={styles.tableText}>ID hlavnej pripomienky</Text></View>
+                              <View style={{flex: 3}}><Text style={styles.tableText}>Názov hlavnej pripomienky</Text></View>
+                              <View style={{flex: 3}}><Text style={styles.tableText}>ID duplicitnej pripomienky</Text></View>
+                              <View style={{flex: 3}}><Text style={styles.tableText}>Názov duplicitnej pripomienky</Text></View>
+                              <View style={{flex: 1}}><Text style={styles.tableText}>Upraviť</Text></View>
+                              <View style={{flex: 1}}><Text style={styles.tableText}>Zmazať</Text></View>
+                            </View>}
+                  />
+                </View>
                 <Button size='medium'>Pridať</Button>
                 <View style={styles.tabHeader}>
                   <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
@@ -280,28 +320,15 @@ class DetailsScreen extends Component {
                   <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
                   <Text category='h5'>Testovanie</Text>
                 </View>
-                <DetailText title="Otestované vo verzii" text={""}/>
-                <ScrollableTextArea title="Testovanie (inštrukcie)" text={""}/>
-                <ScrollableTextArea title="Záver z testovania" text={""}/>
+                <DetailText title="Otestované vo verzii" text={""} />
+                <ScrollableTextArea title="Testovanie (inštrukcie)" text={""} />
+                <ScrollableTextArea title="Záver z testovania" text={""} />
                 <View style={styles.tabHeader}>
                   <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
                   <Text category='h5'>Testovanie</Text>
                 </View>
               </Layout>
             </ViewPager>
-          </Layout>
-          <Layout style={{ marginVertical: 16 }}>
-            <Layout style={[styles.row, { justifyContent: 'space-between', paddingHorizontal: 16 }]}>
-              <Button>Nový</Button>
-              <Button>Nový ako kópia</Button>
-              <Button>Uložiť</Button>
-            </Layout>
-            <Text style={{ marginVertical: 16, marginHorizontal: 8, textAlign: 'center' }}>255 - Požiadavka - na posúdenie POw</Text>
-            <Layout style={[styles.row, { justifyContent: 'space-between', paddingHorizontal: 16 }]}>
-              <Button>Odošli</Button>
-              <Button>Zrušiť</Button>
-              <Button>Vytlačiť</Button>
-            </Layout>
           </Layout>
           {/* <Layout>
             <BottomNavigation
@@ -356,10 +383,25 @@ const styles = StyleSheet.create({
   },
   tab: {
     display: 'flex',
-    justifyContent: 'space-around',
-    justifyContent: 'center',
-    paddingTop: 16
-  }
+    paddingTop: 16,
+    height: '100%',
+  },
+  tableText: {
+    borderColor: 'white',
+    borderWidth:1,
+    color: 'white',
+    fontSize: 10
+  },
+  tableRow: {
+    borderColor: 'white',
+    borderWidth:1,
+    marginHorizontal: 8,
+    display: 'flex',
+    marginTop: 2,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
 });
 
 export default function Details(props) {
