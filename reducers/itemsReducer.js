@@ -12,6 +12,9 @@ const items = (state = { items: [], page: 1 }, action) => {
         case actionTypes.CHANGE_PAGE:
             return { ...state, page: action.payload.page}
 
+        case actionTypes.REMOVE_ITEMS:
+            return { ...state, items: []}
+                
         default:
             return state;
     }

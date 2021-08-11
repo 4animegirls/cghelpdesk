@@ -6,9 +6,20 @@ export const addToken = (Token) => ({
     payload: { Token }
 });
 
-export const removeToken = () => ({
-    type: 'REMOVE_TOKEN'
-});
+
+export const logout = () => {
+    return (dispatch) => {
+        dispatch(removeToken());
+        dispatch(changeStatesFilter('all'));
+        dispatch(removeItems());
+    }
+}
+
+export const removeToken = () => (
+    {
+        type: 'REMOVE_TOKEN'
+    }
+);
 
 const loginRequest = () => ({
     type: actionTypes.LOGIN_REQUEST
@@ -50,6 +61,12 @@ const itemsFailure = (error) => ({
     type: actionTypes.ITEMS_FAILURE,
     payload: { error }
 });
+
+export const removeItems = () => (
+    {
+        type: actionTypes.REMOVE_ITEMS
+    }
+)
 
 export const itemsAction = (token, page, filter = null) => {
     return async (dispatch) => {
