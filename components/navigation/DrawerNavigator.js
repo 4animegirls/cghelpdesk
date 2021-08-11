@@ -26,8 +26,7 @@ const DrawerContent = ({ navigation, state }) => {
             onSelect={index => navigation.navigate(state.routeNames[index.row])}>
             <DrawerItem title='Home' />
             <DrawerItem title='Settings' />
-            <DrawerItem title='Logout' onPress={
-                () => { logoutConfirm() && dispatch(logout()) }} style={{ backgroundColor: 'darkred' }} accessoryRight={<Icon name='close-square' />} />
+            <DrawerItem title='Logout'  style={{ backgroundColor: 'darkred' }} accessoryRight={<Icon name='close-square' />} />
         </Drawer>
     )
 };
@@ -47,7 +46,7 @@ export default class DrawerNavigator extends React.Component {
             >
                 <Screen name='Home' component={Home} />
                 <Screen name='Settings' component={Settings} />
-                <Screen name='Logout' component={Home} />
+                <Screen name='Logout' component={logoutConfirm} />
             </Navigator>
         );
     }
