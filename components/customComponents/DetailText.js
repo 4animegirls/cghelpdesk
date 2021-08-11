@@ -10,12 +10,12 @@ export default class DetailText extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{backgroundColor: '#f59d51',borderRadius: 15,marginTop:24,marginHorizontal:8}}>
         <Text style={styles.boldText}>{this.props.title}:</Text>
         <Text style={styles.text}>
           {this.props.text === null ? "---" : this.props.text}
         </Text>
-        <Divider style={styles.divider} />
+        {/* <Divider style={styles.divider} /> */}
       </View>
     );
   }
@@ -23,21 +23,29 @@ export default class DetailText extends Component {
 
 const styles = StyleSheet.create({
   divider: {
-    marginTop: 16
+    marginTop: 16,
+    
   },
   boldText: {
-    marginHorizontal: 8,
-    marginTop: 24,
+    paddingVertical:4,
+    paddingHorizontal: 8,
     fontWeight: '700',
-    fontSize: 18
+    fontSize: 18,
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
+    backgroundColor: '#F58220',
   },
   text: {
+    color:'black',
     fontSize: 18,
-    marginHorizontal: 8
+    marginHorizontal: 8,
+    paddingVertical:4,
+
   },
   row: {
     marginTop: 2,
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+   
   }
 });

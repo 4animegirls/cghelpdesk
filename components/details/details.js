@@ -31,21 +31,21 @@ class DetailsScreen extends Component {
   render() {
     const item = this.props.route.params;
     return (
-      <ScrollView style={{ flex: 1, paddingTop: StatusBar.currentHeight }}>
+      <ScrollView style={{ flex: 1, paddingTop: StatusBar.currentHeight,backgroundColor:'#034EA2' }}>
         <TopNavigation
           title='Details'
           accessoryLeft={this.renderDrawerAction}
         />
         <Divider />
         <Layout>
-          <Layout style={{ paddingBottom: 108 }}>
+          <Layout style={{ paddingBottom: 108,backgroundColor:'#0d3a6e' }}>
             <Text style={styles.boldText}>Názov: </Text>
-            <View>
+            <View >
               <Text style={styles.text}>{item.Name}</Text>
               <Divider style={styles.divider} />
             </View>
-            <Layout style={styles.row}>
-              <View>
+            <Layout style={[styles.row,{backgroundColor:'#0d3a6e'}]}>
+              <View style={{backgroundColor:'#0d3a6e'}}>
                 <Text style={styles.boldText}>Od: </Text>
                 <Text style={styles.text}>{item.From}</Text>
               </View>
@@ -83,13 +83,17 @@ class DetailsScreen extends Component {
                   <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
                 </View>
                 <ScrollableTextArea title="Opis" text={item.Description} />
-                <View style={styles.row}>
+                <View style={[styles.row,{backgroundColor: '#F58220',marginHorizontal:4, borderRadius:20,marginVertical:8,textAlign:'center'}]}>
                   <Text style={[styles.boldText, { marginVertical: 20 }]}>Pilot: </Text>
-                  <CheckBox checked={item.Pilot}></CheckBox>
+                  <View style={{backgroundColor:'#f59d51',paddingVertical:8,paddingLeft:16,width:'100%',borderRadius:10,overflow:'hidden'}}>
+                    <CheckBox checked={item.Pilot}></CheckBox>
+                  </View>
                 </View>
-                <View style={styles.row}>
+                <View style={[styles.row,{backgroundColor: '#F58220',marginHorizontal:4, borderRadius:20,marginVertical:8,textAlign:'center'}]}>
                   <Text style={[styles.boldText, { marginBottom: 20 }]}>Opakovateľná: </Text>
-                  <CheckBox checked={item.Repeatable}></CheckBox>
+                  <View style={{backgroundColor:'#f59d51',paddingVertical:8,paddingLeft:16, width: '100%',borderRadius:10,overflow:'hidden'}}>
+                    <CheckBox checked={item.Repeatable}></CheckBox>
+                  </View>
                 </View>
                 <Divider />
                 <DetailText title="Forma Zadania" text={item.OriginForm} />
@@ -353,6 +357,11 @@ class DetailsScreen extends Component {
   }
 };
 
+// orange: #F58220
+// blue: #034EA2
+// lightblue: #024DA2
+// white: #FFFFFF
+
 const styles = StyleSheet.create({
   divider: {
     marginTop: 8
@@ -383,12 +392,14 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor:'#2A578C'
   },
   tab: {
     display: 'flex',
     paddingTop: 16,
     height: '100%',
+    backgroundColor:'#2A578C'
   },
   tableText: {
     borderColor: 'white',
