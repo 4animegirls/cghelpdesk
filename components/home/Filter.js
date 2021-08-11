@@ -15,10 +15,11 @@ export default () => {
     const filterRef = useRef();
 
 
+    //pickerStyleType = {{width: 20}}
     return (
         <Picker
-            prompt = "Filter"
             ref={filterRef}
+            dropdownIconColor = '#fff'
             selectedValue={selectedFilter}
             onValueChange={(itemValue, itemIndex) => {
                 if (itemValue !== 'More' && itemValue !== 'Less' ){
@@ -33,7 +34,7 @@ export default () => {
 
             }
             }
-            mode = 'dropdown'
+            
             >
             <Picker.Item label="All" value="All" />
             {allStates          
