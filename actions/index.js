@@ -82,7 +82,9 @@ export const addItemsAction = (token, page, filter = null) => {
         try {
             dispatch(addItemsRequest())
             let res = await itemsGet(token, page, filter);
+            dispatch(setLoading())
             dispatch(addItemsSuccess(res.Data.Items));
+            dispatch(setFinishedLoading())
         } catch (e) {
             dispatch(addItemsFailure(e));
         }
@@ -115,10 +117,35 @@ export const itemsStatesAction = (token) => {
     }
 }
 
-export const changeStatesFilter = (filter) => (
+export const changeStatesFilter = (filter) => {
+    return (dispatch) => {
+        dispatch(changePage(0))
+        dispatch(changeStatesFilterSuccess(filter))
+    }
+}
+
+const changeStatesFilterSuccess = filter => (
     {
         type: actionTypes.CHANGE_STATES_FILTER,
         payload: { filter }
     }
 )
 
+const setLoading = () => (
+    {
+        type: actionTypes.SET_LOADING
+    }
+)
+
+const setFinishedLoading = () => (
+    {
+        type: actionTypes.SET_FINISHED_LOADING
+    }
+)
+
+export const changePage = (page) => (
+    {
+        type: actionTypes.CHANGE_PAGE,
+        payload: { page }
+    }
+)

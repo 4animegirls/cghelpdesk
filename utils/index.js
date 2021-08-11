@@ -29,7 +29,7 @@ export const loginPost = async (userLogin) => {
 export const itemsGet = async (token, page = 1, filter) => {
   try {
      filter = (filter===null) ? null : `{"logic":"and","filters":[{"field":"State.Id","operator":"eq","value":${filter}}]}` 
-    const response = await fetch(config.url + `/api/Requests?page=${page}&filter=${filter}`, {
+     const response = await fetch(config.url + `/api/Requests?page=${page}&filter=${filter}`, {
       method: "GET",
       mode: "cors",
       headers: {
@@ -42,7 +42,10 @@ export const itemsGet = async (token, page = 1, filter) => {
 
     if (res.Code === '200.000') {
       return res;
-    } else {
+    } else if (res.Code === '404.000') {
+      return {...res, Data:{ Items: null} } 
+    }
+    else {
       throw new HttpError(res);
     }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, Text, Divider, Button, Icon, List, ListItem, Spinner, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
-import { SafeAreaView, ScrollView, StyleSheet, StatusBar, FlatList } from 'react-native';
+import { ScrollView, StyleSheet, StatusBar, Dimensions } from 'react-native';
 import { itemsAction, addItemsAction, itemsStatesAction } from '../../actions'
 import { connect } from 'react-redux'
 import Filter from './Filter'
@@ -21,9 +21,6 @@ class Home extends Component {
     <Button onPress={() => this.clickOnListItemAction(item)} size='tiny'>DETAILS</Button>
   );
 
-  renderItemIcon = (props) => (
-    <Icon {...props} name='menu-outline' />
-  );
 
   componentDidMount() { 
    this.props.user.Token!=='test' && (
@@ -38,8 +35,7 @@ class Home extends Component {
       <ListItem
         key={`${item.Id}`}
         title={`${item.Name} (${index + 1})`}
-        description={`${item.State.Id} | ${item.CurrentSolver}`}
-        accessoryLeft={this.renderItemIcon}
+        description={`${item.State?.Id} | ${item.CurrentSolver}`}
         accessoryRight={() => this.renderItemAccessory(item)}
         onPress={() => this.clickOnListItemAction(item)}
       />
@@ -47,7 +43,7 @@ class Home extends Component {
   };
 
   isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
-    const paddingToBottom = 200 + this.props.items.items.length;
+    const paddingToBottom = 200 + this.props.items.items?.length;
     return layoutMeasurement.height + contentOffset.y >=
       contentSize.height - paddingToBottom;
   };
@@ -71,6 +67,7 @@ class Home extends Component {
         style={{ flex: 1, paddingTop: StatusBar.currentHeight }}
         onScroll={({ nativeEvent }) => {
           if (this.isCloseToBottom(nativeEvent)) {
+            this.props.user.Token!=='test' &&
             this.props.addItemsAction(this.props.user.Token, this.props.items.page + 1, this.props.statesFilter)
           }
         }}
@@ -83,12 +80,19 @@ class Home extends Component {
 
         />
         <Divider />
-        <Layout >
-          <List
-            data={this.props.items.items}
-            renderItem={this.renderItem}
-          />
-         
+        <Layout style = {{alignItems: 'center'}}>
+          {this.props.items.items !== null 
+          ?
+            <List
+              data={this.props.items.items}
+              renderItem={this.renderItem}
+            />
+          :
+            <Text category = 'h4' style = {{height: Dimensions.get('window').height, text:'center'}}>NO ITEMS</Text>
+            }
+          { this.props.user.Token==='test' && <Text category = 'h4' style = {{height: Dimensions.get('window').height, text:'center'}}>NO ITEMS</Text> }
+          {//(this.props.items.page > 1 && this.props.loading===true) && <Spinner />
+          } 
   
         </Layout>
         <Loading />
