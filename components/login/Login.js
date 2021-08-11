@@ -5,8 +5,8 @@ import { addToken, loginAction } from '../../actions'
 
 
 class Login extends Component {
-  constructor({ navigation }){
-    super()
+  constructor(props){
+    super(props)
     this.state = { name: '',
             password: '' };
   }
@@ -35,7 +35,7 @@ class Login extends Component {
           this.props.loginAction({Username: this.state.name, Password: this.state.password})}}>
           LOG IN
         </Button>
-        <Button onPress = {() => {this.props.addToken('test')}} style={{ width: 300, marginTop: 7 }} status='warning'>
+        <Button onPress = {() => {this.props.addToken('test') }} style={{ width: 300, marginTop: 7 }} status='warning'>
           DEBUG
         </Button>
         

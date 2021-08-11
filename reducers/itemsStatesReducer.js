@@ -8,6 +8,7 @@ const itemsStates = (state = [], action) => {
             return action.payload.states;
 
 
+
         default:
             return state;
     }

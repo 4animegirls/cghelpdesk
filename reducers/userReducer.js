@@ -13,7 +13,6 @@ const user = (state = { Token: null, username: '' }, action) => {
             return { ...state, Token: null, error:null  };
 
         case actionTypes.LOGIN_SUCCESS:
-            console.log(action.payload.response.Data.Token)
             return { ...state, Token: action.payload.response.Data.Token, refreshToken: action.payload.response.Data.RefreshToken  };
 
         case actionTypes.LOGIN_FAILURE: {
