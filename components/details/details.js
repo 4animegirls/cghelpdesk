@@ -47,7 +47,7 @@ class DetailsScreen extends Component {
             <Layout style={styles.row}>
               <View>
                 <Text style={styles.boldText}>Od: </Text>
-                <Text style={styles.text}>{item.CurrentSolver}</Text>
+                <Text style={styles.text}>{item.From}</Text>
               </View>
               <View>
                 <Text style={styles.boldText}>ID: </Text>
@@ -61,13 +61,14 @@ class DetailsScreen extends Component {
             </View>
             <DetailText title="Produkt" text={item.Product.Name} />
             <DetailText title="Typ" text={item.Type.Name} />
-            <DetailText title="Priorita" text={item.SolvingPriority} />
+            <DetailText title="Priorita" text={item.Prioity?.Name} />
             <DetailText title="Požadovaný termín realizácie" text={item.DueDate} />
             <DetailText title="Zákazník" text={item.Customer.Name} />
-            <DetailText title="Typ serv. zmluvy" text={"?"} />
-            <DetailText title="Položka serv. zmluvy" text={"?"} />
+            <DetailText title="Typ serv. zmluvy" text={item.Contract?.Type} />
+            <DetailText title="Položka serv. zmluvy" text={item.Contract?.Item} />
             <DetailText title="Zamestnanec" text={item.CurrentSolver} />
-            <DetailText title="Prístup na VZS" text="Nie je zadaný správca!" />
+            <DetailText title="Prístup na VZS" text={item.Access} />
+            <DetailText title="Typ pracovnej zmlúvy" text={item.EmploymentContractType} />
           </Layout>
 
           <Layout style={{ display: 'flex' }}>
@@ -81,23 +82,23 @@ class DetailsScreen extends Component {
                   <Text category='h5'>Podrobné informácie</Text>
                   <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
                 </View>
-                <ScrollableTextArea title="Opis" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged." />
+                <ScrollableTextArea title="Opis" text={item.Description} />
                 <View style={styles.row}>
                   <Text style={[styles.boldText, { marginVertical: 20 }]}>Pilot: </Text>
                   <CheckBox checked={item.Pilot}></CheckBox>
                 </View>
                 <View style={styles.row}>
                   <Text style={[styles.boldText, { marginBottom: 20 }]}>Opakovateľná: </Text>
-                  <CheckBox checked={item.Pilot}></CheckBox>
+                  <CheckBox checked={item.Repeatable}></CheckBox>
                 </View>
                 <Divider />
-                <DetailText title="Forma Zadania" text={"HelpDesk"} />
-                <DetailText title="Na koľkých PC" text={"Number of PC"} />
-                <ScrollableTextArea title="Návrh riešenia" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged." />
-                <DetailText title="Zadal" text={""} />
-                <DetailText title="Verzia" text={""} />
-                <DetailText title="Dátum zápisu" text={""} />
-                <DetailText title="Kapacita celkom" text={"n hod."} />
+                <DetailText title="Forma Zadania" text={item.OriginForm} />
+                <DetailText title="Na koľkých PC" text={item.DeviceCount} />
+                <ScrollableTextArea title="Návrh riešenia" text={item.SolutionPropose} />
+                <DetailText title="Zadal" text={item.Creator} />
+                <DetailText title="Verzia" text={item.Version} />
+                <DetailText title="Dátum zápisu" text={item.CreateDate} />
+                <DetailText title="Kapacita celkom" text={item.Capacity} />
                 <View style={styles.tabHeader}>
                   <Text category='h5'>Podrobné informácie</Text>
                   <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
@@ -145,14 +146,17 @@ class DetailsScreen extends Component {
                   <Text category='h5'>Posúdenie</Text>
                   <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
                 </View>
-                <ScrollableTextArea title="Podklady na schválenie" text={""} />
+                <ScrollableTextArea title="Podklady na schválenie" text={item.Description} />
                 <DetailText title="Požadované vo" text={""} />
-                <DetailText title="posúdiť do" text={""} />
-                <DetailText title="verzii" text={""} />
-                <DetailText title="Priorita riešenia" text={""} />
-                <DetailText title="Kategória požiadavky" text={""} />
-                <DetailText title="Forma riešenia" text={""} />
-                <DetailText title="Kapacita" text={""} /><Text>hod. (resp. osôb na deň v prípade položky SZ - školenie)</Text>
+                <DetailText title="posúdiť do" text={item.ReviewDueDate} />
+                <DetailText title="verzii" text={item.Version} />
+            
+                <DetailText title="Priorita riešenia" text={item.SolvingPriority} />
+                <DetailText title="Kategória požiadavky" text={item.RequestCategory} />
+                <DetailText title="Forma riešenia" text={item.SolvingForm} />
+                <DetailText title="Kapacita" text={item.Capacity} /><Text>hod. (resp. osôb na deň v prípade položky SZ - školenie)</Text>
+                <DetailText title="Kapacita analýza" text={item.AnalyzingCapacity}/>                
+                <DetailText title="Kapacita programovanie" text={item.ProgrammingCapacity}/>                
                 <Text>Kapacita analýza:8 hod.</Text>
                 <Text>Kapacita programovania:32 hod.</Text>
                 <View style={styles.tabHeader}>
@@ -170,11 +174,11 @@ class DetailsScreen extends Component {
                   <Text category='h5'>Realizácia</Text>
                   <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
                 </View>
-                <ScrollableTextArea title="Realizácia" text={""} />
-                <DetailText title="Zaradené do verzia" text={""} />
-                <DetailText title="Vyriešené vo verzii" text={""} />
-                <DetailText title="Kapacita analýza" text={""} /><Text>hod.</Text>
-                <DetailText title="Kapacita programovanie" text={""} /><Text>hod.</Text>
+                <ScrollableTextArea title="Realizácia" text={item.Description} />
+                <DetailText title="Zaradené do verzia" text={item.Version} />
+                <DetailText title="Vyriešené vo verzii" text={item.SolvedInVersion} />
+                <DetailText title="Kapacita analýza" text={item.AnalyzingCapacity} />
+                <DetailText title="Kapacita programovanie" text={item.ProgrammingCapacity} />
                 <View style={styles.row}>
                   <CheckBox checked={true}></CheckBox>
                   <Text style={[styles.boldText, { marginBottom: 20 }]}>Súbory pripravené </Text>
@@ -194,8 +198,8 @@ class DetailsScreen extends Component {
                   <Text category='h5'>Ukončenie</Text>
                   <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
                 </View>
-                <ScrollableTextArea title="Ukončenie" text={""} />
-                <DetailText title="Vyriešené vo verzii" text={""} />
+                <ScrollableTextArea title="Ukončenie" text={item.Description} />
+                <DetailText title="Vyriešené vo verzii" text={item.Version} />
                 <View style={styles.tabHeader}>
                   <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
                   <Text category='h5'>Ukončenie</Text>
@@ -271,7 +275,7 @@ class DetailsScreen extends Component {
                 </View>
                 <ScrollableTextArea title="Text hotline" text={""} />
                 <View style={[styles.row, { justifyContent: 'space-between', textAlign: 'center' }]}>
-                  <DetailText title="Dátum započítanie upgrade" /><Text style={{ marginHorizontal: 'auto' }}>Lorem Time</Text>
+                  <DetailText title="Dátum započítanie upgrade" /><Text style={{ marginHorizontal: 'auto' }} disabled >Lorem Time</Text>
                 </View>
                 <View style={[styles.row, { justifyContent: 'space-between', textAlign: 'center' }]}>
                   <DetailText title="Zobraziť upgrade všetkým" /><CheckBox style={{ marginHorizontal: 'auto' }} disabled></CheckBox>
@@ -320,9 +324,9 @@ class DetailsScreen extends Component {
                   <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
                   <Text category='h5'>Testovanie</Text>
                 </View>
-                <DetailText title="Otestované vo verzii" text={""} />
-                <ScrollableTextArea title="Testovanie (inštrukcie)" text={""} />
-                <ScrollableTextArea title="Záver z testovania" text={""} />
+                <DetailText title="Otestované vo verzii" text={item.TestInVersion} />
+                <ScrollableTextArea title="Testovanie (inštrukcie)" text={item.TestDescription} />
+                <ScrollableTextArea title="Záver z testovania" text={item.TestResult} />
                 <View style={styles.tabHeader}>
                   <Icon name="arrow-left-outline" fill="white" style={{ width: 40, height: 40 }} />
                   <Text category='h5'>Testovanie</Text>
