@@ -82,16 +82,16 @@ class DetailsScreen extends Component {
                   <Text category='h5'>Podrobné informácie</Text>
                   <Icon name="arrow-right-outline" fill="white" style={{ width: 40, height: 40 }} />
                 </View>
-                <ScrollableTextArea title="Opis" text={item.Description} />
+                <ScrollableTextArea title="Opis" text={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."} />
                 <View style={[styles.row,{backgroundColor: '#F58220',marginHorizontal:4, borderRadius:20,marginVertical:8,textAlign:'center'}]}>
                   <Text style={[styles.boldText, { marginVertical: 20 }]}>Pilot: </Text>
-                  <View style={{backgroundColor:'#f59d51',paddingVertical:8,paddingLeft:16,width:'100%',borderRadius:10,overflow:'hidden'}}>
+                  <View style={{backgroundColor:'#f59d51',paddingVertical:8,paddingLeft:16,width:'80%',borderRadius:10,overflow:'hidden'}}>
                     <CheckBox checked={item.Pilot}></CheckBox>
                   </View>
                 </View>
                 <View style={[styles.row,{backgroundColor: '#F58220',marginHorizontal:4, borderRadius:20,marginVertical:8,textAlign:'center'}]}>
                   <Text style={[styles.boldText, { marginBottom: 20 }]}>Opakovateľná: </Text>
-                  <View style={{backgroundColor:'#f59d51',paddingVertical:8,paddingLeft:16, width: '100%',borderRadius:10,overflow:'hidden'}}>
+                  <View style={{backgroundColor:'#f59d51',paddingVertical:8,paddingLeft:16, width: '60%',borderRadius:10,overflow:'hidden'}}>
                     <CheckBox checked={item.Repeatable}></CheckBox>
                   </View>
                 </View>

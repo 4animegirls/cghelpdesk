@@ -12,7 +12,7 @@ export default class ScrollableTextArea extends Component {
     return (
       <View style={styles.block}>
         <Text style={styles.boldText}>{this.props.title}:</Text>
-        <ScrollView style={{ height: 96, flexGrow: 0,backgroundColor: '#f59d51',borderRadius: 15,marginTop:8,marginHorizontal:2 }}>
+        <ScrollView style={{ height: 96, borderBottomLeftRadius:15,borderTopRightRadius:15,backgroundColor: '#f59d51',borderRadius: 15,marginTop:8,marginHorizontal:2 }}>
           <Text style={styles.text}>
             {this.props.text === null ? "---" : this.props.text}
           </Text>
