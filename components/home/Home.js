@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Layout, Text, Divider, List, ListItem, Button, Icon, Spinner, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
-import { SafeAreaView, ScrollView, StyleSheet, StatusBar } from 'react-native';
-import { itemsAction, addItemsAction, addPage } from '../../actions'
+import { Layout, Text, Divider, Button, Icon, List, ListItem, Spinner, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import { SafeAreaView, ScrollView, StyleSheet, StatusBar, FlatList } from 'react-native';
+import { itemsAction, addItemsAction, itemsStatesAction } from '../../actions'
 import { connect } from 'react-redux'
 import { NavigationContainer } from '@react-navigation/native';
 import Details from '../details/Details';
 import i18n from 'i18n-js';
+import Filter from './Filter'
 
 class Home extends Component {
   constructor({ navigation }) {
@@ -13,8 +14,8 @@ class Home extends Component {
     this.navigation = navigation;
   }
 
-  clickOnListItemAction = () => {
-    this.navigation.navigate(i18n.t('navigation.details'));
+  clickOnListItemAction = (Item) => {
+    this.navigation.navigate(i18n.t('navigation.details'), Item);
   }
 
   renderItemAccessory = (props) => (
@@ -25,8 +26,9 @@ class Home extends Component {
     <Icon {...props} name='menu-outline' />
   );
 
-  componentDidMount() {
+  componentDidMount() { 
     this.props.itemsAction(this.props.user.Token);
+    this.props.itemsStatesAction(this.props.user.Token);
 
   }
 
@@ -35,11 +37,13 @@ class Home extends Component {
     return (
 
       <ListItem
+        key={`${item.Id}`}
         title={`${item.Name} (${index + 1})`}
         description={`${item.State.Id} | ${item.CurrentSolver}`}
         accessoryLeft={this.renderItemIcon}
         accessoryRight={this.renderItemAccessory}
-        onPress={() => this.clickOnListItemAction()}
+        onPress={() => this.clickOnListItemAction(item)
+        }
       />
     )
   };
@@ -59,13 +63,17 @@ class Home extends Component {
     <TopNavigationAction icon={this.MenuIcon} onPress={() => this.props.navigation.openDrawer()} />
   );
 
+  renderFilter = () => (
+    <Filter />
+  );
+
   render() {
     return (
       <ScrollView
         style={{ flex: 1, paddingTop: StatusBar.currentHeight }}
         onScroll={({ nativeEvent }) => {
           if (this.isCloseToBottom(nativeEvent)) {
-            this.props.addItemsAction(this.props.user.Token, this.props.items.page + 1)
+            this.props.addItemsAction(this.props.user.Token, this.props.items.page + 1, this.props.statesFilter)
           }
         }}
         scrollEventThrottle={400}
@@ -73,9 +81,11 @@ class Home extends Component {
         <TopNavigation
           title={i18n.t('navigation.home')}
           accessoryLeft={this.renderDrawerAction}
+          accessoryRight={this.renderFilter}
+
         />
         <Divider />
-        <Layout style={{ height: '100%', alignItems: 'center' }}>
+        <Layout >
           <List
             data={this.props.items.items}
             renderItem={this.renderItem}
@@ -83,20 +93,22 @@ class Home extends Component {
           {this.props.loading && <Spinner status='info' style={{ padding: 5 }} />}
         </Layout>
       </ScrollView>
-    ); 
+    );
   }
 }
 
 const mapStateToProps = state => ({
   items: state.items,
   user: state.user,
-  loading: state.loading
+  loading: state.loading,
+  statesFilter : state.statesFilter
 })
 
 
 const mapDispatchToProps = dispatch => ({
   itemsAction: (token, page = 1) => dispatch(itemsAction(token, page)),
-  addItemsAction: (token, page) => dispatch(addItemsAction(token, page)),
+  addItemsAction: (token, page, filter = null) => dispatch(addItemsAction(token, page, filter)),
+  itemsStatesAction: (token) => dispatch(itemsStatesAction(token)),
 })
 
 

@@ -1,4 +1,4 @@
-import { loginPost, itemsGet } from '../utils'
+import { loginPost, itemsGet, itemsStatesGet } from '../utils'
 import actionTypes from './actionTypes';
 
 export const changeLocale = (locale) => ({
@@ -60,11 +60,11 @@ const itemsFailure = (error) => ({
   payload: { error }
 });
 
-export const itemsAction = (token, page) => {
+export const itemsAction = (token, page, filter = null) => {
   return async (dispatch) => {
     try {
       dispatch(itemsRequest())
-      let res = await itemsGet(token, page);
+      let res = await itemsGet(token, page, filter);
       dispatch(itemsSuccess(res.Data.Items));
     } catch (e) {
       dispatch(itemsFailure(e));
@@ -86,14 +86,48 @@ const addItemsFailure = (error) => ({
   payload: { error }
 });
 
-export const addItemsAction = (token, page) => {
+export const addItemsAction = (token, page, filter = null) => {
   return async (dispatch) => {
     try {
       dispatch(addItemsRequest())
-      let res = await itemsGet(token, page);
+      let res = await itemsGet(token, page, filter);
       dispatch(addItemsSuccess(res.Data.Items));
     } catch (e) {
       dispatch(addItemsFailure(e));
     }
   }
 }
+
+const itemsStatesRequest = () => ({
+  type: actionTypes.ADD_STATES_REQUEST
+});
+
+const itemsStatesSuccess = (states) => ({
+  type: actionTypes.ADD_STATES_SUCCESS,
+  payload: { states }
+});
+
+const itemsStatesFailure = (error) => ({
+  type: actionTypes.ADD_STATES_FAILURE,
+  payload: { error }
+});
+
+export const itemsStatesAction = (token) => {
+  return async (dispatch) => {
+    try {
+      dispatch(itemsStatesRequest())
+      let res = await itemsStatesGet(token);
+      dispatch(itemsStatesSuccess(res.Data.Items));
+    } catch (e) {
+      dispatch(itemsStatesFailure(e));
+    }
+  }
+}
+
+export const changeStatesFilter = (filter) => (
+  {
+    type: actionTypes.CHANGE_STATES_FILTER,
+    payload: { filter }
+  }
+)
+

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Text, Input, Button, Divider } from '@ui-kitten/components';
+import { Layout, Text, Input, Button, Divider, Spinner } from '@ui-kitten/components';
 import { connect } from 'react-redux'
 import { addToken, loginAction } from '../../actions'
 import Home from '../home/Home'
@@ -15,8 +15,9 @@ class Login extends Component {
     };
   }
 
-
-
+  loginHandler = () => {
+    this.props.loginAction({ Username: this.state.name, Password: this.state.password });
+  }
 
   render() {
     return (
@@ -35,10 +36,8 @@ class Login extends Component {
           onChangeText={nextValue => this.setState({ password: nextValue })}
           style={{ marginBottom: 7, marginTop: 7, width: 300 }}
         />
-        <Button style={{ width: 300 }} onPress={() => {
-          this.props.loginAction({ Username: this.state.name, Password: this.state.password })
-        }}>
-          {i18n.t('login.login')}
+        <Button style={{ width: 300 }} onPress={this.loginHandler} disabled={this.props.user.loginRequest}>
+          {this.props.user.loginRequest ? <Spinner status='control' size='tiny' /> : i18n.t('login.login')}
         </Button>
         <Button onPress={() => { this.props.addToken('test') }} style={{ width: 300, marginTop: 7 }} status='warning'>
           {i18n.t('login.debug')}
