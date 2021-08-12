@@ -27,7 +27,7 @@ class SettingsScren extends Component {
     'Slovensky',
   ];
 
-  static contextType = { ThemeContext }
+  static contextType =  ThemeContext 
 
   constructor(props) {
     super(props);
