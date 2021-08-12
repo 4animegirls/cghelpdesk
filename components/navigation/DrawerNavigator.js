@@ -5,7 +5,7 @@ import Settings from '../settings/Settings'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { IndexPath, Layout, Drawer, DrawerItem, Text, Icon } from '@ui-kitten/components';
 import { useDispatch } from 'react-redux'
-import logoutConfirm from '../login/logoutConfirm';
+import LogoutConfirm from '../login/logoutConfirm';
 
 
 const { Navigator, Screen } = createDrawerNavigator();
@@ -17,16 +17,16 @@ const Header = () => (
 );
 
 
-const DrawerContent = ({ navigation, state }) => {
+const DrawerContent = ({ navigation, state, setLogoutConfirmState }) => {
     const dispatch = useDispatch();
     return (
         <Drawer
             header={Header}
             selectedIndex={new IndexPath(state.index)}
-            onSelect={index => navigation.navigate(state.routeNames[index.row])}>
+            onSelect={index => index.row!==state.routeNames.length &&  navigation.navigate(state.routeNames[index.row])}>
             <DrawerItem title='Home' />
             <DrawerItem title='Settings' />
-            <DrawerItem title='Logout'  style={{ backgroundColor: 'darkred' }} accessoryRight={<Icon name='close-square' />} />
+            <DrawerItem title='Logout' onPress = {() => setLogoutConfirmState(true)} style={{ backgroundColor: 'darkred' }} accessoryRight={<Icon name='close-square' />} />
         </Drawer>
     )
 };
@@ -34,20 +34,30 @@ const DrawerContent = ({ navigation, state }) => {
 export default class DrawerNavigator extends React.Component {
     constructor({ navigation }) {
         super()
+        this.state = {
+            logoutConfirmState: false
+        }
+    }
+
+    setLogoutConfirmState = (state) => {
+        this.setState({ logoutConfirmState: state })
     }
 
     render() {
+        const setLogoutConfirmState = this.setLogoutConfirmState
         return (
+            <>
             <Navigator
                 screenOptions={({ navigation }) => ({
                     headerShown: false,
                     gestureEnabled: true
-                })} drawerContent={props => <DrawerContent {...props} />}
+                })} drawerContent={props => <DrawerContent {...{...props, setLogoutConfirmState}} />}
             >
                 <Screen name='Home' component={Home} />
                 <Screen name='Settings' component={Settings} />
-                <Screen name='Logout' component={logoutConfirm} />
             </Navigator>
+            <LogoutConfirm visibility = {this.state.logoutConfirmState} changeVisibility = { setLogoutConfirmState }/>
+            </>
         );
     }
 }

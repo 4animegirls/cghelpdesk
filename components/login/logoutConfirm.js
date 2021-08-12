@@ -4,37 +4,30 @@ import { Button, Card, Modal, Text, Divider } from '@ui-kitten/components';
 import { useDispatch } from 'react-redux'
 import { logout } from '../../actions'
 
-export default ({ navigation }) => {
+export default ({ visibility, changeVisibility}) => {
   const dispatch =  useDispatch()
-  const [visible, setVisible] = React.useState(true);
 
   const goBack = () => {
-    setVisible(false) 
+    changeVisibility(false) 
   }
 
   const logoutFunc = () => {
     dispatch(logout())
-
   }
 
-  useEffect(() => {
-    {navigation.navigate('Home')}
-  })
-
   return (
-    <View style={styles.container}>
+    <View >
       <Modal
-        visible={visible}
+        visible={visibility}
         backdropStyle={styles.backdrop}
         onBackdropPress={() => goBack()}>
-        <Card disabled={true}>
-          <Text>Are you Sure? </Text>
-          <Divider />
-          <Button onPress={() => goBack()}>
+        <Card disabled={true} style = {{width: 200}} >
+          <Text style = {{margin: 5}}>Are you Sure? </Text>
+
+          <Button onPress={() => goBack()} style = {{margin: 5}}>
             Go back
           </Button>
-          <Divider />
-          <Button status = 'warning' onPress={() => logoutFunc()}>
+          <Button status = 'warning' onPress={() => logoutFunc()} style = {{margin: 5}}>
             Log out
           </Button>
         </Card>
@@ -45,10 +38,7 @@ export default ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    minHeight: 192,
-  },
   backdrop: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
   },
 });
