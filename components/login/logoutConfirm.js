@@ -12,6 +12,7 @@ export default ({ visibility, changeVisibility}) => {
   }
 
   const logoutFunc = () => {
+    changeVisibility(false) 
     dispatch(logout())
   }
 
@@ -39,6 +40,6 @@ export default ({ visibility, changeVisibility}) => {
 
 const styles = StyleSheet.create({
   backdrop: {
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
 });

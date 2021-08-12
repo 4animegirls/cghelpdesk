@@ -5,7 +5,8 @@ import DetailText from '../customComponents/DetailText';
 import { useNavigation } from '@react-navigation/native';
 import ScrollableTextArea from '../customComponents/ScrollableTextArea'
 import { Input } from '@ui-kitten/components';
-import Table from '../customComponents/Table'
+import Table from '../customComponents/Table';
+import i18n from 'i18n-js';
 
 
 class DetailsScreen extends Component {
@@ -33,15 +34,24 @@ class DetailsScreen extends Component {
     return (
       <ScrollView style={{ flex: 1, paddingTop: StatusBar.currentHeight }}>
         <TopNavigation
-          title='Details'
+          title={i18n.t('navigation.details')}
           accessoryLeft={this.renderDrawerAction}
         />
         <Divider />
-        <Layout>
+        <Layout style={{ height: '100%' }}>
           <Layout style={{ paddingBottom: 108 }}>
             <Text style={styles.boldText}>Názov: </Text>
             <View>
               <Text style={styles.text}>{item.Name}</Text>
+              {/* <Select
+                style={styles.button}
+                selectedIndex={this.state.selectedIndex}
+                onSelect={index => this.setSelectedIndex(index)}>
+                <SelectItem title='Option 1' />
+                <SelectItem title='Option 2' />
+                <SelectItem title='Option 3' />
+                <SelectItem title='Option 4' />
+              </Select> */}
               <Divider style={styles.divider} />
             </View>
             <Layout style={styles.row}>
@@ -61,7 +71,7 @@ class DetailsScreen extends Component {
             </View>
             <DetailText title="Produkt" text={item.Product.Name} />
             <DetailText title="Typ" text={item.Type.Name} />
-            <DetailText title="Priorita" text={item.Prioity?.Name} />
+            <DetailText title="Priorita" text={item.Priority?.Name} />
             <DetailText title="Požadovaný termín realizácie" text={item.DueDate} />
             <DetailText title="Zákazník" text={item.Customer.Name} />
             <DetailText title="Typ serv. zmluvy" text={item.Contract?.Type} />
@@ -341,9 +351,6 @@ class DetailsScreen extends Component {
               onSelect={index => this.setSelectedIndex(index)}>
               <BottomNavigationTab title='USERS' />
               <BottomNavigationTab title='ORDERS' />
-              <BottomNavigationTab title='TRANSACTIONS' />
-              <BottomNavigationTab title='TRANSACTIONS' />
-              <BottomNavigationTab title='TRANSACTIONS' />
               <BottomNavigationTab title='TRANSACTIONS' />
             </BottomNavigation>
           </Layout> */}

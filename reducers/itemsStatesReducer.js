@@ -6,9 +6,6 @@ const itemsStates = (state = [], action) => {
            
         case actionTypes.ADD_STATES_SUCCESS: 
             return action.payload.states;
-
-
-
         default:
             return state;
     }

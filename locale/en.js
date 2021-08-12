@@ -1,0 +1,28 @@
+export default {
+  login: {
+    username: 'Username',
+    password: 'Password',
+    login: 'LOG IN',
+    debug: 'DEBUG',
+  },
+  navigation: {
+    home: 'Home',
+    settings: 'Settings',
+    logout: 'Logout',
+    details: 'Details',
+  },
+  home: {
+    follow: 'Follow'
+  },
+  details: {},
+  settings: {
+    lang: {
+      title: 'Language',
+      description: 'Change application language',
+    },
+    theme: {
+      title: 'Dark mode',
+      description: 'Turn on/off the dark mode',
+    },
+  },
+}

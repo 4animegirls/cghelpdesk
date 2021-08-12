@@ -30,8 +30,7 @@ const loading = (state = false, action) => {
             return false;
   
         case actionTypes.ADD_STATES_FAILURE:
-            return false;
-
+            return false;   
         default:
             return state
     }

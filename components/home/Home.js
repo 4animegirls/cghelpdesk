@@ -5,6 +5,9 @@ import { itemsAction, addItemsAction, itemsStatesAction } from '../../actions'
 import { connect } from 'react-redux'
 import Filter from './Filter'
 import Loading from '../loadingPanel/Loading';
+import i18n from 'i18n-js';
+import Details from '../details/Details';
+import { NavigationContainer } from '@react-navigation/native';
 
 
 class Home extends Component {
@@ -74,7 +77,7 @@ class Home extends Component {
         scrollEventThrottle={400}
       >
         <TopNavigation
-          title='Home'
+          title={i18n.t('navigation.home')}
           accessoryLeft={this.renderDrawerAction}
           accessoryRight={this.renderFilter}
 
