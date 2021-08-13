@@ -30,7 +30,7 @@ export default ({ visibility, changeVisibility}) => {
             {i18n.t('logout.no')} 
           </Button>
           <Button status = 'warning' onPress={() => logoutFunc()} style = {{margin: 5}}>
-          {i18n.t('logout.yes')}
+            {i18n.t('logout.yes')}
           </Button>
 
         </Card>

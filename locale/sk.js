@@ -25,7 +25,7 @@ export default {
     },
   },
   filter: {
-    all: 'Všetko',
+    all: 'všetko',
     more: 'viac..',
     less: 'menej..',
   },
