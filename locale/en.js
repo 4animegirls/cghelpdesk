@@ -25,4 +25,14 @@ export default {
       description: 'Turn on/off the dark mode',
     },
   },
+  filter: {
+    all: 'all',
+    more: 'more..',
+    less: 'less..',
+  },
+  logout: {
+    prompt: 'Are you sure?',
+    yes:'Yes',
+    no: 'Cancel',
+  },
 }

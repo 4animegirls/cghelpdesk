@@ -24,4 +24,14 @@ export default {
       description: 'Zapnúť/vypnúť tmavý režim',
     },
   },
+  filter: {
+    all: 'Všetko',
+    more: 'viac..',
+    less: 'menej..',
+  },
+  logout: {
+    prompt: 'Ste si istý?',
+    yes:'Áno ',
+    no: 'Naspäť',
+  },
 }

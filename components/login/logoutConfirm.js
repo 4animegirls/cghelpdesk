@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Button, Card, Modal, Text, Divider } from '@ui-kitten/components';
+import { Button, Card, Modal, Text } from '@ui-kitten/components';
 import { useDispatch } from 'react-redux'
 import { logout } from '../../actions'
+import i18n from 'i18n-js';
 
 export default ({ visibility, changeVisibility}) => {
   const dispatch =  useDispatch()
@@ -22,15 +23,16 @@ export default ({ visibility, changeVisibility}) => {
         visible={visibility}
         backdropStyle={styles.backdrop}
         onBackdropPress={() => goBack()}>
-        <Card disabled={true} style = {{width: 200}} >
-          <Text style = {{margin: 5}}>Are you Sure? </Text>
+        <Card disabled={true} style = {{width: 200}} >    
+          <Text style = {{margin: 5}}> {i18n.t('logout.prompt')}</Text>
 
           <Button onPress={() => goBack()} style = {{margin: 5}}>
-            Go back
+            {i18n.t('logout.no')} 
           </Button>
           <Button status = 'warning' onPress={() => logoutFunc()} style = {{margin: 5}}>
-            Log out
+          {i18n.t('logout.yes')}
           </Button>
+
         </Card>
       </Modal>
 
