@@ -38,7 +38,7 @@ class DetailsScreen extends Component {
         <Divider />
         <Layout style={{ height: '100%' }}>
           <Layout style={{ paddingBottom: 108 }}>
-            <Text style={styles.boldText}>Názov: </Text>
+            <Text style={styles.boldText}>{i18n.t('details.name')}</Text>
             <View>
               <Text style={styles.text}>{item.Name}</Text>
               {/* <Select
