@@ -11,9 +11,26 @@ export default {
     details: 'Podrobnosti',
   },
   home: {
-    follow: 'Sledovať'
+    follow: 'Sledovať',
+    noitems: 'Žiadne položky',
   },
-  details: {},
+  details: {
+    from: 'Od: ',
+    id: 'ID: ',
+    message: 'Správa: ',
+    infoSystem: 'Informačný systém',
+    product: 'Produkt',
+    type: 'Typ',
+    priority: 'Priorita',
+    duedate: 'Požadovaný termín realizácie',
+    customer: 'Zákazník',
+    contractType: 'Typ serv. zmluvy',
+    contractItem: 'Položka serv. zmluvy',
+    currentSolver: 'Zamestnanec',
+    access: 'Prístup na VZS',
+    employmentContractType: 'Typ pracovnej zmluvy',
+    viewPager: {}
+  },
   settings: {
     lang: {
       title: 'Jazyk',

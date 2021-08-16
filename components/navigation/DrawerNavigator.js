@@ -19,7 +19,7 @@ const Header = () => (
 );
 
 
-const DrawerContent = ({ navigation, state, setLogoutConfirmState }) => {
+const DrawerContent = ({ navigation, state, setLogoutConfirmState}) => {
     const dispatch = useDispatch();
     return (
         <Drawer
@@ -28,7 +28,8 @@ const DrawerContent = ({ navigation, state, setLogoutConfirmState }) => {
             onSelect={index => index.row!==state.routeNames.length &&  navigation.navigate(state.routeNames[index.row])}>
             <DrawerItem title={i18n.t('navigation.home')}  />
             <DrawerItem title={i18n.t('navigation.settings')} />
-            <DrawerItem title={i18n.t('navigation.logout')} onPress = {() => setLogoutConfirmState(true)} style={{ backgroundColor: 'darkred' }} accessoryRight={<Icon name='log-out' />} />
+            <DrawerItem title={i18n.t('navigation.logout')} onPress = {() => setLogoutConfirmState(true)} 
+                style={{ backgroundColor: 'rgba(255, 0, 0, 0.2)' }} accessoryRight={<Icon name='log-out' />} /> 
         </Drawer>
     )
 };

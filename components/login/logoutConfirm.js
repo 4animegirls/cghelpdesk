@@ -26,10 +26,10 @@ export default ({ visibility, changeVisibility}) => {
         <Card disabled={true} style = {{width: 200}} >    
           <Text style = {{margin: 5}}> {i18n.t('logout.prompt')}</Text>
 
-          <Button onPress={() => goBack()} style = {{margin: 5}}>
+          <Button status = 'warning' onPress={() => goBack()} style = {{margin: 5}}>
             {i18n.t('logout.no')} 
           </Button>
-          <Button status = 'warning' onPress={() => logoutFunc()} style = {{margin: 5}}>
+          <Button status = 'danger' onPress={() => logoutFunc()} style = {{margin: 5}}>
             {i18n.t('logout.yes')}
           </Button>
 

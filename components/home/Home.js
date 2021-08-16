@@ -89,9 +89,9 @@ class Home extends Component {
               renderItem={this.renderItem}
             />
           :
-            <Text category = 'h4' style = {{height: Dimensions.get('window').height}}>NO ITEMS</Text>
+            <Text category = 'h4' style = {{height: Dimensions.get('window').height}}>{i18n.t('home.noitems')}</Text>
             }
-          { this.props.user.Token==='test' && <Text category = 'h4' style = {{height: Dimensions.get('window').height}}>NO ITEMS</Text> }
+          { this.props.user.Token==='test' && <Text category = 'h4' style = {{height: Dimensions.get('window').height}}>{i18n.t('home.noitems')}</Text> }
           {//(this.props.items.page > 1 && this.props.loading===true) && <Spinner />
           } 
   

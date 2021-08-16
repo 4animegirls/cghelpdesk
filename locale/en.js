@@ -12,7 +12,8 @@ export default {
     details: 'Details',
   },
   home: {
-    follow: 'Follow'
+    follow: 'Follow',
+    noitems: 'No items',
   },
   details: {},
   settings: {
