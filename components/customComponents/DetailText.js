@@ -23,11 +23,11 @@ export default class DetailText extends Component {
 
 const styles = StyleSheet.create({
   divider: {
-    marginTop: 16
+    marginTop: 8
   },
   boldText: {
     marginHorizontal: 8,
-    marginTop: 24,
+    marginTop: 10,
     fontWeight: '700',
     fontSize: 18
   },

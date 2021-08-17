@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Layout, Text, Divider, Button, Icon, List, ListItem, Spinner, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import { Layout, Text, Divider, Button, Icon, List, ListItem, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import { ScrollView, StyleSheet, StatusBar, Dimensions } from 'react-native';
 import { itemsAction, addItemsAction, itemsStatesAction } from '../../actions'
 import { connect } from 'react-redux'
 import Filter from './Filter'
 import Loading from '../loadingPanel/Loading';
+import i18n from 'i18n-js';
 
 
 class Home extends Component {
@@ -74,7 +75,7 @@ class Home extends Component {
         scrollEventThrottle={400}
       >
         <TopNavigation
-          title='Home'
+          title={i18n.t('navigation.home')}
           accessoryLeft={this.renderDrawerAction}
           accessoryRight={this.renderFilter}
 
@@ -88,9 +89,9 @@ class Home extends Component {
               renderItem={this.renderItem}
             />
           :
-            <Text category = 'h4' style = {{height: Dimensions.get('window').height, text:'center'}}>NO ITEMS</Text>
+            <Text category = 'h4' style = {{height: Dimensions.get('window').height}}>{i18n.t('home.noitems')}</Text>
             }
-          { this.props.user.Token==='test' && <Text category = 'h4' style = {{height: Dimensions.get('window').height, text:'center'}}>NO ITEMS</Text> }
+          { this.props.user.Token==='test' && <Text category = 'h4' style = {{height: Dimensions.get('window').height}}>{i18n.t('home.noitems')}</Text> }
           {//(this.props.items.page > 1 && this.props.loading===true) && <Spinner />
           } 
   

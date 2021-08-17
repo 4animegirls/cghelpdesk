@@ -1,11 +1,14 @@
 import React from 'react'
 import Home from '../home/Home'
-import { removeToken } from '../../actions'
+import { logout } from '../../actions'
 import Settings from '../settings/Settings'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { IndexPath, Layout, Drawer, DrawerItem, Text, Icon } from '@ui-kitten/components';
-import { useDispatch } from 'react-redux'
-
+import LogoutConfirm from '../login/logoutConfirm';
+import { connect, useDispatch } from 'react-redux';
+import * as Localization from 'expo-localization';
+import i18n from 'i18n-js';
+import { setLocaleAsUpdated } from '../../actions';
 
 const { Navigator, Screen } = createDrawerNavigator();
 
@@ -16,38 +19,70 @@ const Header = () => (
 );
 
 
-const DrawerContent = ({ navigation, state }) => {
+const DrawerContent = ({ navigation, state, setLogoutConfirmState}) => {
     const dispatch = useDispatch();
     return (
         <Drawer
             header={Header}
             selectedIndex={new IndexPath(state.index)}
-            onSelect={index => navigation.navigate(state.routeNames[index.row])}>
-            <DrawerItem title='Home' />
-            <DrawerItem title='Settings' />
-            <DrawerItem title='Logout' onPress={
-                () => { dispatch(removeToken()) }} style={{ backgroundColor: 'darkred' }} accessoryRight={<Icon name='close-square' />} />
+            onSelect={index => index.row!==state.routeNames.length &&  navigation.navigate(state.routeNames[index.row])}>
+            <DrawerItem title={i18n.t('navigation.home')}  />
+            <DrawerItem title={i18n.t('navigation.settings')} />
+            <DrawerItem title={i18n.t('navigation.logout')} onPress = {() => setLogoutConfirmState(true)} 
+                style={{ backgroundColor: 'rgba(255, 0, 0, 0.2)' }} accessoryRight={<Icon name='log-out' />} /> 
         </Drawer>
     )
 };
 
-export default class DrawerNavigator extends React.Component {
+class DrawerNavigator extends React.Component {
     constructor({ navigation }) {
         super()
+        this.state = {
+            logoutConfirmState: false
+        }
+    }
+
+    setLogoutConfirmState = (state) => {
+        this.setState({ logoutConfirmState: state })
+    }
+
+    componentDidMount() {
+      i18n.locale = this.props.locale.locale;
+    }
+    componentDidUpdate() {
+      if (!this.props.locale.localeUpdated) {
+        i18n.locale = this.props.locale.locale;
+        this.props.setLocaleAsUpdated();
+      }
     }
 
     render() {
+        const setLogoutConfirmState = this.setLogoutConfirmState
         return (
+            <>
             <Navigator
                 screenOptions={({ navigation }) => ({
                     headerShown: false,
                     gestureEnabled: true
-                })} drawerContent={props => <DrawerContent {...props} />}
+                })} drawerContent={props => <DrawerContent {...{...props, setLogoutConfirmState}} />}
             >
-                <Screen name='Home' component={Home} />
-                <Screen name='Settings' component={Settings} />
-                <Screen name='Logout' component={Screen} />
+                <Screen name={i18n.t('navigation.home')} component={Home} />
+                <Screen name={i18n.t('navigation.settings')} component={Settings} />
             </Navigator>
+            <LogoutConfirm visibility = {this.state.logoutConfirmState} changeVisibility = { setLogoutConfirmState }/>
+            </>
         );
     }
 }
+const mapStateToProps = state => ({
+  locale: state.locale,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setLocaleAsUpdated: () => dispatch(setLocaleAsUpdated()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DrawerNavigator)

@@ -5,10 +5,6 @@ import { Dimensions } from 'react-native'
 
 
 class Loading extends Component {
-    constructor() {
-        super()
-    }
-
 
     render() {
         const windowWidth = Dimensions.get('window').width;
