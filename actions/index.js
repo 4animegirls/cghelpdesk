@@ -109,7 +109,9 @@ export const addItemsAction = (token, page, filter = null) => {
     try {
       dispatch(addItemsRequest())
       let res = await itemsGet(token, page, filter);
+      dispatch(setLoading());
       dispatch(addItemsSuccess(res.Data.Items));
+      dispatch(setFinishedLoading());
     } catch (e) {
       dispatch(addItemsFailure(e));
     }
