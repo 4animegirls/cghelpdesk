@@ -55,7 +55,35 @@ export const itemsGet = async (token, page = 1, filter) => {
   }
 }
 
+//marekovo itemGet
 
+export const itemGet = async (token,id) => {
+  try {
+    const response = await fetch(config.url + `/api/Requests/${id}`, {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token,
+      }
+    });
+    const res = await response.json();
+    
+    if (res.Code === '200.000') {
+      return res;
+    } else if (res.Code === '404.000') {
+      return {...res, Data:{ Item: null} } 
+    }
+    else {
+      throw new HttpError(res);
+    }
+    
+    
+  } catch (e) {
+    throw e;
+  }
+}
+
+//marekovo itemGet koniec
 
 export const itemsStatesGet = async (token) => {
   try {

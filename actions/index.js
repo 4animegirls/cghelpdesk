@@ -1,4 +1,4 @@
-import { loginPost, itemsGet, itemsStatesGet } from '../utils'
+import { loginPost, itemsGet, itemGet, itemsStatesGet } from '../utils'
 import actionTypes from './actionTypes';
 
 export const addToken = (Token) => ({
@@ -89,6 +89,37 @@ export const itemsAction = (token, page, filter = null) => {
   }
 }
 
+//marekova trojička
+
+const itemRequest = () => ({
+  type: actionTypes.ITEM_REQUEST
+});
+
+const itemSuccess = (item) => ({
+  type: actionTypes.ITEM_SUCCESS,
+  payload: { item }
+});
+
+const itemFailure = (error) => ({
+  type: actionTypes.ITEM_FAILURE,
+  payload: { error }
+});
+
+
+export const itemAction = (token, id) => {
+  
+  return async (dispatch) => {  
+    try {
+      dispatch(itemRequest())
+      let res = await itemGet(token, id);
+      dispatch(itemSuccess(res.Data));
+    } catch (e) {
+      dispatch(itemFailure(e));
+    }
+  }
+}
+
+//marekova trojička end
 
 const addItemsRequest = () => ({
   type: actionTypes.ITEMS_REQUEST

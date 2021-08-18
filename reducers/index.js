@@ -6,6 +6,7 @@ import loading from './loadingReducer';
 import { combineReducers } from 'redux';
 import  itemsStates  from './itemsStatesReducer'
 import statesFilter from './statesFilterReducer'
+import item from './itemReducer';
 
 const rootReducer = combineReducers({
     status,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     loading,
     itemsStates,
     statesFilter,
+    item
 });
 
 export default rootReducer;

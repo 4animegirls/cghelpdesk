@@ -5,7 +5,7 @@ const user = (state = { Token: null, username: '', loginRequest: false }, action
     switch (action.type) {
         case 'ADD_TOKEN':
             return { ...state, Token: action.payload.Token };
-
+        
         case actionTypes.ADD_USERNAME:
             return { ...state, username: action.payload.username };
 
@@ -16,7 +16,7 @@ const user = (state = { Token: null, username: '', loginRequest: false }, action
             return { ...state, loginRequest: true };
 
         case actionTypes.LOGIN_SUCCESS:
-            return { ...state, loginRequest: false, Token: action.payload.response.Data.Token, refreshToken: action.payload.response.Data.RefreshToken };
+        return {...state, loginRequest: false, Token: action.payload.response.Data.Token, refreshToken: action.payload.response.Data.RefreshToken };
 
         case actionTypes.LOGIN_FAILURE: {
             if (action.payload.error instanceof HttpError) {
