@@ -16,6 +16,7 @@ const user = (state = { Token: null, username: '', loginRequest: false }, action
             return { ...state, loginRequest: true };
 
         case actionTypes.LOGIN_SUCCESS:
+        console.log("Aktuálny token aktuálneho usera: ",action.payload.response.Data.Token);
         return {...state, loginRequest: false, Token: action.payload.response.Data.Token, refreshToken: action.payload.response.Data.RefreshToken };
 
         case actionTypes.LOGIN_FAILURE: {

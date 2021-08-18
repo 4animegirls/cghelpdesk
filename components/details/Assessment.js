@@ -20,7 +20,7 @@ export default function Assessment({ styles, item }) {
         <DetailText title={i18n.t('details.viewPager.assessment.reviewDueDate')} text={item.ReviewDueDate} />
         <DetailText title={i18n.t('details.viewPager.assessment.version')} text={item.Version} />
 
-        <DetailText title={i18n.t('details.viewPager.assessment.solvingPriority')} text={item.SolvingPriority} />
+        <DetailText title={i18n.t('details.viewPager.assessment.solvingPriority')} text={item.SolvingPriority?.Name} />
         <DetailText title={i18n.t('details.viewPager.assessment.requestCategory')} text={item.RequestCategory} />
         <DetailText title={i18n.t('details.viewPager.assessment.solvingForm')} text={item.SolvingForm} />
         <DetailText title={i18n.t('details.viewPager.assessment.capacity')} text={item.Capacity} /><Text>hod. (resp. osôb na deň v prípade položky SZ - školenie)</Text>
