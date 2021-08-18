@@ -69,7 +69,7 @@ class Home extends Component {
         onScroll={({ nativeEvent }) => {
           if (this.isCloseToBottom(nativeEvent)) {
             this.props.user.Token!=='test' &&
-            this.props.addItemsAction(this.props.user.Token, this.props.items.page + 1, this.props.statesFilter)
+            this.props.addItemsAction(this.props.user.Token, this.props.items.page + 1, ['Id', this.props.statesFilter])
           }
         }}
         scrollEventThrottle={400}
