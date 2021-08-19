@@ -69,7 +69,7 @@ class Home extends Component {
         onScroll={({ nativeEvent }) => {
           if (this.isCloseToBottom(nativeEvent)) {
             this.props.user.Token!=='test' &&
-            this.props.addItemsAction(this.props.user.Token, this.props.items.page + 1, ['Id', this.props.statesFilter])
+            this.props.addItemsAction(this.props.user.Token, this.props.items.page + 1, [this.props.searchFilter, ['Id', this.props.statesFilter]])
           }
         }}
         scrollEventThrottle={400}
@@ -106,7 +106,8 @@ const mapStateToProps = state => ({
   items: state.items,
   user: state.user,
   loading: state.loading,
-  statesFilter : state.statesFilter
+  statesFilter : state.statesFilter,
+  searchFilter: state.searchFilter
 })
 
 

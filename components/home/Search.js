@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Button, Icon, Modal, Card, Input, Select, IndexPath, SelectItem, Divider } from '@ui-kitten/components'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import i18n from 'i18n-js';
 import { v4 as uuidv4 } from 'uuid';
-import { itemsAction } from '../../actions';
+import { itemsAction, changeSearchFilter } from '../../actions';
 
 export default (props) => {
   const [visibility, setVisibility] = useState(false);
   const [value, setValue] = useState('');
+  const statesFilter = useSelector(state => state.statesFilter)
   const [selectedIndex, setSelectedIndex] = useState(new IndexPath(0));
   const dispatch = useDispatch();
 
@@ -55,7 +56,8 @@ export default (props) => {
               onChangeText={nextValue => setValue(nextValue)}
             />
             <Button status='warning' style={{ margin: 5 }} onPress={() => {
-              dispatch(itemsAction(props.Token, 1, [filterData[selectedIndex.row], '"' + value + '"'])); goBack()
+              dispatch(changeSearchFilter([filterData[selectedIndex.row], '"' + value + '"']))
+              dispatch(itemsAction(props.Token, 1, [[filterData[selectedIndex.row], '"' + value + '"'], ['Id', statesFilter] ])); goBack()
             }}>
               Search
             </Button>

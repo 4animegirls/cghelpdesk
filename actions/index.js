@@ -176,3 +176,17 @@ export const changePage = (page) => (
     payload: { page }
   }
 )
+
+export const changeSearchFilter = (search) => {
+  return (dispatch) => {
+    dispatch(changePage(0))
+    dispatch(changeSearchFilterSucces(search))
+  }
+}
+
+const changeSearchFilterSucces = search => (
+  {
+    type: actionTypes.CHANGE_SEARCH_FILTER,
+    payload: { search }
+  }
+)

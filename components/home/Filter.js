@@ -13,6 +13,7 @@ export default () => {
     const selectedFilter = useSelector(state => state.statesFilter);
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
+    const searchFilter = useSelector(state => state.searchFilter);
     const itemsStates = useSelector(state => state.itemsStates);
     const [allStates, changeAllStates] = useState(false);
     const filterRef = useRef();
@@ -38,7 +39,7 @@ export default () => {
                         onValueChange={(itemValue, itemIndex) => {
                             if (itemValue !== 'More' && itemValue !== 'Less') {
                                 dispatch(changeStatesFilter(itemValue))
-                                dispatch(itemsAction(user.Token, 1, [ 'Id', itemValue]))
+                                dispatch(itemsAction(user.Token, 1, [[ 'Id', itemValue], searchFilter]))
                             } else if (itemValue === 'More') {
                                 changeAllStates(true)
 
@@ -50,7 +51,7 @@ export default () => {
                         }
 
                     >
-                        <Picker.Item label={i18n.t('filter.all')} value="All" />
+                        <Picker.Item label={i18n.t('filter.all')} value="" />
                         {allStates
                             //depending on allStates bool decides to render mostUsedStates or allStates
                             ? itemsStates.map(state => <Picker.Item label={state.Id} value={state.Id} key={uuidv4()} />)
