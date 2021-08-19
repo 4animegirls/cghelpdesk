@@ -1,6 +1,7 @@
 import config from '../config';
 import { HttpError } from '../utils/httperror';
 import Data from '../data.json'
+import filterChange from './filterChange';
 
 export const loginPost = async (userLogin) => {
   try {
@@ -28,7 +29,9 @@ export const loginPost = async (userLogin) => {
 
 export const itemsGet = async (token, page = 1, filter) => {
   try {
-     filter = (filter===null) ? null : `{"logic":"and","filters":[{"field":"State.Id","operator":"eq","value":${filter}}]}` 
+    filter = filterChange(filter); 
+    console.log(filter);
+
      const response = await fetch(config.url + `/api/Requests?page=${page}&filter=${filter}`, {
       method: "GET",
       mode: "cors",
