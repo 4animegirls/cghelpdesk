@@ -1,10 +1,10 @@
 import actionTypes from '../actions/actionTypes';
 import { HttpError } from '../utils/httperror';
 
-const user = (state = { Token: null, username: '', loginRequest: false }, action) => {
+const user = (state = { Token: null, username: '', loginRequest: false, refreshToken: null }, action) => {
     switch (action.type) {
         case 'ADD_TOKEN':
-            return { ...state, Token: action.payload.Token };
+            return { ...state, Token: action.payload.Token, RefreshToken: action.payload.RefreshToken };
         
         case actionTypes.ADD_USERNAME:
             return { ...state, username: action.payload.username };
@@ -16,8 +16,7 @@ const user = (state = { Token: null, username: '', loginRequest: false }, action
             return { ...state, loginRequest: true };
 
         case actionTypes.LOGIN_SUCCESS:
-        console.log("Aktuálny token aktuálneho usera: ",action.payload.response.Data.Token);
-        return {...state, loginRequest: false, Token: action.payload.response.Data.Token, refreshToken: action.payload.response.Data.RefreshToken };
+            return {...state, loginRequest: false, Token: action.payload.response.Data.Token, refreshToken: action.payload.response.Data.RefreshToken };
 
         case actionTypes.LOGIN_FAILURE: {
             if (action.payload.error instanceof HttpError) {

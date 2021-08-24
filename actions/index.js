@@ -1,9 +1,9 @@
 import { loginPost, itemsGet, itemGet, itemsStatesGet } from '../utils'
 import actionTypes from './actionTypes';
 
-export const addToken = (Token) => ({
+export const addToken = (Token, RefreshToken = null) => ({
   type: 'ADD_TOKEN',
-  payload: { Token }
+  payload: { Token, RefreshToken }
 });
 
 export const changeLocale = (locale) => ({

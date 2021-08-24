@@ -9,7 +9,7 @@ import { connect, Provider } from 'react-redux';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { ThemeContext } from './contexts/theme-context';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+export const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default class App extends Component {
   constructor() {
