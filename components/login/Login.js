@@ -5,14 +5,16 @@ import { addToken, loginAction } from '../../actions'
 import Home from '../home/Home'
 import Navigation from '../navigation/Navigation'
 import i18n from 'i18n-js';
-import { ActivityIndicator} from "react-native";
+import { ActivityIndicator } from "react-native";
 
 
 class Login extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
-    this.state = { name: '',
-            password: '' };
+    this.state = {
+      name: '',
+      password: ''
+    };
   }
 
   loginHandler = () => {
@@ -22,7 +24,7 @@ class Login extends Component {
   render() {
     return (
       <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text category='h1' style={{ fontSize: 50, fontFamily: 'serif', marginBottom: 50 }}>coradesk</Text>
+        <Text category='h1' style={{ fontSize: 50, fontFamily: 'serif', marginBottom: 50, textAlign: 'center' }}>Corageo Helpdesk</Text>
         <Input
           placeholder={i18n.t('login.username')}
           value={this.state.name}
@@ -37,7 +39,7 @@ class Login extends Component {
           style={{ marginBottom: 7, marginTop: 7, width: 300 }}
         />
         <Button style={{ width: 300 }} onPress={this.loginHandler} disabled={this.props.user.loginRequest}>
-          {this.props.user.loginRequest ? <ActivityIndicator  size='small' color = '#fff' /> : i18n.t('login.login')}
+          {this.props.user.loginRequest ? <ActivityIndicator size='small' color='#fff' /> : i18n.t('login.login')}
         </Button>
         <Button onPress={() => { this.props.addToken('test') }} style={{ width: 300, marginTop: 7 }} status='warning'>
           {i18n.t('login.debug')}
