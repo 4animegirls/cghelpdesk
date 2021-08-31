@@ -35,9 +35,9 @@ export default (props) => {
   );
 
   return (
-    <Button onPress={() => setVisibility(true)} appearance='ghost' size='tiny'>
-      <Icon name='search' style={{ width: 20, height: 20 }} fill='#fff' />
-      <View>
+    <>
+    <Button onPress={() => setVisibility(true)} appearance='ghost' accessoryLeft = { <Icon name='search' /> } status = 'warning'/>
+    <View>
         <Modal
           visible={visibility}
           backdropStyle={styles.backdrop}
@@ -65,8 +65,7 @@ export default (props) => {
           </Card>
         </Modal>
       </View>
-    </Button>
-
+  </>
   )
 }
 
